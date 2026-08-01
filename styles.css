@@ -1,0 +1,6739 @@
+@font-face {
+    font-family: 'Prompt';
+    src: url('assets/webprincipal/fonts/PROMPT-REGULAR.TTF') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('assets/webprincipal/fonts/PROMPT-SEMIBOLD.TTF') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('assets/webprincipal/fonts/PROMPT-BOLD.TTF') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('assets/webprincipal/fonts/PROMPT-BLACK.TTF') format('truetype');
+    font-weight: 900;
+}
+
+:root {
+    --epic-dark: #023332;
+    --epic-teal: #007777;
+    --epic-teal-light: #00e5e5;
+    --epic-white: #ffffff;
+    --navbar-height: 69px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    background: var(--epic-dark);
+    font-family: 'Prompt', sans-serif;
+    overflow-x: hidden;
+}
+
+.epic-page {
+    width: 100%;
+    max-width: 100%;
+    background: var(--epic-dark);
+    color: var(--epic-white);
+    overflow-x: hidden;
+    font-family: 'Prompt', sans-serif;
+}
+
+/* =========================================================
+   NUBES GLOBALES ENTRE ESCENAS
+   La franja es hermana de las escenas para que pueda ocupar
+   ambos lados de cada transición sin quedar recortada.
+========================================================= */
+
+.epic-cloud-transition {
+    position: relative;
+    z-index: 60;
+
+    width: 100%;
+    height: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+.epic-cloud-transition-img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center center;
+
+    object-fit: contain;
+    object-position: center;
+
+    opacity: 1;
+
+    filter: drop-shadow(0 8px 10px rgba(2, 51, 50, .10));
+
+    user-select: none;
+    -webkit-user-drag: none;
+    backface-visibility: hidden;
+}
+
+@media (max-width: 992px) {
+    .epic-cloud-transition-img {
+        width: 112%;
+    }
+}
+
+@media (max-width: 768px) {
+    .epic-cloud-transition-img {
+        width: 125%;
+    }
+}
+
+@media (max-width: 480px) {
+    .epic-cloud-transition-img {
+        width: 138%;
+    }
+}
+
+/* =========================================================
+   NAVBAR FIJO EN TODA LA WEB
+========================================================= */
+
+.epic-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: var(--navbar-height);
+
+    z-index: 10000;
+
+    background: rgba(2, 51, 50, .88);
+
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, .12);
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/*
+   El navbar fixed deja de ocupar espacio en el documento.
+   Este padding evita que cubra la primera escena.
+*/
+.epic-page {
+    padding-top: var(--navbar-height);
+}
+
+.epic-nav-inner {
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 8px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.epic-logo-img {
+    display: block;
+
+    width: auto;
+    height: 48px;
+    max-width: 180px;
+
+    object-fit: contain;
+}
+
+.epic-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 24px;
+}
+
+.epic-nav a {
+    position: relative;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: .92rem;
+    font-weight: 600;
+
+    opacity: .9;
+    white-space: nowrap;
+
+    transition:
+        color .25s ease,
+        opacity .25s ease;
+}
+
+.epic-nav a:hover,
+.epic-nav a:focus-visible {
+    color: var(--epic-teal-light);
+    opacity: 1;
+}
+
+.epic-nav a:focus-visible {
+    outline: 2px solid var(--epic-teal-light);
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+
+/* =========================================================
+   BASE DE ESCENAS
+========================================================= */
+
+.scene {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
+
+    padding: 90px 24px;
+
+    overflow: hidden;
+
+    /*
+       Al seleccionar una opción del menú, la escena comienza
+       debajo del navbar y no queda cubierta.
+    */
+    scroll-margin-top: var(--navbar-height);
+}
+
+.scene-content {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 1180px;
+}
+
+.scene-title {
+    display: inline-block;
+
+    padding: 8px 36px;
+
+    border: 3px solid white;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .08);
+
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+}
+
+.scene-subtitle {
+    max-width: 700px;
+    margin: 18px auto 0;
+
+    font-size: clamp(1rem, 2vw, 1.35rem);
+
+    opacity: .9;
+}
+
+.scroll-label {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+
+    z-index: 20;
+
+    transform: translateX(-50%);
+
+    font-size: .85rem;
+    letter-spacing: 4px;
+
+    opacity: .75;
+    white-space: nowrap;
+}
+
+.scroll-label::after {
+    content: " ↓";
+
+    color: var(--epic-teal-light);
+}
+
+/* =========================================================
+   ESCENAS ESPECIALES QUE NO UTILIZAN .scene
+========================================================= */
+
+/*
+   Algunas escenas del proyecto utilizan clases propias.
+   scroll-margin-top evita que queden debajo del navbar
+   cuando se accede mediante los enlaces del menú.
+*/
+.welcome-scroll-scene,
+.snow-cards-scene,
+.lake-cards-scene,
+.contact-scene {
+    scroll-margin-top: var(--navbar-height);
+}
+
+/* =========================================================
+   RESPONSIVE: BASE, NAVBAR Y TÍTULOS
+========================================================= */
+
+@media (max-width: 992px) {
+
+    :root {
+        --navbar-height: 60px;
+    }
+
+    .epic-nav-inner {
+        padding: 7px 20px;
+    }
+
+    .epic-logo-img {
+        height: 42px;
+        max-width: 160px;
+    }
+
+    .epic-nav {
+        gap: 14px;
+    }
+
+    .epic-nav a {
+        font-size: .78rem;
+    }
+
+    .scene {
+        min-height: calc(100vh - var(--navbar-height));
+        padding: 82px 18px;
+    }
+
+    .scene-title {
+        padding: 7px 26px;
+
+        font-size: clamp(1.8rem, 5.8vw, 3.5rem);
+    }
+
+    .scene-subtitle {
+        font-size: clamp(.95rem, 2.2vw, 1.2rem);
+    }
+}
+
+@media (max-width: 768px) {
+
+    :root {
+        --navbar-height: 58px;
+    }
+
+    .epic-nav {
+        display: none;
+    }
+
+    .epic-nav-inner {
+        justify-content: center;
+
+        padding: 7px 14px;
+    }
+
+    .epic-logo-img {
+        height: 38px;
+        max-width: 150px;
+    }
+
+    .scene {
+        min-height: calc(100vh - var(--navbar-height));
+        padding: 76px 14px;
+    }
+
+    .scene-title {
+        padding: 7px 20px;
+
+        border-width: 3px;
+
+        font-size: clamp(1.45rem, 8vw, 2.6rem);
+    }
+
+    .scene-subtitle {
+        max-width: 92%;
+
+        font-size: .95rem;
+    }
+
+    .scroll-label {
+        bottom: 18px;
+
+        font-size: .72rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    :root {
+        --navbar-height: 54px;
+    }
+
+    .epic-nav-inner {
+        padding: 6px 10px;
+    }
+
+    .epic-logo-img {
+        height: 34px;
+        max-width: 135px;
+    }
+
+    .scene {
+        min-height: calc(100vh - var(--navbar-height));
+        padding: 70px 10px;
+    }
+
+    .scene-title {
+        padding: 6px 16px;
+
+        font-size: clamp(1.25rem, 9vw, 2.1rem);
+    }
+
+    .scene-subtitle {
+        font-size: .86rem;
+    }
+}
+
+/* =========================
+   ESCENA 1 - INICIO
+   Responsive seguro
+========================= */
+
+.intro-scene {
+    background: #023332;
+    text-align: center;
+}
+
+.intro-circle-wrap {
+    width: min(360px, 82vw);
+    height: min(360px, 82vw);
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.intro-circle {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    animation: introCircleAppear .8s ease forwards;
+    animation-delay: .2s;
+}
+
+.intro-orientar {
+    width: 58%;
+    max-width: 240px;
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    animation: introTextAppear 1s ease forwards;
+    animation-delay: .1s;
+}
+
+.intro-plane-orbit {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    opacity: 0;
+    transform-origin: 50% 50%;
+    animation: planeOrbitCompleteCircle 3.5s linear forwards;
+    animation-delay: 1s;
+}
+
+.intro-plane {
+    position: absolute;
+    width: 38px;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: 50% 50%;
+    /* Turquesa */
+filter: brightness(0) invert(1);
+}
+
+.intro-logo {
+    width: min(420px, 80vw);
+    margin-top: 28px;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp .9s ease forwards;
+    animation-delay: 4s;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .intro-circle-wrap {
+        width: min(330px, 76vw);
+        height: min(330px, 76vw);
+    }
+
+    .intro-orientar {
+        width: 58%;
+        max-width: 220px;
+    }
+
+    .intro-plane {
+        width: 35px;
+        top: 5px;
+    }
+
+    .intro-logo {
+        width: min(380px, 76vw);
+        margin-top: 24px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .intro-scene {
+        min-height: 100vh;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .intro-circle-wrap {
+        width: min(300px, 78vw);
+        height: min(300px, 78vw);
+    }
+
+    .intro-orientar {
+        width: 58%;
+        max-width: 190px;
+    }
+
+    .intro-plane {
+        width: 32px;
+        top: 5px;
+    }
+
+    .intro-logo {
+        width: min(330px, 78vw);
+        margin-top: 22px;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .intro-circle-wrap {
+        width: min(260px, 76vw);
+        height: min(260px, 76vw);
+    }
+
+    .intro-orientar {
+        width: 58%;
+        max-width: 165px;
+    }
+
+    .intro-plane {
+        width: 28px;
+        top: 4px;
+    }
+
+    .intro-logo {
+        width: min(290px, 78vw);
+        margin-top: 20px;
+    }
+}
+
+/* =========================
+   ESCENA 2 - LETRERO / VANESSA
+   RESPONSIVE COMPLETO
+========================= */
+
+.welcome-scroll-scene {
+    position: relative;
+    height: 135vh;
+    padding: 0;
+    overflow: visible;
+    background: #023332;
+}
+
+.welcome-sticky-frame {
+    position: sticky;
+    top: 0;
+    height: 135vh;
+    overflow: hidden;
+    background: #9b9b9b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* OPTIMIZACIÓN DE ELEMENTOS ANIMADOS */
+
+.welcome-bg-full,
+.welcome-board-crop,
+.welcome-board-img,
+.welcome-vanessa-full-reveal,
+.welcome-serpentina,
+.welcome-salar-car-css,
+.welcome-salar-car {
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+}
+
+/* =========================
+   FONDO COMPLETO
+========================= */
+
+.welcome-bg-full {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    /* Baja el contenido visible de la imagen */
+    object-position: center 60%;
+
+    opacity: 0;
+    transform: scale(1.25);
+
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================
+   AUTO DEL SALAR CON CSS
+========================= */
+
+
+
+/* =========================================================
+   JEEP DEL SALAR MEDIANTE IMAGEN
+========================================================= */
+
+.welcome-salar-car {
+    position: absolute;
+
+    /*
+       El vehículo comienza fuera de la pantalla,
+       desde el lado izquierdo.
+    */
+    left: -300px;
+
+    /*
+       Ubicación vertical dentro del fondo.
+       Disminuir el porcentaje baja el Jeep.
+       Aumentar el porcentaje lo sube.
+    */
+    bottom: 10%;
+
+    display: block;
+
+    width: clamp(190px, 22vw, 300px);
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 8;
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 0, 0)
+        rotate(0deg);
+
+    transform-origin: center bottom;
+
+    filter:
+        drop-shadow(0 14px 12px rgba(0, 0, 0, .30));
+
+    pointer-events: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    will-change: transform, opacity;
+
+    backface-visibility: hidden;
+}
+
+/*
+   La clase active es agregada desde JavaScript
+   cuando Vanessa completa ya apareció.
+*/
+.welcome-salar-car.active {
+    opacity: 1;
+
+    animation:
+        salarCarDrive 11s linear infinite;
+}
+
+/* =========================================================
+   MOVIMIENTO DEL JEEP
+========================================================= */
+
+@keyframes salarCarDrive {
+
+    /* Comienza fuera del lado izquierdo */
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+
+    /* Aparece progresivamente */
+    7% {
+        opacity: 1;
+    }
+
+    /* Recorre la parte central */
+    50% {
+        opacity: 1;
+
+        transform:
+            translate3d(
+                calc(50vw + 150px),
+                -4px,
+                0
+            )
+            rotate(.5deg);
+    }
+
+    /* Continúa hasta el lado derecho */
+    92% {
+        opacity: 1;
+    }
+
+    /* Sale completamente de la pantalla */
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(
+                calc(100vw + 620px),
+                0,
+                0
+            )
+            rotate(0deg);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - JEEP ESCENA 2
+========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+
+    .welcome-salar-car {
+        left: -260px;
+        bottom: 10%;
+
+        width: clamp(170px, 26vw, 250px);
+    }
+
+    .welcome-salar-car.active {
+        animation-duration: 10.5s;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    .welcome-salar-car {
+        left: -210px;
+        bottom: 12%;
+
+        width: clamp(140px, 34vw, 200px);
+
+        filter:
+            drop-shadow(0 10px 9px rgba(0, 0, 0, .26));
+    }
+
+    .welcome-salar-car.active {
+        animation-duration: 10s;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+
+    .welcome-salar-car {
+        left: -180px;
+        bottom: 12%;
+
+        width: clamp(120px, 40vw, 165px);
+    }
+
+    .welcome-salar-car.active {
+        animation-duration: 9.5s;
+    }
+}
+
+/* =========================
+   PRIMERA APARICIÓN:
+   LETRERO AMPLIADO
+========================= */
+
+.welcome-board-crop {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 15;
+    pointer-events: none;
+}
+
+.welcome-board-img {
+    position: absolute;
+
+    /*
+       Antes existía:
+       width: min(850px, 110px);
+
+       110px hacía que la imagen tuviera un tamaño incorrecto.
+    */
+    width: min(760px, 92vw);
+    max-width: 92vw;
+    max-height: 92vh;
+
+    object-fit: contain;
+    object-position: center;
+
+    transform-origin: center center;
+    transform: scale(1.30) translateY(-90px);
+
+    pointer-events: none;
+}
+
+/* =========================
+   SEGUNDA APARICIÓN:
+   VANESSA COMPLETA
+========================= */
+
+.welcome-vanessa-full-reveal {
+    position: absolute;
+
+    width: min(620px, 86vw);
+    max-width: 86vw;
+    max-height: 92vh;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    z-index: 12;
+    opacity: 0;
+
+    transform-origin: center bottom;
+    transform: scale(.65) translateY(260px);
+
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* =========================
+   SERPENTINA
+========================= */
+
+.welcome-serpentina {
+    position: absolute;
+    top: -25%;
+    left: 0;
+
+    width: 100%;
+
+    opacity: 0;
+    z-index: 22;
+    pointer-events: none;
+
+    transform: translateY(var(--serpentina-y, 0px));
+}
+
+.welcome-serpentina.active {
+    animation: serpentinaFall 8s linear infinite;
+}
+
+/* =========================
+   FLECHA
+========================= */
+
+.welcome-sticky-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+
+    width: 58px;
+
+    transform: translateX(-50%);
+
+    z-index: 40;
+    pointer-events: none;
+
+    animation: stickyArrowPulse 1.35s ease-in-out infinite;
+}
+
+.welcome-next-label {
+    position: absolute;
+    right: 34px;
+    bottom: 30px;
+
+    z-index: 40;
+
+    color: #ffffff;
+    font-size: .9rem;
+    font-weight: 600;
+
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .45);
+    opacity: .9;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+    .welcome-scroll-scene {
+        height: 128vh;
+    }
+
+    .welcome-sticky-frame {
+        height: 118vh;
+    }
+
+    .welcome-bg-full {
+        transform: scale(1.18);
+    }
+
+    .welcome-salar-car-css {
+        left: -220px;
+        width: 150px;
+        height: 58px;
+    }
+
+    .welcome-salar-car-css::before,
+    .welcome-salar-car-css::after {
+        bottom: -12px;
+        width: 23px;
+        height: 23px;
+        border-width: 3px;
+    }
+
+    .welcome-salar-car-css::before {
+        left: 20px;
+    }
+
+    .welcome-salar-car-css::after {
+        right: 20px;
+    }
+
+    .welcome-salar-car {
+        left: -220px;
+        width: min(180px, 26vw);
+    }
+
+    .welcome-board-img {
+        width: min(700px, 94vw);
+        max-width: 94vw;
+        max-height: 90vh;
+    }
+
+    .welcome-vanessa-full-reveal {
+        width: min(560px, 88vw);
+        max-width: 88vw;
+        max-height: 90vh;
+    }
+
+    .welcome-serpentina {
+        top: -30%;
+        left: -7%;
+        width: 115%;
+    }
+
+    .welcome-sticky-arrow {
+        width: 50px;
+    }
+
+    .welcome-next-label {
+        right: 24px;
+        bottom: 26px;
+        font-size: .8rem;
+    }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 768px) {
+    .welcome-scroll-scene {
+        height: 120vh;
+    }
+
+    .welcome-sticky-frame {
+        height: 100vh;
+    }
+
+    .welcome-bg-full {
+        transform: scale(1.12);
+    }
+
+    .welcome-salar-car-css {
+        left: -180px;
+        bottom: 12%;
+
+        width: 120px;
+        height: 46px;
+
+        border-radius: 13px 30px 8px 8px;
+    }
+
+    .welcome-salar-car-css::before,
+    .welcome-salar-car-css::after {
+        bottom: -9px;
+        width: 18px;
+        height: 18px;
+        border-width: 3px;
+    }
+
+    .welcome-salar-car-css::before {
+        left: 16px;
+    }
+
+    .welcome-salar-car-css::after {
+        right: 16px;
+    }
+
+    .welcome-salar-car {
+        left: -190px;
+        width: min(150px, 34vw);
+    }
+
+    .welcome-board-img {
+        width: min(580px, 96vw);
+        max-width: 96vw;
+        max-height: 88vh;
+    }
+
+    .welcome-vanessa-full-reveal {
+        width: min(500px, 96vw);
+        max-width: 96vw;
+        max-height: 86vh;
+    }
+
+    .welcome-serpentina {
+        top: -38%;
+        left: -18%;
+        width: 135%;
+    }
+
+    .welcome-sticky-arrow {
+        bottom: 16px;
+        width: 44px;
+    }
+
+    .welcome-next-label {
+        right: 16px;
+        bottom: 22px;
+        font-size: .72rem;
+    }
+}
+
+/* =========================
+   CELULAR PEQUEÑO
+========================= */
+
+@media (max-width: 480px) {
+    .welcome-scroll-scene {
+        height: 112vh;
+    }
+
+    .welcome-sticky-frame {
+        height: 100vh;
+    }
+
+    .welcome-bg-full {
+        transform: scale(1.08);
+    }
+
+    .welcome-salar-car-css {
+        left: -150px;
+        width: 100px;
+        height: 38px;
+    }
+
+    .welcome-salar-car-css::before,
+    .welcome-salar-car-css::after {
+        bottom: -8px;
+        width: 15px;
+        height: 15px;
+        border-width: 2px;
+    }
+
+    .welcome-salar-car-css::before {
+        left: 13px;
+    }
+
+    .welcome-salar-car-css::after {
+        right: 13px;
+    }
+
+    .welcome-salar-car {
+        left: -160px;
+        width: min(125px, 38vw);
+    }
+
+    .welcome-board-img {
+        width: 96vw;
+        max-width: 96vw;
+        max-height: 86vh;
+    }
+
+    .welcome-vanessa-full-reveal {
+        width: 98vw;
+        max-width: 98vw;
+        max-height: 84vh;
+    }
+
+    .welcome-serpentina {
+        top: -42%;
+        left: -25%;
+        width: 150%;
+    }
+
+    .welcome-sticky-arrow {
+        width: 38px;
+    }
+
+    .welcome-next-label {
+        display: none;
+    }
+}
+
+
+/* =========================
+   ESCENA 3 - VUELOS / CIELO CON NUBES
+   ========================= */
+.flights-scene {
+    background: #023332;
+    min-height: 120vh;
+}
+
+.flights-scene .scene-content {
+    position: relative;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+    padding-top: 0;
+}
+.flights-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.flights-sign {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 320px;
+    min-height: 92px;
+
+    padding: 12px 34px;
+
+    border: 4px solid rgba(255,255,255,.75);
+    border-radius: 999px;
+
+    background: rgba(2, 51, 50, .68);
+
+    margin-bottom: 70px;
+
+    position: relative;
+    z-index: 30;
+
+    transform: translateY(-250px);
+}
+
+.flights-sign h2 {
+    margin: 0;
+    padding: 0;
+
+    font-size: 4rem;
+
+    line-height: 1;
+
+    font-weight: 700;
+    color: white;
+}
+
+.flights-sign span {
+    margin-top: 1.8px;
+
+    font-size: 2rem;
+    line-height: 1;
+
+    color: white;
+    opacity: .95;
+}
+/* Contenedor del cielo */
+.flights-clouds-sky {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Imagen superior de nubes */
+.clouds-top {
+    position: absolute;
+    top: -7%;
+    left: 0;
+    width: 102%;
+    height: auto;
+    object-fit: cover;
+    opacity: .96;
+}
+
+/* Imagen inferior de nubes */
+.clouds-bottom {
+    position: absolute;
+    bottom: -2%;
+    left: 0;
+    width: 102%;
+    height: auto;
+    object-fit: cover;
+    opacity: .96;
+    transform: scaleY(-1);
+}
+
+.flight-img {
+    position: absolute;
+
+    width: min(420px, 42vw);
+
+    left: -460px;
+    bottom: 31%;
+
+    z-index: 4;
+    opacity: 0;
+
+    /*
+       Estado inicial de la trayectoria.
+       JavaScript actualizará estos valores.
+    */
+    transform: translate3d(0, 120px, 0) rotate(-12deg);
+
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+
+    pointer-events: none;
+}
+
+.arrow-path {
+    width: 220px;
+    left: 25%;
+    bottom: 35%;
+}
+
+.flights-sticky-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 52px;
+
+    width: 58px;
+
+    transform: translateX(-50%);
+
+    z-index: 40;
+
+    animation: stickyArrowPulse 1.35s ease-in-out infinite;
+
+    pointer-events: none;
+}
+/* =========================
+   RESPONSIVE - ESCENA 3 VUELOS
+   ========================= */
+@media (max-width: 768px) {
+    .flights-scene {
+        min-height: 115vh;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .flights-sign {
+        min-width: 240px;
+        min-height: 66px;
+        padding: 8px 24px;
+        border-width: 3px;
+        transform: translateY(-95px);
+    }
+
+    .flights-sign h2 {
+        font-size: 2.1rem;
+        line-height: .95;
+    }
+
+    .flights-sign span {
+        font-size: .82rem;
+        line-height: 1;
+    }
+
+    .clouds-top {
+        top: -1%;
+        width: 145%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .clouds-bottom {
+        bottom: -1%;
+        width: 145%;
+        left: 50%;
+        transform: translateX(-50%) scaleY(-1);
+    }
+
+    .flight-img {
+        width: 62vw;
+        bottom: 42%;
+    }
+
+    .arrow-path {
+        width: 95px;
+        left: 10%;
+        bottom: 32%;
+    }
+}
+
+@media (max-width: 480px) {
+    .flights-scene {
+        min-height: 110vh;
+    }
+
+    .flights-sign {
+        min-width: 220px;
+        min-height: 60px;
+        padding: 7px 20px;
+        transform: translateY(-85px);
+    }
+
+    .flights-sign h2 {
+        font-size: 1.85rem;
+    }
+
+    .flights-sign span {
+        font-size: .72rem;
+    }
+
+    .clouds-top {
+        width: 165%;
+        top: -1%;
+    }
+
+    .clouds-bottom {
+        width: 165%;
+        bottom: -1%;
+    }
+
+    .flight-img {
+        width: 72vw;
+        bottom: 44%;
+    }
+
+    .arrow-path {
+        width: 80px;
+        left: 8%;
+        bottom: 34%;
+    }
+}
+/* =========================================================
+   LETRERO VUELOS SOBRE CLOUDS.PNG
+   Mantiene unidas las nubes y el letrero.
+========================================================= */
+
+.epic-cloud-transition--flights {
+    position: relative;
+    z-index: 60;
+
+    width: 100%;
+    height: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* Contenedor que centra el letrero en la franja de nubes */
+.epic-cloud-sign--flights {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    z-index: 80;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    pointer-events: none;
+}
+
+/*
+   Sobrescribe solamente la posición anterior del letrero.
+   Se conservan borde, tipografía, colores y dimensiones.
+*/
+.epic-cloud-sign--flights .flights-sign {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    transform: none;
+}
+
+/* El letrero siempre debe quedar delante de clouds.png */
+.epic-cloud-transition--flights .epic-cloud-transition-img {
+    z-index: 1;
+}
+
+.epic-cloud-transition--flights .epic-cloud-sign--flights {
+    z-index: 2;
+}
+
+/* Texto disponible para lectores de pantalla */
+.visually-hidden {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    padding: 0 !important;
+    margin: -1px !important;
+
+    overflow: hidden !important;
+
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* =========================================================
+   RESPONSIVE DEL LETRERO
+========================================================= */
+
+@media (max-width: 992px) {
+    .epic-cloud-sign--flights .flights-sign {
+        min-width: 290px;
+        min-height: 84px;
+
+        padding: 10px 28px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 3.3rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        font-size: 1.55rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .epic-cloud-sign--flights .flights-sign {
+        min-width: 250px;
+        min-height: 72px;
+
+        padding: 9px 22px;
+
+        border-width: 3px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 2.5rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        font-size: 1.12rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .epic-cloud-sign--flights .flights-sign {
+        min-width: 210px;
+        min-height: 64px;
+
+        padding: 8px 18px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 2rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        margin-top: 3px;
+        font-size: .9rem;
+    }
+}
+
+ /* =========================
+   ESCENA 4 - SNOW
+   RESPONSIVE SEGURO
+========================= */
+
+.snow-scene {
+    background: linear-gradient(
+        to bottom,
+        #023332 0%,
+        #023332 58%,
+        #034542 100%
+    );
+}
+
+.snow-scene .scene-content {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 5;
+}
+
+.snow-scene::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 34%;
+    background: linear-gradient(
+        to top,
+        rgba(2, 51, 50, .62),
+        rgba(2, 51, 50, 0)
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.mountain-img {
+    position: absolute;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0.85);
+    width: 120%;
+    object-fit: contain;
+    z-index: 1;
+    filter:
+        drop-shadow(0 -18px 28px rgba(0, 229, 229, .08))
+        drop-shadow(0 22px 34px rgba(0, 0, 0, .28));
+    opacity: .96;
+}
+
+.condor-flight {
+    position: absolute;
+    left: -220px;
+    top: 42%;
+    z-index: 4;
+    opacity: 0;
+    animation: condorFlyPath 20s linear infinite;
+}
+
+.condor-img {
+    position: absolute;
+    width: 150px;
+    left: -220px;
+    top: 46%;
+    z-index: 4;
+    opacity: .9;
+    transform-origin: center center;
+    animation: condorGlidePath 18s ease-in-out infinite;
+}
+
+.snow-icon {
+    position: absolute;
+    z-index: 4;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* Tamaños individuales */
+.snow-1 { width: 88px; }
+.snow-2 { width: 52px; }
+.snow-3 { width: 58px; }
+.snow-4 { width: 76px; }
+
+.snow-5 { width: 66px; }
+.snow-6 { width: 44px; }
+.snow-7 { width: 58px; }
+.snow-8 { width: 42px; }
+
+.snow-green {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(82%)
+        sepia(84%)
+        saturate(4500%)
+        hue-rotate(38deg)
+        brightness(120%)
+        contrast(115%);
+    animation: snowFadeIn 5s ease-in-out infinite;
+}
+
+.snow-blue {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(12%)
+        sepia(100%)
+        saturate(8000%)
+        hue-rotate(222deg)
+        brightness(120%)
+        contrast(135%);
+    animation: snowFadeIn 5s ease-in-out infinite;
+    animation-delay: -2.5s;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 22px;
+    margin-top: 42px;
+}
+
+.tour-card {
+    display: block;
+    min-height: 165px;
+    padding: 18px;
+    border-radius: 24px;
+    color: white;
+    text-decoration: none;
+    background: rgba(2, 51, 50, .62);
+    border: 1px solid rgba(255,255,255,.22);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateY(60px);
+    transition: .8s ease;
+}
+
+.tour-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tour-card:hover {
+    color: white;
+    background: rgba(0, 119, 119, .72);
+    transform: translateY(-8px);
+}
+
+.tour-card-box {
+    height: 86px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.12);
+    margin-bottom: 14px;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+}
+
+/* =========================
+   RESPONSIVE - ESCENA 4 SNOW
+========================= */
+
+/* Laptop / tablet grande */
+@media (max-width: 1200px) {
+    .mountain-img {
+        bottom: -240px;
+        width: 135%;
+        transform: translateX(-50%) scaleX(0.88);
+    }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .snow-scene .scene-content {
+        top: 7%;
+    }
+
+    .mountain-img {
+        bottom: -170px;
+        width: 155%;
+        transform: translateX(-50%) scaleX(0.9);
+    }
+
+    .condor-img {
+        width: 120px;
+    }
+
+    .snow-1 { width: 72px; }
+    .snow-2 { width: 44px; }
+    .snow-3 { width: 48px; }
+    .snow-4 { width: 62px; }
+
+    .snow-5 { width: 54px; }
+    .snow-6 { width: 38px; }
+    .snow-7 { width: 48px; }
+    .snow-8 { width: 36px; }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .snow-scene {
+        min-height: 100vh;
+    }
+
+    .snow-scene .scene-content {
+        top: 8%;
+    }
+
+    .mountain-img {
+        bottom: -95px;
+        width: 185%;
+        transform: translateX(-50%) scaleX(0.92);
+    }
+
+    .condor-img {
+        width: 95px;
+    }
+
+    .snow-1 { width: 54px; }
+    .snow-2 { width: 34px; }
+    .snow-3 { width: 38px; }
+    .snow-4 { width: 48px; }
+
+    .snow-5 { width: 42px; }
+    .snow-6 { width: 30px; }
+    .snow-7 { width: 38px; }
+    .snow-8 { width: 30px; }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .tour-card {
+        min-height: 140px;
+        padding: 15px;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    .snow-scene .scene-content {
+        top: 7%;
+    }
+
+    .mountain-img {
+        bottom: -45px;
+        width: 220%;
+        transform: translateX(-50%) scaleX(0.95);
+    }
+
+    .condor-img {
+        width: 74px;
+    }
+
+    .snow-1 { width: 42px; }
+    .snow-2 { width: 28px; }
+    .snow-3 { width: 30px; }
+    .snow-4 { width: 38px; }
+
+    .snow-5 { width: 34px; }
+    .snow-6 { width: 24px; }
+    .snow-7 { width: 30px; }
+    .snow-8 { width: 24px; }
+
+    .tour-card {
+        min-height: 125px;
+        padding: 13px;
+    }
+
+    .tour-card-box {
+        height: 70px;
+    }
+}
+/* =========================================================
+   ESCENA 4.1 - SNOW TOURS CARDS
+   Responsive seguro
+========================================================= */
+
+.snow-cards-scene {
+    position: relative;
+    min-height: 120vh;
+    overflow: hidden;
+    background: #023332;
+    padding: 0;
+}
+
+/* TITULO SUPERIOR */
+
+.snow-cards-title {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 20;
+}
+
+/* MONTAÑA */
+
+.snow-cards-mountain {
+    position: absolute;
+    bottom: -300px;
+    left: 50%;
+    width: 120%;
+    transform: translateX(-50%) scaleX(.85);
+    object-fit: contain;
+    z-index: 1;
+    opacity: .96;
+    filter:
+        drop-shadow(0 -18px 28px rgba(0,229,229,.08))
+        drop-shadow(0 22px 34px rgba(0,0,0,.28));
+}
+
+/* CONTENEDOR GENERAL */
+
+.snow-cards-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* GRID DE TARJETAS */
+
+.snow-tour-buttons {
+    width: 92%;
+    max-width: 1150px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: end;
+    column-gap: 28px;
+    row-gap: 30px;
+    padding-bottom: 120px;
+}
+
+/* ITEM COMPLETO */
+
+.snow-tour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform:
+        translateY(180px)
+        scale(.75);
+    transition:
+        opacity .5s ease,
+        transform 1.2s cubic-bezier(.22,1,.36,1);
+    will-change: transform;
+}
+
+/* ACTIVACIÓN DESDE JS */
+
+.snow-tour-item.visible,
+.snow-tour-item:has(.snow-tour-card.visible) {
+    opacity: 1;
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+/* APARICIÓN ESCALONADA */
+
+.snow-tour-item:nth-child(1) { transition-delay: .00s; }
+.snow-tour-item:nth-child(2) { transition-delay: .10s; }
+.snow-tour-item:nth-child(3) { transition-delay: .20s; }
+.snow-tour-item:nth-child(4) { transition-delay: .30s; }
+.snow-tour-item:nth-child(5) { transition-delay: .40s; }
+.snow-tour-item:nth-child(6) { transition-delay: .50s; }
+
+/* TARJETA */
+
+.snow-tour-card {
+    position: relative;
+    display: block;
+    width: 270px;
+    height: 190px;
+    border-radius: 28px;
+    overflow: hidden;
+    text-decoration: none;
+    opacity: 1;
+    transform: none;
+    transition:
+        box-shadow .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+.snow-tour-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* SOMBRA */
+
+.snow-tour-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.28),
+        rgba(0,0,0,.02)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* TITULO */
+
+.snow-tour-label {
+    margin-top: 14px;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: .3px;
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.55);
+}
+
+/* HOVER */
+
+.snow-tour-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.04);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.45);
+    filter: brightness(1.08);
+}
+
+/* =========================================================
+   RESPONSIVE - ESCENA 4.1
+========================================================= */
+
+/* LAPTOP / TABLET GRANDE */
+@media (max-width: 1200px) {
+    .snow-cards-mountain {
+        bottom: -240px;
+        width: 135%;
+        transform: translateX(-50%) scaleX(.88);
+    }
+
+    .snow-tour-card {
+        width: 245px;
+        height: 175px;
+    }
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .snow-cards-scene {
+        min-height: 130vh;
+    }
+
+    .snow-cards-title {
+        top: 6%;
+    }
+
+    .snow-cards-mountain {
+        bottom: -170px;
+        width: 155%;
+        transform: translateX(-50%) scaleX(.9);
+    }
+
+    .snow-tour-buttons {
+        grid-template-columns: repeat(2, auto);
+        column-gap: 26px;
+        row-gap: 28px;
+        padding-bottom: 90px;
+    }
+
+    .snow-tour-card {
+        width: 230px;
+        height: 160px;
+        border-radius: 24px;
+    }
+
+    .snow-tour-label {
+        font-size: .98rem;
+        margin-top: 10px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .snow-cards-scene {
+        min-height: 150vh;
+    }
+
+    .snow-cards-title {
+        top: 5%;
+    }
+
+    .snow-cards-mountain {
+        bottom: -95px;
+        width: 185%;
+        transform: translateX(-50%) scaleX(.92);
+    }
+
+    .snow-tour-buttons {
+        grid-template-columns: repeat(2, auto);
+        column-gap: 14px;
+        row-gap: 22px;
+        padding-bottom: 60px;
+    }
+
+    .snow-tour-item {
+        transform:
+            translateY(140px)
+            scale(.78);
+    }
+
+    .snow-tour-card {
+        width: 145px;
+        height: 110px;
+        border-radius: 18px;
+    }
+
+    .snow-tour-label {
+        font-size: .78rem;
+        margin-top: 7px;
+    }
+
+    .snow-tour-card:hover {
+        transform:
+            translateY(-5px)
+            scale(1.02);
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .snow-cards-scene {
+        min-height: 145vh;
+    }
+
+    .snow-cards-title {
+        top: 4%;
+    }
+
+    .snow-cards-mountain {
+        bottom: -45px;
+        width: 220%;
+        transform: translateX(-50%) scaleX(.95);
+    }
+
+    .snow-tour-buttons {
+        width: 94%;
+        column-gap: 10px;
+        row-gap: 18px;
+        padding-bottom: 52px;
+    }
+
+    .snow-tour-card {
+        width: 128px;
+        height: 96px;
+        border-radius: 16px;
+    }
+
+    .snow-tour-label {
+        font-size: .70rem;
+        margin-top: 6px;
+    }
+}
+/* =========================================================
+   LETREROS CENTRADOS ENCIMA DE CLOUDS.PNG
+   VUELOS Y SNOW TOURS
+========================================================= */
+
+/* La transición se mantiene entre las dos escenas */
+.epic-cloud-transition {
+    position: relative;
+
+    z-index: 100;
+
+    width: 100%;
+    height: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* Imagen de nubes centrada sobre el límite de las escenas */
+.epic-cloud-transition-img {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    object-fit: contain;
+    object-position: center;
+
+    opacity: 1;
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* =========================================================
+   CONTENEDOR GENERAL DE LOS LETREROS
+========================================================= */
+
+.epic-cloud-sign {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    /*
+       Centra el letrero exactamente sobre la franja
+       horizontal de clouds.png.
+    */
+    transform: translate3d(-50%, -50%, 0);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   LETRERO VUELOS
+========================================================= */
+
+.epic-cloud-sign--flights .flights-sign {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    z-index: 2;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 340px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #007777;
+    background: rgba(255, 255, 255, .96);
+
+    border: 4px solid #007777;
+    border-radius: 999px;
+
+    box-shadow:
+        0 8px 24px rgba(2, 51, 50, .20),
+        0 0 20px rgba(255, 255, 255, .45);
+
+    /* Elimina la posición antigua de -250px */
+    transform: none;
+}
+
+.epic-cloud-sign--flights .flights-sign h2 {
+    margin: 0;
+    padding: 0;
+
+    color: #007777;
+
+    font-family: 'Prompt', sans-serif;
+    font-size: 3.7rem;
+    font-weight: 700;
+    line-height: .95;
+    text-align: center;
+}
+
+.epic-cloud-sign--flights .flights-sign span {
+    margin-top: 5px;
+
+    color: #007777;
+
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    opacity: 1;
+}
+
+/* =========================================================
+   LETRERO SNOW TOURS
+========================================================= */
+
+.epic-cloud-sign--snow .snow-cloud-sign {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 340px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #007777;
+    background: rgba(255, 255, 255, .96);
+
+    border: 4px solid #007777;
+    border-radius: 999px;
+
+    box-shadow:
+        0 8px 24px rgba(2, 51, 50, .20),
+        0 0 20px rgba(255, 255, 255, .45);
+
+    transform: none;
+}
+
+.epic-cloud-sign--snow .snow-cloud-sign h2 {
+    margin: 0;
+    padding: 0;
+
+    color: #007777;
+
+    font-family: 'Prompt', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   GARANTIZAR ORDEN DE CAPAS
+========================================================= */
+
+/* Las nubes permanecen detrás */
+.epic-cloud-transition--flights .epic-cloud-transition-img,
+.epic-cloud-transition--snow .epic-cloud-transition-img {
+    z-index: 1;
+}
+
+/* Los letreros permanecen delante */
+.epic-cloud-transition--flights .epic-cloud-sign,
+.epic-cloud-transition--snow .epic-cloud-sign {
+    z-index: 10;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .epic-cloud-transition-img {
+        width: 112%;
+    }
+
+    .epic-cloud-sign--flights .flights-sign,
+    .epic-cloud-sign--snow .snow-cloud-sign {
+        min-width: 290px;
+        min-height: 82px;
+
+        padding: 10px 28px;
+
+        border-width: 3px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 3rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        font-size: 1.1rem;
+    }
+
+    .epic-cloud-sign--snow .snow-cloud-sign h2 {
+        font-size: 3rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .epic-cloud-transition-img {
+        width: 125%;
+    }
+
+    .epic-cloud-sign--flights .flights-sign,
+    .epic-cloud-sign--snow .snow-cloud-sign {
+        min-width: 245px;
+        min-height: 70px;
+
+        padding: 8px 22px;
+
+        border-width: 3px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 2.35rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        margin-top: 4px;
+        font-size: .92rem;
+    }
+
+    .epic-cloud-sign--snow .snow-cloud-sign h2 {
+        font-size: 2.35rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .epic-cloud-transition-img {
+        width: 138%;
+    }
+
+    .epic-cloud-sign--flights .flights-sign,
+    .epic-cloud-sign--snow .snow-cloud-sign {
+        min-width: 205px;
+        min-height: 62px;
+
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .epic-cloud-sign--flights .flights-sign h2 {
+        font-size: 1.85rem;
+    }
+
+    .epic-cloud-sign--flights .flights-sign span {
+        font-size: .72rem;
+    }
+
+    .epic-cloud-sign--snow .snow-cloud-sign h2 {
+        font-size: 1.9rem;
+    }
+}
+/* =========================================================
+   ESCENA 5 - UYUNI
+   VEHÍCULO 4X4 CON EFECTO ESPEJO EN EL SALAR
+========================================================= */
+
+.uyuni-scene {
+    position: relative;
+
+    min-height: 120vh;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+
+            /* Cielo y fondo verde */
+            #023332 0%,
+            #023332 58%,
+            #073f3d 63%,
+
+            /* Transición del horizonte */
+            #b9dddd 64%,
+            #e9ffff 67%,
+
+            /* Salar y efecto espejo */
+            #ffffff 74%,
+            #ecfbfb 86%,
+            #ffffff 100%
+        );
+}
+
+/* =========================================================
+   LÍNEA DEL HORIZONTE
+========================================================= */
+
+.uyuni-scene::before {
+    content: "";
+
+    position: absolute;
+    top: 64%;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: rgba(255, 255, 255, .88);
+
+    box-shadow:
+        0 2px 8px rgba(255, 255, 255, .95),
+        0 10px 36px rgba(230, 255, 255, .70),
+        0 -10px 34px rgba(255, 255, 255, .35);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   BRILLO GENERAL DEL SALAR
+========================================================= */
+
+.uyuni-scene::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 155%;
+    height: 43%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse at center top,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(235, 255, 255, .88) 26%,
+            rgba(205, 245, 245, .58) 52%,
+            rgba(255, 255, 255, .42) 74%,
+            rgba(255, 255, 255, .16) 100%
+        );
+
+    opacity: 1;
+
+    filter: blur(.4px);
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   CONTENIDO Y TÍTULO
+========================================================= */
+
+.uyuni-scene .scene-content {
+    position: relative;
+
+    z-index: 10;
+}
+
+.uyuni-scene .scene-title {
+    position: relative;
+
+    top: -230px;
+
+    z-index: 10;
+}
+
+/* =========================================================
+   CONTENEDOR ANIMADO DEL VEHÍCULO
+========================================================= */
+
+/* =========================================================
+   VEHÍCULO CONTROLADO MANUALMENTE POR SCROLL
+========================================================= */
+
+.uyuni-car {
+    position: absolute;
+
+    /* Posición inicial fuera de la pantalla */
+    left: -360px;
+
+    /* Vehículo desplazado aproximadamente 2 cm hacia abajo */
+    bottom: calc(35% - 6cm);
+
+    width: clamp(220px, 26vw, 360px);
+    height: auto;
+
+    z-index: 5;
+
+    /*
+       La animación automática queda desactivada.
+       JavaScript controlará el movimiento.
+    */
+    animation: none;
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 0, 0)
+        rotate(0deg);
+
+    transform-origin: center bottom;
+
+    will-change: transform, opacity;
+
+    backface-visibility: hidden;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   IMAGEN DEL VEHÍCULO 4X4
+========================================================= */
+
+.uyuni-car-img {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 3;
+
+    filter:
+        drop-shadow(0 12px 10px rgba(0, 0, 0, .24));
+
+    pointer-events: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    backface-visibility: hidden;
+}
+
+/* =========================================================
+   REFLEJO DE LA CAMIONETA EN EL SALAR
+========================================================= */
+
+.uyuni-car::after {
+    content: "";
+
+    position: absolute;
+
+    top: calc(100% - 8px);
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        url('assets/webprincipal/img/4x4-uyuni.png');
+
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+
+    transform:
+        scaleY(-1)
+        skewX(-2deg);
+
+    transform-origin: center top;
+
+    opacity: .40;
+
+    filter:
+        blur(2.5px)
+        saturate(.70)
+        brightness(1.18);
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, .82) 0%,
+            rgba(0, 0, 0, .42) 48%,
+            transparent 92%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, .82) 0%,
+            rgba(0, 0, 0, .42) 48%,
+            transparent 92%
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   SOMBRA DE CONTACTO CON EL SUELO
+========================================================= */
+
+.uyuni-car::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -7px;
+
+    width: 76%;
+    height: 18px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(0, 0, 0, .34) 0%,
+            rgba(0, 0, 0, .18) 45%,
+            transparent 78%
+        );
+
+    filter: blur(5px);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   TARJETAS DE TOURS - ESCENA UYUNI
+========================================================= */
+
+.uyuni-cards-wrapper {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+
+    z-index: 12;
+
+    width: min(70%, 940px);
+
+    transform: translate3d(-42%, -50%, 0);
+}
+
+.uyuni-tour-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(22px, 3.2vw, 48px);
+
+    width: 100%;
+}
+
+.uyuni-tour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    opacity: 0;
+    transform:
+        translate3d(0, 180px, 0)
+        scale(.75);
+
+    will-change: transform, opacity;
+}
+
+.uyuni-tour-card {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border: 3px solid rgba(255, 255, 255, .90);
+    border-radius: 18px;
+
+    background: #023332;
+
+    box-shadow:
+        0 18px 38px rgba(2, 51, 50, .32),
+        0 5px 12px rgba(0, 0, 0, .20);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.uyuni-tour-card img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform .45s ease;
+}
+
+.uyuni-tour-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(2, 51, 50, .20),
+            transparent 45%
+        );
+
+    pointer-events: none;
+}
+
+.uyuni-tour-label {
+    margin-top: 14px;
+
+    color: #ffffff;
+
+    font-family: 'Prompt', sans-serif;
+    font-size: clamp(1rem, 1.45vw, 1.32rem);
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+
+    text-shadow: 0 3px 8px rgba(2, 51, 50, .75);
+}
+
+.uyuni-tour-card:hover,
+.uyuni-tour-card:focus-visible {
+    transform: translateY(-8px) scale(1.025);
+
+    box-shadow:
+        0 24px 44px rgba(2, 51, 50, .38),
+        0 8px 18px rgba(0, 0, 0, .24);
+}
+
+.uyuni-tour-card:hover img,
+.uyuni-tour-card:focus-visible img {
+    transform: scale(1.06);
+}
+
+.uyuni-tour-card:focus-visible {
+    outline: 3px solid #00e5e5;
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   RESPONSIVE - ESCENA 5 UYUNI
+========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+
+    .uyuni-car {
+        left: -300px;
+        bottom: calc(36% - 4cm);
+
+        width: clamp(200px, 30vw, 300px);
+    }
+
+    .uyuni-cards-wrapper {
+        top: 49%;
+        width: min(72%, 760px);
+        transform: translate3d(-40%, -50%, 0);
+    }
+
+    .uyuni-tour-buttons {
+        gap: 24px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    .uyuni-scene {
+        min-height: 155vh;
+    }
+
+    .uyuni-car {
+        left: -240px;
+        bottom: calc(37% - 4cm);
+
+        width: clamp(170px, 38vw, 240px);
+    }
+
+    .uyuni-cards-wrapper {
+        top: 43%;
+        width: min(78%, 560px);
+        transform: translate3d(-50%, -50%, 0);
+    }
+
+    .uyuni-tour-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 20px;
+    }
+
+    .uyuni-tour-item:last-child {
+        grid-column: 1 / -1;
+        width: calc(50% - 10px);
+        justify-self: center;
+    }
+
+    .uyuni-tour-card {
+        border-width: 2px;
+        border-radius: 15px;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+
+    .uyuni-scene {
+        min-height: 190vh;
+    }
+
+    .uyuni-car {
+        left: -200px;
+        bottom: calc(38% - 4cm);
+
+        width: clamp(145px, 44vw, 195px);
+    }
+
+    .uyuni-cards-wrapper {
+        top: 42%;
+        width: min(74%, 310px);
+    }
+
+    .uyuni-tour-buttons {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .uyuni-tour-item:last-child {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .uyuni-tour-label {
+        margin-top: 10px;
+        font-size: .98rem;
+    }
+}
+/* =========================================================
+   LETRERO UYUNI ENCIMA DE CLOUDS.PNG
+========================================================= */
+
+/*
+   Asegura que la transición se encuentre delante
+   de las escenas adyacentes.
+*/
+.epic-cloud-transition--uyuni {
+    position: relative;
+
+    z-index: 100;
+
+    width: 100%;
+    height: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* clouds.png permanece detrás del letrero */
+.epic-cloud-transition--uyuni .epic-cloud-transition-img {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    object-fit: contain;
+    object-position: center;
+
+    opacity: 1;
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Centrado general del letrero sobre las nubes */
+.epic-cloud-sign--uyuni {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    pointer-events: none;
+}
+
+/* Diseño visual del letrero */
+.uyuni-cloud-sign {
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 340px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #007777;
+    background: rgba(255, 255, 255, .96);
+
+    border: 4px solid #007777;
+    border-radius: 999px;
+
+    box-shadow:
+        0 8px 24px rgba(2, 51, 50, .20),
+        0 0 20px rgba(255, 255, 255, .45);
+
+    transform: none;
+}
+
+/* Texto Uyuni */
+.uyuni-cloud-sign h2 {
+    margin: 0;
+    padding: 0;
+
+    color: #007777;
+
+    font-family: 'Prompt', sans-serif;
+    font-size: 3.7rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   ANULAR LA POSICIÓN DEL TÍTULO ANTIGUO
+========================================================= */
+
+/*
+   Este bloque evita que una regla anterior como
+   top: -230px afecte al nuevo letrero.
+*/
+.epic-cloud-transition--uyuni .uyuni-cloud-sign h2 {
+    position: static;
+    top: auto;
+    left: auto;
+
+    transform: none;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .epic-cloud-transition--uyuni .epic-cloud-transition-img {
+        width: 112%;
+    }
+
+    .uyuni-cloud-sign {
+        min-width: 290px;
+        min-height: 82px;
+
+        padding: 10px 28px;
+
+        border-width: 3px;
+    }
+
+    .uyuni-cloud-sign h2 {
+        font-size: 3rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .epic-cloud-transition--uyuni .epic-cloud-transition-img {
+        width: 125%;
+    }
+
+    .uyuni-cloud-sign {
+        min-width: 245px;
+        min-height: 70px;
+
+        padding: 8px 22px;
+
+        border-width: 3px;
+    }
+
+    .uyuni-cloud-sign h2 {
+        font-size: 2.35rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .epic-cloud-transition--uyuni .epic-cloud-transition-img {
+        width: 138%;
+    }
+
+    .uyuni-cloud-sign {
+        min-width: 205px;
+        min-height: 62px;
+
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .uyuni-cloud-sign h2 {
+        font-size: 1.9rem;
+    }
+}
+/* =========================
+   ESCENA 6 - TITICACA
+========================= */
+
+.lake-scene {
+    position: relative;
+    background: #023332;
+    min-height: 135vh;
+    overflow: hidden;
+}
+
+/* NUBE SUPERIOR / CIELO */
+.lake-cloud-top {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    width: 145%;
+    height: auto;
+    transform: translateX(-50%);
+    object-fit: cover;
+    opacity: .96;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.lake-scene .scene-content {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 20;
+}
+
+.lake-scene .scene-title {
+    padding: 6px 16px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    background: rgba(2, 51, 50, .72);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 18px rgba(255,255,255,.25),
+        0 8px 28px rgba(0,0,0,.45);
+    text-shadow:
+        0 0 10px rgba(255,255,255,.35),
+        0 4px 18px rgba(0,0,0,.75),
+        0 8px 30px rgba(0,0,0,.55);
+}
+
+/* FONDO DEL LAGO */
+.lake-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 82%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* BARCO */
+.boat-img {
+    position: absolute;
+    width: min(420px, 45vw);
+    right: -460px;
+    bottom: 25%;
+    z-index: 5;
+
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+.lake-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.lake-small {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+.lake-big {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: .95;
+}
+
+
+
+.lake-cards-scene {
+    position: relative;
+    min-height: 120vh;
+    overflow: hidden;
+    background: #023332;
+}
+
+.lake-cards-title {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 20;
+}
+
+.lake-cards-title .scene-title {
+    padding: 6px 16px;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+}
+
+.lake-cards-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+}
+
+.lake-tour-buttons {
+    width: 92%;
+    max-width: 1150px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    column-gap: 28px;
+    row-gap: 30px;
+    padding-bottom: 120px;
+}
+
+/* TARJETAS */
+
+.lake-tour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 180px, 0)
+        scale(.75);
+
+    /*
+       El movimiento ahora será controlado por JavaScript.
+    */
+    transition: none;
+
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+
+
+/* TARJETA / IMAGEN */
+.lake-tour-card {
+    position: relative;
+    display: block;
+    width: 270px;
+    height: 190px;
+    border-radius: 28px;
+    overflow: hidden;
+    text-decoration: none;
+    opacity: 1;
+    transform: none;
+    transition:
+        box-shadow .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+.lake-tour-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* SOMBRA OSCURA SOBRE IMAGEN */
+.lake-tour-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.28),
+        rgba(0,0,0,.02)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* TITULO DEBAJO */
+.lake-tour-label {
+    margin-top: 14px;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: .3px;
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.55);
+}
+
+/* HOVER */
+.lake-tour-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.04);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.45);
+    filter: brightness(1.08);
+}
+/* =========================================================
+   LETRERO LAKE TITICACA ENCIMA DE CLOUDS.PNG
+========================================================= */
+
+/* Transición ubicada entre Uyuni y Titicaca */
+.epic-cloud-transition--titicaca {
+    position: relative;
+
+    z-index: 100;
+
+    width: 100%;
+    height: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* clouds.png permanece detrás del letrero */
+.epic-cloud-transition--titicaca .epic-cloud-transition-img {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    object-fit: contain;
+    object-position: center;
+
+    opacity: 1;
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Centrado del letrero sobre clouds.png */
+.epic-cloud-sign--titicaca {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    transform: translate3d(-50%, -50%, 0);
+
+    pointer-events: none;
+}
+
+/* Caja exterior del letrero */
+.titicaca-cloud-sign {
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 390px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #007777;
+    background: rgba(255, 255, 255, .96);
+
+    border: 4px solid #007777;
+    border-radius: 999px;
+
+    box-shadow:
+        0 8px 24px rgba(2, 51, 50, .20),
+        0 0 20px rgba(255, 255, 255, .45);
+
+    transform: none;
+}
+
+/* Contenedor del texto */
+.titicaca-cloud-sign h2 {
+    position: static;
+
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 0;
+    padding: 0;
+
+    color: #007777;
+
+    font-family: 'Prompt', sans-serif;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    transform: none;
+}
+
+/* Palabra Lake */
+.titicaca-cloud-sign .lake-small {
+    color: #007777;
+
+    font-size: 2.7rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* Palabra Titicaca */
+.titicaca-cloud-sign .lake-big {
+    color: #007777;
+
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* =========================================================
+   ANULAR ESTILOS DEL TÍTULO ANTERIOR
+========================================================= */
+
+/*
+   Estas reglas impiden que los estilos anteriores de
+   .lake-scene .scene-title alteren el nuevo letrero.
+*/
+.epic-cloud-transition--titicaca .titicaca-cloud-sign h2,
+.epic-cloud-transition--titicaca .lake-small,
+.epic-cloud-transition--titicaca .lake-big {
+    top: auto;
+    left: auto;
+
+    text-shadow: none;
+    filter: none;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .epic-cloud-transition--titicaca .epic-cloud-transition-img {
+        width: 112%;
+    }
+
+    .titicaca-cloud-sign {
+        min-width: 340px;
+        min-height: 82px;
+
+        padding: 10px 28px;
+
+        border-width: 3px;
+    }
+
+    .titicaca-cloud-sign h2 {
+        gap: 10px;
+    }
+
+    .titicaca-cloud-sign .lake-small {
+        font-size: 2.2rem;
+    }
+
+    .titicaca-cloud-sign .lake-big {
+        font-size: 2.9rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .epic-cloud-transition--titicaca .epic-cloud-transition-img {
+        width: 125%;
+    }
+
+    .titicaca-cloud-sign {
+        min-width: 280px;
+        min-height: 70px;
+
+        padding: 8px 22px;
+
+        border-width: 3px;
+    }
+
+    .titicaca-cloud-sign h2 {
+        gap: 8px;
+    }
+
+    .titicaca-cloud-sign .lake-small {
+        font-size: 1.75rem;
+    }
+
+    .titicaca-cloud-sign .lake-big {
+        font-size: 2.3rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .epic-cloud-transition--titicaca .epic-cloud-transition-img {
+        width: 138%;
+    }
+
+    .titicaca-cloud-sign {
+        min-width: 230px;
+        min-height: 62px;
+
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .titicaca-cloud-sign h2 {
+        gap: 6px;
+    }
+
+    .titicaca-cloud-sign .lake-small {
+        font-size: 1.4rem;
+    }
+
+    .titicaca-cloud-sign .lake-big {
+        font-size: 1.85rem;
+    }
+}
+/* =========================================================
+   RESPONSIVE - ESCENA 6 Y 6.1
+   Ajuste fluido: tarjetas siguen la pantalla
+========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+    .lake-scene {
+        min-height: 125vh;
+    }
+
+    .lake-cloud-top {
+        top: -14%;
+        width: 165%;
+    }
+
+    .lake-scene .scene-content {
+        top: 7%;
+    }
+
+    .lake-bg {
+        height: 78%;
+    }
+
+    .boat-img {
+        width: min(360px, 55vw);
+        bottom: 27%;
+    }
+
+    .lake-small {
+        font-size: 1.25rem;
+    }
+
+    .lake-big {
+        font-size: 3.2rem;
+    }
+
+    .lake-cards-scene {
+        min-height: 132vh;
+    }
+
+    .lake-tour-buttons {
+        width: 92%;
+        max-width: 720px;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        column-gap: 22px;
+        row-gap: 28px;
+
+        padding-bottom: 90px;
+    }
+
+    .lake-tour-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 270 / 190;
+
+        border-radius: 24px;
+    }
+
+    .lake-tour-label {
+        font-size: .98rem;
+        margin-top: 10px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .lake-scene {
+        min-height: 110vh;
+    }
+
+    .lake-cloud-top {
+        top: -8%;
+        width: 190%;
+    }
+
+    .lake-scene .scene-content {
+        top: 8%;
+    }
+
+    .lake-scene .scene-title {
+        padding: 6px 14px;
+    }
+
+    .lake-bg {
+        width: 130%;
+        height: 72%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .boat-img {
+        width: min(300px, 72vw);
+        bottom: 30%;
+    }
+
+    .lake-small {
+        font-size: 1rem;
+    }
+
+    .lake-big {
+        font-size: 2.4rem;
+    }
+
+    .lake-cards-scene {
+        min-height: 145vh;
+    }
+
+    .lake-cards-title {
+        top: 5%;
+    }
+
+    .lake-cards-wrapper {
+        align-items: flex-end;
+    }
+
+    .lake-tour-buttons {
+        width: min(92vw, 520px);
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        column-gap: 12px;
+        row-gap: 20px;
+
+        padding-bottom: 58px;
+    }
+
+    .lake-tour-item {
+        width: 100%;
+
+        transform:
+            translateY(140px)
+            scale(.78);
+    }
+
+    .lake-tour-item.visible,
+    .lake-tour-item:has(.lake-tour-card.visible) {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    .lake-tour-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 270 / 190;
+
+        border-radius: 18px;
+    }
+
+    .lake-tour-label {
+        font-size: clamp(.72rem, 2.7vw, .9rem);
+        margin-top: 7px;
+        line-height: 1.15;
+    }
+
+    .lake-tour-card:hover {
+        transform:
+            translateY(-5px)
+            scale(1.02);
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .lake-scene {
+        min-height: 105vh;
+    }
+
+    .lake-cloud-top {
+        top: -5%;
+        width: 215%;
+    }
+
+    .lake-bg {
+        width: 150%;
+        height: 70%;
+    }
+
+    .boat-img {
+        width: min(260px, 82vw);
+        bottom: 31%;
+    }
+
+    .lake-small {
+        font-size: .85rem;
+    }
+
+    .lake-big {
+        font-size: 2rem;
+    }
+
+    .lake-title {
+        gap: 2px;
+    }
+
+    .lake-cards-scene {
+        min-height: 142vh;
+    }
+
+    .lake-cards-title {
+        top: 4%;
+    }
+
+    .lake-tour-buttons {
+        width: 94vw;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        column-gap: 10px;
+        row-gap: 18px;
+
+        padding-bottom: 48px;
+    }
+
+    .lake-tour-item {
+        width: 100%;
+    }
+
+    .lake-tour-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 270 / 190;
+
+        border-radius: 15px;
+    }
+
+    .lake-tour-label {
+        font-size: clamp(.64rem, 3vw, .78rem);
+        margin-top: 6px;
+        line-height: 1.1;
+    }
+}
+/* =========================
+   ESCENA 7 - VALLEY / TORO TORO
+   Responsive seguro
+========================= */
+
+.valley-scene {
+    position: relative;
+    min-height: 120vh;
+    overflow: hidden;
+    background: #023332;
+    padding: 0;
+}
+
+/* Imagen principal de Toro Toro */
+.valley-toro-main {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 65%;
+    height: 65%;
+    object-fit: cover;
+    object-position: center bottom;
+    transform: translate3d(-50%, 0, 0) scale(1.01);
+    z-index: 1;
+    pointer-events: none;
+    filter:
+        brightness(.56)
+        saturate(.68)
+        hue-rotate(-12deg)
+        contrast(1.04);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* =========================================================
+   CAPA AMBIENTAL DE VALLEY TOURS
+========================================================= */
+
+.valley-scene::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(2, 51, 50, .04) 0%,
+            rgba(2, 51, 50, .10) 45%,
+            rgba(2, 51, 50, .28) 100%
+        );
+
+    pointer-events: none;
+}
+
+/* Contenido encima */
+.valley-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Título */
+.valley-scene .scene-title {
+    position: relative;
+    top: -300px;
+    background: rgba(2, 51, 50, .72);
+    backdrop-filter: blur(8px);
+    box-shadow:
+        0 0 18px rgba(255,255,255,.22),
+        0 8px 28px rgba(0,0,0,.45);
+         will-change: transform, opacity;
+}
+
+.valley-jungle-left {
+    position: absolute;
+    left: -15%;
+    bottom: 0;
+    width: 52%;
+    z-index: 4;
+    opacity: .92;
+
+    transform: translate3d(-140px, 0, 0);
+
+    will-change: transform;
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+
+.valley-jungle-right {
+    position: absolute;
+    right: -15%;
+    bottom: 0;
+    width: 52%;
+    z-index: 4;
+    opacity: .92;
+
+    transform: translate3d(140px, 0, 0);
+
+    will-change: transform;
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+
+
+
+/* TARJETAS */
+.valley-cards-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 12;
+    pointer-events: none;
+}
+
+.valley-tour-buttons {
+    width: 92%;
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    justify-content: center;
+    align-items: center;
+    column-gap: 32px;
+    row-gap: 42px;
+    padding-bottom: 80px;
+    margin: 0 auto;
+}
+
+.valley-tour-item {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 180px, 0)
+        scale(.75);
+
+    /*
+       JavaScript controlará el movimiento.
+    */
+    transition: none;
+
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+
+    pointer-events: auto;
+}
+
+
+.valley-tour-card {
+    position: relative;
+    display: block;
+    width: 220px;
+    height: 220px;
+    border-radius: 28px;
+    overflow: hidden;
+    text-decoration: none;
+    opacity: 1;
+    transform: none;
+    transition:
+        box-shadow .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+.valley-tour-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.valley-tour-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.32),
+        rgba(0,0,0,.02)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.valley-tour-label {
+    margin-top: -10px;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: .3px;
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.65);
+}
+
+.valley-tour-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.04);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.45);
+    filter: brightness(1.08);
+}
+
+/* =========================================================
+   RESPONSIVE - ESCENA 7
+========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-scene {
+        min-height: 125vh;
+    }
+
+    .valley-scene .scene-title {
+        top: -260px;
+    }
+
+    .valley-toro-main {
+        width: 82%;
+        height: 68%;
+    }
+
+    .valley-jungle-left {
+        left: -18%;
+        width: 62%;
+    }
+
+    .valley-jungle-right {
+        right: -18%;
+        width: 62%;
+    }
+
+    .valley-tour-buttons {
+        max-width: 620px;
+        column-gap: 24px;
+        row-gap: 34px;
+        padding-bottom: 70px;
+    }
+
+    .valley-tour-card {
+        width: 190px;
+        height: 190px;
+        border-radius: 24px;
+    }
+
+    .valley-tour-label {
+        font-size: .95rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .valley-scene .valley-toro-main {
+        width: 125%;
+        height: 88%;
+
+        object-fit: contain;
+        object-position: center bottom;
+
+        filter:
+            brightness(1.18)
+            saturate(1.12)
+            contrast(1.05)
+            drop-shadow(0 14px 24px rgba(0, 0, 0, .30));
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-scene {
+        min-height: 130vh;
+    }
+
+    .valley-scene .scene-title {
+        top: -205px;
+    }
+
+    .valley-toro-main {
+        width: 135%;
+        height: 70%;
+    }
+
+    .valley-jungle-left {
+        left: -42%;
+        width: 105%;
+    }
+
+    .valley-jungle-right {
+        right: -42%;
+        width: 105%;
+    }
+
+    .valley-tour-buttons {
+        width: 94vw;
+        column-gap: 10px;
+        row-gap: 20px;
+        padding-bottom: 48px;
+    }
+
+    .valley-tour-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 16px;
+    }
+
+    .valley-tour-label {
+        margin-top: -4px;
+        font-size: clamp(.64rem, 3vw, .78rem);
+    }
+}
+/* =========================================================
+   LETRERO CENTRADO - VALLEY TOURS
+   Conserva la animación controlada por JavaScript.
+========================================================= */
+
+/*
+   El contenedor se posiciona en la parte superior central.
+   El centrado horizontal lo realiza el contenedor para que
+   JavaScript pueda usar transform en el título.
+*/
+.valley-scene .valley-content {
+    position: absolute;
+
+    top: 7%;
+    left: 50%;
+
+    z-index: 30;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    padding: 0 24px;
+    margin: 0;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   DISEÑO DEL LETRERO
+========================================================= */
+
+.valley-scene .valley-main-sign {
+    position: relative;
+
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 14px;
+
+    min-width: 390px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #ffffff;
+    background: rgba(2, 51, 50, .92);
+
+    border: 4px solid #ffffff;
+    border-radius: 999px;
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, .28),
+        0 8px 28px rgba(0, 0, 0, .45);
+
+    font-family: 'Prompt', sans-serif;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    /*
+       JavaScript controla transform y opacity.
+       Por eso no se coloca transform fijo aquí.
+    */
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+/* Palabra Valley */
+.valley-main-sign .valley-title-strong {
+    color: #ffffff;
+
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Palabra Tours */
+.valley-main-sign .valley-title-light {
+    color: #ffffff;
+
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* =========================================================
+   GARANTIZAR QUE EL LETRERO QUEDE DELANTE
+========================================================= */
+
+.valley-scene .valley-toro-main {
+    z-index: 1;
+}
+
+.valley-scene::before {
+    z-index: 2;
+}
+
+.valley-scene .valley-jungle-left,
+.valley-scene .valley-jungle-right {
+    z-index: 4;
+}
+
+.valley-scene .valley-content {
+    z-index: 30;
+}
+
+.valley-scene .valley-main-sign {
+    z-index: 31;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .valley-scene .valley-content {
+        top: 6%;
+        padding: 0 20px;
+    }
+
+    .valley-scene .valley-main-sign {
+        gap: 11px;
+
+        min-width: 330px;
+        min-height: 82px;
+
+        padding: 10px 28px;
+
+        border-width: 3px;
+    }
+
+    .valley-main-sign .valley-title-strong {
+        font-size: 2.9rem;
+    }
+
+    .valley-main-sign .valley-title-light {
+        font-size: 2.65rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .valley-scene .valley-content {
+        top: 5%;
+        padding: 0 16px;
+    }
+
+    .valley-scene .valley-main-sign {
+        gap: 9px;
+
+        min-width: 275px;
+        min-height: 70px;
+
+        padding: 8px 22px;
+
+        border-width: 3px;
+    }
+
+    .valley-main-sign .valley-title-strong {
+        font-size: 2.3rem;
+    }
+
+    .valley-main-sign .valley-title-light {
+        font-size: 2.1rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .valley-scene .valley-content {
+        top: 4%;
+        padding: 0 12px;
+    }
+
+    .valley-scene .valley-main-sign {
+        gap: 7px;
+
+        min-width: 225px;
+        min-height: 62px;
+
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .valley-main-sign .valley-title-strong {
+        font-size: 1.85rem;
+    }
+
+    .valley-main-sign .valley-title-light {
+        font-size: 1.7rem;
+    }
+}
+
+/* =========================================================
+   CORRECCIÓN FINAL - DINOSAURIO.PNG
+
+   Ajusta la nueva ilustración completa dentro de Valley Tours.
+   Este bloque se mantiene al final para reemplazar solamente
+   las dimensiones antiguas de .valley-toro-main.
+
+   IMPORTANTE:
+   JavaScript continúa controlando transform durante el scroll.
+========================================================= */
+
+/* =========================================================
+   VALLEY TOURS - DINOSAURIO MÁS VISIBLE
+========================================================= */
+
+.valley-scene .valley-toro-main {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    /*
+       Se coloca delante de la capa oscura,
+       pero detrás de la vegetación.
+    */
+    z-index: 3;
+
+    display: block;
+
+    width: min(100%, 1500px);
+    height: calc(100% - var(--navbar-height, 69px));
+
+    max-width: none;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    transform:
+        translate3d(-50%, 0, 0)
+        scale(1);
+
+    transform-origin: center bottom;
+
+    opacity: 1;
+    visibility: visible;
+
+    /*
+       Aumenta iluminación, color y definición.
+    */
+    filter:
+        brightness(1.15)
+        saturate(1.10)
+        contrast(1.06)
+        drop-shadow(0 18px 30px rgba(0, 0, 0, .32));
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    will-change: transform;
+}
+
+/* =========================================================
+   RESPONSIVE: LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .valley-scene .valley-toro-main {
+        width: 105%;
+        height: calc(100% - var(--navbar-height, 69px));
+
+        object-fit: contain;
+        object-position: center bottom;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .valley-scene .valley-toro-main {
+        width: 112%;
+        height: 92%;
+
+        object-fit: contain;
+        object-position: center bottom;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .valley-scene .valley-toro-main {
+        width: 125%;
+        height: 88%;
+
+        object-fit: contain;
+        object-position: center bottom;
+
+        filter:
+            brightness(.90)
+            saturate(.92)
+            contrast(1.02)
+            drop-shadow(0 14px 24px rgba(0, 0, 0, .28));
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .valley-scene .valley-toro-main {
+        width: 138%;
+        height: 84%;
+
+        object-fit: contain;
+        object-position: center bottom;
+    }
+}
+ /* =========================
+   ESCENA 8 - DEATH ROAD
+   RESPONSIVE SEGURO
+========================= */
+
+.death-scene {
+    background: #f7f7f7;
+    color: #023332;
+    min-height: 110vh;
+}
+
+/* FONDO DEATH ROAD */
+
+.death-road-img {
+    position: absolute;
+    inset: 0;
+
+    width: 120%;
+    height: 290%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    z-index: 1;
+}
+
+/* DOWNHILL */
+
+/* DOWNHILL CONTROLADO POR SCROLL */
+
+.downhill-img {
+    position: absolute;
+
+    width: min(520px, 44vw);
+
+    left: -650px;
+    top: -10%;
+
+    z-index: 5;
+    opacity: 0;
+
+    transform:
+        translate3d(0, 0, 0)
+        rotate(-10deg);
+
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   RESPONSIVE - ESCENA 8
+========================================================= */
+
+/* LAPTOP */
+@media (max-width: 1200px) {
+
+    .death-road-img {
+        width: 135%;
+        height: 270%;
+    }
+
+    .downhill-img {
+        width: min(440px, 46vw);
+        left: -560px;
+    }
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+
+    .death-scene {
+        min-height: 115vh;
+    }
+
+    .death-road-img {
+        width: 155%;
+        height: 245%;
+    }
+
+    .downhill-img {
+        width: min(360px, 52vw);
+
+        left: -460px;
+        top: -6%;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    .death-scene {
+        min-height: 120vh;
+    }
+
+    .death-road-img {
+        width: 190%;
+        height: 220%;
+
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .downhill-img {
+        width: min(260px, 65vw);
+
+        left: -320px;
+        top: 2%;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+
+    .death-scene {
+        min-height: 115vh;
+    }
+
+    .death-road-img {
+        width: 230%;
+        height: 205%;
+
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .downhill-img {
+        width: min(210px, 72vw);
+
+        left: -250px;
+        top: 4%;
+    }
+}
+
+/* =========================================================
+   ESCENA 9 - CONTACTO / PAMPAS / DELFÍN
+   Responsive seguro
+========================================================= */
+
+.contact-scene {
+    position: relative;
+    display: block;
+    min-height: 200vh;
+    overflow: hidden;
+    background: white;
+    padding: 0;
+}
+
+.contact-road-bg {
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 120%;
+    height: 180vh;
+    object-fit: cover;
+    object-position: -30% -38%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.contact-pampas-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 120%;
+    height: 180vh;
+    object-fit: cover;
+    object-position: -60% -60%;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateY(var(--pampas-y, 118px));
+    will-change: transform;
+}
+
+.contact-title {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    padding: 10px 34px;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 999px;
+    background: rgba(2,51,50,.90);
+    border: 4px solid white;
+    box-shadow:
+        0 0 20px rgba(255,255,255,.35),
+        0 8px 24px rgba(0,0,0,.45);
+    pointer-events: none;
+}
+
+.contact-dolphin-img {
+    position: absolute;
+    right: -280px;
+    bottom: 2%;
+    width: 180px;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+/* =========================================================
+   PANEL INFERIOR
+========================================================= */
+
+.contact-footer-panel {
+    position: absolute;
+    left: 4%;
+    bottom: 7%;
+    width: 78%;
+    min-height: 135px;
+    z-index: 35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 18px 26px;
+    background: transparent;
+    color: white;
+    pointer-events: auto;
+}
+
+.contact-left-info {
+    width: 62%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.contact-line {
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+
+.contact-email-link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    gap: 9px;
+}
+
+.contact-email-icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    color: white;
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.contact-email-link:hover .contact-email-icon {
+    color: #00e5e5;
+    transform: translateY(-2px);
+}
+
+.contact-line:hover {
+    color: #00e5e5;
+}
+
+.contact-right-info {
+    width: 34%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    transform: translateX(180px);
+}
+.contact-location-link {
+    display: inline-flex;
+    align-items: flex-start;
+    width: fit-content;
+    gap: 9px;
+}
+
+.contact-location-icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    color: white;
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.contact-location-link:hover .contact-location-icon {
+    color: #00e5e5;
+    transform: translateY(-2px) scale(1.06);
+}
+/* =========================================================
+   ICONOS
+========================================================= */
+
+.contact-social-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.contact-social-icons a {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none !important;
+    background: transparent !important;
+    padding: 0;
+    margin: 0;
+}
+
+.whatsapp-svg,
+.instagram-svg,
+.facebook-svg,
+.linkedin-svg {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.whatsapp-svg svg,
+.instagram-svg svg,
+.facebook-svg svg,
+.linkedin-svg svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.whatsapp-svg svg path:first-child {
+    fill: white;
+}
+
+.whatsapp-svg .phone {
+    fill: #023332;
+}
+
+.facebook-svg path {
+    fill: white;
+}
+
+/* =========================================================
+   MARCA Y TELÉFONO
+========================================================= */
+
+.contact-brand {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .2px;
+    line-height: 1.1;
+    color: white;
+    white-space: nowrap;
+}
+
+.contact-phone-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 6px;
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    white-space: nowrap;
+}
+
+.phone-svg {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.contact-phone-link:hover {
+    color: #00e5e5;
+}
+
+.whatsapp-svg:hover svg path:first-child {
+    fill: #00e5e5;
+}
+
+.whatsapp-svg:hover .phone {
+    fill: #023332;
+}
+
+.instagram-svg:hover rect,
+.instagram-svg:hover circle,
+.facebook-svg:hover circle {
+    stroke: #00e5e5;
+}
+
+.instagram-svg:hover circle:last-child,
+.facebook-svg:hover path {
+    fill: #00e5e5;
+}
+
+.contact-phone-link:hover .phone-svg rect,
+.contact-phone-link:hover .phone-svg line {
+    stroke: #00e5e5;
+}
+
+.contact-phone-link:hover .phone-svg circle {
+    fill: #00e5e5;
+}
+
+.linkedin-svg:hover circle,
+.linkedin-svg:hover rect,
+.linkedin-svg:hover path {
+    fill: #00e5e5;
+}
+
+.linkedin-svg:hover circle:first-child {
+    fill: none;
+    stroke: #00e5e5;
+}
+
+/* =========================================================
+   RESPONSIVE - ESCENA 9 CONTACTO
+========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+    .contact-scene {
+        min-height: 190vh;
+    }
+
+    .contact-road-bg {
+        width: 135%;
+        height: 165vh;
+        object-position: center top;
+    }
+
+    .contact-pampas-img {
+        width: 135%;
+        height: 165vh;
+        object-position: center top;
+        transform: translateY(var(--pampas-y, 100px));
+    }
+
+    .contact-title {
+        top: 82px;
+        font-size: 1.75rem;
+        padding: 9px 30px;
+    }
+
+    .contact-dolphin-img {
+        width: 155px;
+        right: -240px;
+        bottom: 5%;
+    }
+
+    .contact-footer-panel {
+        left: 4%;
+        width: 90%;
+        bottom: 6%;
+        gap: 20px;
+        padding: 16px 22px;
+    }
+
+    .contact-right-info {
+        transform: none;
+    }
+
+    .contact-left-info {
+        width: 60%;
+    }
+
+    .contact-right-info {
+        width: 38%;
+    }
+
+    .contact-line {
+        font-size: .95rem;
+    }
+
+    .contact-brand,
+    .contact-phone-link {
+        font-size: .92rem;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .contact-scene {
+        min-height: 175vh;
+    }
+
+    .contact-road-bg {
+        width: 165%;
+        height: 135vh;
+        object-position: center top;
+    }
+
+    .contact-pampas-img {
+        width: 165%;
+        height: 135vh;
+        object-position: center top;
+        transform: translateY(var(--pampas-y, 82px));
+    }
+
+    .contact-title {
+        top: 72px;
+        font-size: 1.35rem;
+        padding: 8px 22px;
+        border-width: 3px;
+    }
+
+    .contact-dolphin-img {
+        width: 125px;
+        right: -190px;
+        bottom: 14%;
+    }
+
+    .contact-footer-panel {
+        left: 50%;
+        bottom: 4%;
+        width: 92%;
+        min-height: auto;
+        transform: translateX(-50%);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 12px;
+        background: rgba(2,51,50,.58);
+        border-radius: 22px;
+        backdrop-filter: blur(8px);
+    }
+
+    .contact-left-info,
+    .contact-right-info {
+        width: 100%;
+        transform: none;
+        text-align: center;
+        align-items: center;
+    }
+
+    .contact-left-info {
+        gap: 6px;
+    }
+
+    .contact-line {
+        font-size: .80rem;
+        line-height: 1.35;
+    }
+
+    .contact-social-icons {
+        gap: 9px;
+    }
+
+    .whatsapp-svg,
+    .instagram-svg,
+    .facebook-svg,
+    .linkedin-svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .phone-svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .contact-brand,
+    .contact-phone-link {
+        font-size: .82rem;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .contact-scene {
+        min-height: 165vh;
+    }
+
+    .contact-road-bg {
+        width: 195%;
+        height: 125vh;
+        object-position: center top;
+    }
+
+    .contact-pampas-img {
+        width: 195%;
+        height: 125vh;
+        object-position: center top;
+        transform: translateY(var(--pampas-y, 70px));
+    }
+
+    .contact-title {
+        top: 66px;
+        font-size: 1.08rem;
+        padding: 7px 18px;
+    }
+
+    .contact-footer-panel {
+        width: 94%;
+        bottom: 3%;
+        padding: 12px 10px;
+        border-radius: 18px;
+    }
+
+    .contact-line {
+        font-size: .70rem;
+    }
+
+    .contact-brand,
+    .contact-phone-link {
+        font-size: .74rem;
+    }
+
+    .whatsapp-svg,
+    .instagram-svg,
+    .facebook-svg,
+    .linkedin-svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .phone-svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+/* =========================================================
+   LETRERO CENTRADO - CONTACT US
+   Mismo estilo visual que Valley Tours.
+========================================================= */
+
+/*
+   Este contenedor realiza el centrado horizontal.
+   Se mantiene independiente de pampas.png y del delfín.
+*/
+.contact-scene .contact-title-wrapper {
+    position: absolute;
+
+    top: 8%;
+    left: 50%;
+
+    z-index: 60;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: auto;
+
+    padding: 0 24px;
+    margin: 0;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   CAJA PRINCIPAL DEL LETRERO
+========================================================= */
+
+.contact-scene .contact-main-sign {
+    position: relative;
+
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 13px;
+
+    min-width: 390px;
+    min-height: 96px;
+
+    margin: 0;
+    padding: 12px 34px;
+
+    color: #ffffff;
+    background: rgba(2, 51, 50, .92);
+
+    border: 4px solid #ffffff;
+    border-radius: 999px;
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, .28),
+        0 8px 28px rgba(0, 0, 0, .45);
+
+    font-family: 'Prompt', sans-serif;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    text-shadow: none;
+
+    transform: none;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    pointer-events: none;
+}
+
+/* Palabra Contact */
+.contact-main-sign .contact-title-strong {
+    color: #ffffff;
+
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Palabra us */
+.contact-main-sign .contact-title-light {
+    color: #ffffff;
+
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* =========================================================
+   ORDEN DE CAPAS
+========================================================= */
+
+.contact-scene .contact-road-bg {
+    z-index: 1;
+}
+
+.contact-scene .contact-pampas-img {
+    z-index: 2;
+}
+
+.contact-scene .contact-dolphin-img {
+    z-index: 5;
+}
+
+.contact-scene .contact-title-wrapper {
+    z-index: 60;
+}
+
+.contact-scene .contact-main-sign {
+    z-index: 61;
+}
+
+.contact-scene .contact-footer-panel {
+    z-index: 35;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .contact-scene .contact-title-wrapper {
+        top: 7%;
+        padding: 0 20px;
+    }
+
+    .contact-scene .contact-main-sign {
+        gap: 11px;
+
+        min-width: 330px;
+        min-height: 82px;
+
+        padding: 10px 28px;
+
+        border-width: 3px;
+    }
+
+    .contact-main-sign .contact-title-strong {
+        font-size: 2.9rem;
+    }
+
+    .contact-main-sign .contact-title-light {
+        font-size: 2.65rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .contact-scene .contact-title-wrapper {
+        top: 6%;
+        padding: 0 16px;
+    }
+
+    .contact-scene .contact-main-sign {
+        gap: 9px;
+
+        min-width: 275px;
+        min-height: 70px;
+
+        padding: 8px 22px;
+
+        border-width: 3px;
+    }
+
+    .contact-main-sign .contact-title-strong {
+        font-size: 2.3rem;
+    }
+
+    .contact-main-sign .contact-title-light {
+        font-size: 2.1rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .contact-scene .contact-title-wrapper {
+        top: 5%;
+        padding: 0 12px;
+    }
+
+    .contact-scene .contact-main-sign {
+        gap: 7px;
+
+        min-width: 225px;
+        min-height: 62px;
+
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .contact-main-sign .contact-title-strong {
+        font-size: 1.85rem;
+    }
+
+    .contact-main-sign .contact-title-light {
+        font-size: 1.7rem;
+    }
+}
+
+/* =========================================================
+   CORRECCIÓN FINAL DEL DELFÍN
+   Centro de la parte inferior
+========================================================= */
+
+.contact-dolphin-img {
+    position: absolute !important;
+
+    /* Centro horizontal */
+    left: 50% !important;
+    right: auto !important;
+
+    /* Parte inferior de la escena */
+    bottom: 10% !important;
+
+    width: clamp(105px, 13vw, 180px) !important;
+
+    z-index: 25;
+    opacity: 0;
+
+    transform-origin: center center;
+
+    animation:
+        dolphinBottomJump 5.5s
+        ease-in-out
+        infinite !important;
+
+    filter:
+        drop-shadow(0 14px 12px rgba(0, 0, 0, .28));
+
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   SALTO CENTRAL DEL DELFÍN
+========================================================= */
+
+@keyframes dolphinBottomJump {
+    /* Debajo del agua */
+    0%,
+    10% {
+        opacity: 0;
+
+        transform:
+            translate3d(-50%, 80px, 0)
+            rotate(25deg)
+            scale(.85);
+    }
+
+    /* Sale del agua */
+    20% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, 0, 0)
+            rotate(15deg)
+            scale(.95);
+    }
+
+    /* Comienza a subir y girar al lado contrario */
+    35% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, -155px, 0)
+            rotate(-35deg)
+            scale(1);
+    }
+
+    /* Punto más alto */
+    50% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, -230px, 0)
+            rotate(-120deg)
+            scale(1.06);
+    }
+
+    /* Gira hacia el agua */
+    65% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, -155px, 0)
+            rotate(-210deg)
+            scale(1);
+    }
+
+    /* Entra de cabeza al agua */
+    80% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, 0, 0)
+            rotate(-300deg)
+            scale(.95);
+    }
+
+    /* Se sumerge y completa el giro */
+    90% {
+        opacity: 0;
+
+        transform:
+            translate3d(-50%, 70px, 0)
+            rotate(-335deg)
+            scale(.87);
+    }
+
+    /* Permanece debajo del agua */
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(-50%, 80px, 0)
+            rotate(-335deg)
+            scale(.85);
+    }
+}
+    /* =========================
+       KEYFRAMES
+       ========================= */
+    @keyframes stickyArrowPulse {
+        0%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(12px);
+        }
+    }
+
+    @keyframes introCircleAppear {
+        from {
+            opacity: 0;
+            transform: scale(.92);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes introTextAppear {
+        from {
+            opacity: 0;
+            transform: scale(.80);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* =========================
+       1 AVION CIRCULAR
+       ========================= */
+@keyframes planeOrbitCompleteCircle {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+
+    5% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    90% {
+        opacity: 1;
+        transform: rotate(-360deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(-360deg);
+        visibility: hidden;
+    }
+}
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(35px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slowZoom {
+        from {
+            transform: scale(1.06);
+        }
+
+        to {
+            transform: scale(1.16);
+        }
+    }
+
+
+
+@keyframes snowFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(.45) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(90deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(.75) rotate(180deg);
+    }
+}
+
+
+/* escena */
+
+@keyframes condorFlyMountain {
+
+    0% {
+        transform: translateX(-110vw) translateY(0) scale(.85);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .9;
+    }
+
+    35% {
+        transform: translateX(-85vw) translateY(-25px) scale(.95);
+    }
+
+    60% {
+        transform: translateX(-55vw) translateY(15px) scale(1.05);
+    }
+
+    85% {
+        transform: translateX(-25vw) translateY(-30px) scale(1);
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateX(0) translateY(0) scale(.9);
+        opacity: 0;
+    }
+}
+
+@keyframes condorFlyPath {
+    0% {
+        left: -220px;
+        top: 42%;
+        opacity: 0;
+        transform: rotate(8deg) scale(.85);
+    }
+
+    10% {
+        opacity: .9;
+    }
+
+    25% {
+        left: 15%;
+        top: 28%;
+        transform: rotate(3deg) scale(.95);
+    }
+
+    45% {
+        left: 35%;
+        top: 20%;
+        transform: rotate(-4deg) scale(1);
+    }
+
+    65% {
+        left: 55%;
+        top: 30%;
+        transform: rotate(2deg) scale(.95);
+    }
+
+    85% {
+        left: 80%;
+        top: 24%;
+        opacity: .9;
+        transform: rotate(-3deg) scale(.9);
+    }
+
+    100% {
+        left: 110%;
+        top: 40%;
+        opacity: 0;
+        transform: rotate(-8deg) scale(.8);
+    }
+}
+
+@keyframes condorWingBeat {
+    0%, 100% {
+        transform: scaleY(1) skewY(0deg);
+    }
+
+    25% {
+        transform: scaleY(.82) skewY(-2deg);
+    }
+
+    50% {
+        transform: scaleY(1.08) skewY(1deg);
+    }
+
+    75% {
+        transform: scaleY(.9) skewY(2deg);
+    }
+}
+
+@keyframes condorGlidePath {
+    0% {
+        left: -280px;
+        top: 58%;
+        transform: rotate(-14deg) scale(.75);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .9;
+    }
+
+    22% {
+        left: 12%;
+        top: 26%;
+        transform: rotate(-18deg) scale(.95);
+    }
+
+    42% {
+        left: 34%;
+        top: 52%;
+        transform: rotate(14deg) scale(1.05);
+    }
+
+    62% {
+        left: 58%;
+        top: 20%;
+        transform: rotate(-16deg) scale(.98);
+    }
+
+    82% {
+        left: 86%;
+        top: 44%;
+        transform: rotate(12deg) scale(.9);
+        opacity: .9;
+    }
+
+    100% {
+        left: 118%;
+        top: 54%;
+        transform: rotate(8deg) scale(.78);
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes snowCardsRiseIndependent {
+    0% {
+        transform: translateY(280px);
+        opacity: 0;
+    }
+
+    45% {
+        opacity: .5;
+    }
+
+    75% {
+        transform: translateY(40px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+    @keyframes serpentinaMovie {
+    0% {
+        transform: translate3d(-18px, var(--serpentina-y), 0) rotate(-1.5deg) scale(1.02);
+    }
+
+    50% {
+        transform: translate3d(18px, calc(var(--serpentina-y) + 18px), 0) rotate(1.5deg) scale(1.06);
+    }
+
+    100% {
+        transform: translate3d(-18px, var(--serpentina-y), 0) rotate(-1.5deg) scale(1.02);
+    }
+}
+
+@keyframes welcomeBackgroundPan {
+    from {
+        object-position: 50% 58%;
+    }
+
+    to {
+        object-position: 52% 56%;
+    }
+}
+
+@keyframes serpentinaFall {
+
+    0% {
+        transform: translateY(-220px);
+    }
+
+    100% {
+        transform: translateY(700px);
+    }
+}
+
+@keyframes salarCarDrive {
+    0% {
+        transform: translateX(0) translateY(0) scale(.92);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: .95;
+    }
+
+    50% {
+        transform: translateX(55vw) translateY(-6px) scale(1);
+        opacity: .95;
+    }
+
+    92% {
+        opacity: .95;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 520px)) translateY(0) scale(.96);
+        opacity: 0;
+    }
+}
+
+@keyframes welcomeSalarDrive {
+
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: .9;
+    }
+
+    95% {
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 450px));
+        opacity: 0;
+    }
+}
+
+@keyframes jungleLeftSlide {
+
+    0% {
+        transform: translateX(-180px);
+    }
+
+    50% {
+        transform: translateX(180px);
+    }
+
+    100% {
+        transform: translateX(-180px);
+    }
+}
+
+@keyframes jungleRightSlide {
+
+    0% {
+        transform: translateX(180px);
+    }
+
+    50% {
+        transform: translateX(-180px);
+    }
+
+    100% {
+        transform: translateX(180px);
+    }
+}
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 768px) {
+        .epic-nav {
+            display: none;
+        }
+
+        .scene {
+            padding: 80px 16px;
+        }
+
+        .epic-logo-img {
+            height: 38px;
+        }
+
+        .intro-plane {
+            width: 32px;
+            top: 5px;
+        }
+
+        .welcome-sticky-frame {
+            top: 59px;
+            height: calc(100vh - 59px);
+        }
+
+        .welcome-vanessa-full-reveal {
+            width: 94vw;
+            max-height: 88vh;
+        }
+
+        .welcome-serpentina {
+            top: -40%;
+            width: 135%;
+            left: -18%;
+        }
+
+        .welcome-next-label {
+            right: 18px;
+            bottom: 22px;
+            font-size: .75rem;
+        }
+
+        .flight-img {
+            width: 70vw;
+        }
+
+        .boat-img {
+            width: 75vw;
+        }
+
+        .downhill-img {
+            width: 78vw;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .valley-left,
+        .valley-right {
+            width: 82%;
+        }
+
+        .toro-toro-img {
+            width: 110vw;
+        }
+    }
+
+
+/* =========================================================
+   ESCENA 1 - PRELOADER DE PANTALLA COMPLETA
+   La trayectoria dura 4.5 s y la salida comienza a los 5.2 s.
+========================================================= */
+
+body.intro-loading {
+    overflow: hidden;
+}
+
+.intro-scene {
+    position: fixed;
+    inset: 0;
+
+    z-index: 20000;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 24px;
+
+    background: #023332;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+
+    transition:
+        opacity .85s ease,
+        transform .85s ease,
+        visibility 0s linear .85s;
+
+    will-change: opacity, transform;
+}
+
+.intro-scene[hidden] {
+    display: none !important;
+}
+
+.intro-scene .scene-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.intro-scene.is-finished {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.035);
+}
+
+.intro-loading-text {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(24px, 5vh, 54px);
+
+    z-index: 8;
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, .82);
+
+    font-size: clamp(.72rem, 1.4vw, .92rem);
+    font-weight: 400;
+    letter-spacing: .16em;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+
+    animation: introLoadingTextAppear .55s ease 4.45s forwards;
+}
+
+@keyframes introLoadingTextAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .intro-scene {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 18px;
+    }
+
+    .intro-loading-text {
+        bottom: 24px;
+        max-width: calc(100% - 32px);
+        white-space: normal;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-circle,
+    .intro-orientar,
+    .intro-plane-orbit,
+    .intro-logo,
+    .intro-loading-text {
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+    }
+
+    .intro-scene {
+        transition-duration: .2s;
+    }
+}
+
+/* =========================================================
+   FLECHA GLOBAL FIJA DURANTE TODO EL SCROLL
+========================================================= */
+
+/* Oculta las flechas locales para evitar copias superpuestas. */
+.welcome-sticky-arrow,
+.flights-sticky-arrow {
+    display: none !important;
+}
+
+.epic-global-scroll-arrow {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+
+    display: block;
+    width: clamp(34px, 3.2vw, 52px);
+    height: auto;
+
+    z-index: 15000;
+
+    transform: translate3d(-50%, 0, 0);
+    transform-origin: center center;
+
+    opacity: .96;
+    visibility: visible;
+
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    filter:
+        drop-shadow(0 5px 8px rgba(0, 0, 0, .34));
+
+    animation:
+        epicGlobalArrowPulse 1.55s ease-in-out infinite;
+
+    will-change: transform, opacity;
+}
+
+@keyframes epicGlobalArrowPulse {
+    0%,
+    100% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+        opacity: .78;
+    }
+
+    50% {
+        transform: translate3d(-50%, 10px, 0) scale(1.06);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .epic-global-scroll-arrow {
+        bottom: 16px;
+        width: clamp(30px, 9vw, 42px);
+    }
+}
+
+@media (max-width: 480px) {
+    .epic-global-scroll-arrow {
+        bottom: 12px;
+        width: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .epic-global-scroll-arrow {
+        animation: none;
+        opacity: .90;
+    }
+}
+
+/* =========================================================
+   FONDO GLOBAL EPIC TRAVEL
+   Une visualmente todas las escenas con la paleta del PDF.
+   Se coloca al final para prevalecer sobre los fondos planos
+   anteriores sin alterar las ilustraciones de cada escena.
+========================================================= */
+
+html {
+    background-color: #023332;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 18% 12%,
+            rgba(0, 229, 229, .16) 0,
+            rgba(0, 229, 229, 0) 28%
+        ),
+        radial-gradient(
+            circle at 82% 48%,
+            rgba(0, 164, 164, .14) 0,
+            rgba(0, 164, 164, 0) 32%
+        ),
+        linear-gradient(
+            180deg,
+            #023332 0%,
+            #006f70 26%,
+            #007f80 48%,
+            #006d6d 70%,
+            #034542 86%,
+            #023332 100%
+        );
+
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.epic-page {
+    position: relative;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 8%,
+            rgba(0, 229, 229, .10) 0,
+            rgba(0, 229, 229, 0) 24%
+        ),
+        radial-gradient(
+            ellipse at 12% 58%,
+            rgba(0, 180, 180, .10) 0,
+            rgba(0, 180, 180, 0) 30%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(2, 51, 50, .98) 0%,
+            rgba(0, 119, 119, .96) 38%,
+            rgba(3, 69, 66, .98) 78%,
+            rgba(2, 51, 50, 1) 100%
+        );
+}
+
+/*
+   Las escenas que antes tenían un color plano dejan ver el
+   fondo global. Sus imágenes, tarjetas y animaciones conservan
+   sus posiciones y niveles de apilamiento originales.
+*/
+.flights-scene,
+.lake-scene,
+.valley-scene {
+    background-color: transparent;
+    background-image: none;
+}
+
+/* Snow conserva profundidad, pero comparte el mismo tono global. */
+.snow-scene {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2, 51, 50, .50) 0%,
+            rgba(2, 51, 50, .36) 55%,
+            rgba(3, 69, 66, .52) 100%
+        );
+}
+
+/* Uyuni mantiene su horizonte y reflejo; solo armoniza el cielo. */
+.uyuni-scene {
+    background:
+        linear-gradient(
+            to bottom,
+            #023332 0%,
+            #006f70 48%,
+            #073f3d 63%,
+            #b9dddd 64%,
+            #e9ffff 67%,
+            #d8f7f7 75%,
+            #b8e4e4 100%
+        );
+}
+
+/* Evita una franja blanca si las imágenes de contacto tardan en cargar. */
+.death-scene,
+.contact-scene {
+    background-color: #023332;
+}
+
+@media (max-width: 768px) {
+    body {
+        /* Mejora el rendimiento en navegadores móviles. */
+        background-attachment: scroll;
+    }
+
+    .epic-page {
+        background:
+            linear-gradient(
+                180deg,
+                #023332 0%,
+                #007777 45%,
+                #034542 78%,
+                #023332 100%
+            );
+    }
+}
+/* =========================================================
+   ANIMACIÓN UNIFICADA DE TODAS LAS TARJETAS
+   Basada en la animación de Lake Titicaca.
+========================================================= */
+
+.snow-tour-item,
+.lake-tour-item,
+.valley-tour-item {
+    opacity: 0;
+
+    transform:
+        translate3d(0, 180px, 0)
+        scale(.75);
+
+    /*
+       JavaScript controla directamente el movimiento.
+       Se eliminan transiciones anteriores que podrían
+       retrasar o duplicar la animación.
+    */
+    transition: none !important;
+    animation: none !important;
+
+    will-change: transform, opacity;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/*
+   Desactiva la animación anterior de Snow Tours basada
+   en IntersectionObserver y :has().
+*/
+.snow-tour-item.visible,
+.snow-tour-item:has(.snow-tour-card.visible) {
+    transition: none !important;
+}
+
+/*
+   Elimina los retrasos CSS anteriores.
+   El escalonamiento ahora se calcula desde JavaScript.
+*/
+.snow-tour-item:nth-child(1),
+.snow-tour-item:nth-child(2),
+.snow-tour-item:nth-child(3),
+.snow-tour-item:nth-child(4),
+.snow-tour-item:nth-child(5),
+.snow-tour-item:nth-child(6) {
+    transition-delay: 0s !important;
+}
+
+/* Optimización de las tarjetas interiores */
+.snow-tour-card,
+.lake-tour-card,
+.valley-tour-card {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+/* =========================================================
+   SNOW TOURS - CÓNDOR ESTÁTICO EN EL LADO IZQUIERDO
+========================================================= */
+
+.snow-scene .condor-flight {
+    position: absolute;
+
+    /* Ubicación en el lado izquierdo */
+    top: 24%;
+    left: -25px;
+
+    z-index: 6;
+
+    display: block;
+
+    width: clamp(190px, 22vw, 330px);
+    height: auto;
+
+    opacity: 1;
+    visibility: visible;
+
+    /*
+       Elimina completamente el desplazamiento anterior.
+    */
+    animation: none !important;
+    transform: none !important;
+
+    pointer-events: none;
+
+    will-change: auto;
+}
+
+/* =========================================================
+   SNOW TOURS - CÓNDOR ESTÁTICO EN EL LADO IZQUIERDO
+========================================================= */
+
+.snow-scene .condor-flight {
+    position: absolute;
+
+    /* Ubicación en el lado izquierdo */
+    top: 24%;
+    left: -25px;
+
+    z-index: 6;
+
+    display: block;
+
+    width: clamp(190px, 22vw, 330px);
+    height: auto;
+
+    opacity: 1;
+    visibility: visible;
+
+    /*
+       Elimina completamente el desplazamiento anterior.
+    */
+    animation: none !important;
+    transform: none !important;
+
+    pointer-events: none;
+
+    will-change: auto;
+}
+
+/* =========================================================
+   IMAGEN DEL CÓNDOR
+   Estático e inclinado ligeramente hacia abajo
+========================================================= */
+
+.snow-scene .condor-img {
+    position: relative;
+
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    display: block;
+
+    width: 100%;
+    max-width: none;
+    height: auto;
+
+    opacity: 1;
+    visibility: visible;
+
+    /*
+       Inclina el cóndor hacia abajo y lo desplaza
+       ligeramente para lograr una posición natural.
+    */
+    transform:
+        rotate(40deg)
+        translateY(8px) !important;
+
+    transform-origin: center center;
+
+    /*
+       Desactiva el vuelo y el movimiento de alas.
+    */
+    animation: none !important;
+
+    object-fit: contain;
+    object-position: center;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 10px 18px rgba(0, 0, 0, .28));
+}
+
+/* =========================================================
+   RESPONSIVE: LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .snow-scene .condor-flight {
+        top: 25%;
+        left: -20px;
+
+        width: clamp(175px, 21vw, 280px);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .snow-scene .condor-flight {
+        top: 27%;
+        left: -28px;
+
+        width: clamp(155px, 25vw, 230px);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .snow-scene .condor-flight {
+        top: 29%;
+        left: -35px;
+
+        width: clamp(135px, 34vw, 190px);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE: CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .snow-scene .condor-flight {
+        top: 31%;
+        left: -38px;
+
+        width: clamp(115px, 39vw, 160px);
+    }
+}
+
+/* =========================================================
+   CORRECCIÓN FINAL - SECUENCIA SNOW TOURS
+
+   Controlada por las clases agregadas desde JavaScript:
+   1) .snow-flakes-visible
+   2) .snow-flakes-hidden
+   3) .snow-cards-visible
+
+   Este bloque está al final para sobrescribir únicamente las
+   animaciones antiguas de Snow Tours. No modifica Titicaca,
+   Valley Tours ni las demás escenas.
+========================================================= */
+
+/* =========================================================
+   CAPA DE COPOS
+========================================================= */
+
+.snow-scene .snow-flakes-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Estado inicial: todos los copos permanecen ocultos. */
+.snow-scene .snow-icon {
+    z-index: 7;
+
+    display: block;
+
+    height: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translate3d(0, 28px, 0)
+        scale(.65)
+        rotate(-12deg);
+
+    transform-origin: center center;
+
+    transition:
+        opacity .55s ease,
+        visibility .55s ease,
+        transform .75s cubic-bezier(.22, 1, .36, 1);
+
+    animation: none !important;
+    animation-delay: 0s !important;
+
+    object-fit: contain;
+    pointer-events: none;
+
+    will-change: opacity, transform;
+}
+
+/* =========================================================
+   PASO 1 - APARICIÓN DE LOS COPOS
+========================================================= */
+
+.snow-scene.snow-flakes-visible .snow-icon {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translate3d(0, 0, 0)
+        scale(1)
+        rotate(0deg);
+}
+
+/* Aparición progresiva de los ocho copos. */
+.snow-scene.snow-flakes-visible .snow-1 {
+    transition-delay: 0s;
+}
+
+.snow-scene.snow-flakes-visible .snow-2 {
+    transition-delay: .08s;
+}
+
+.snow-scene.snow-flakes-visible .snow-3 {
+    transition-delay: .16s;
+}
+
+.snow-scene.snow-flakes-visible .snow-4 {
+    transition-delay: .24s;
+}
+
+.snow-scene.snow-flakes-visible .snow-5 {
+    transition-delay: .32s;
+}
+
+.snow-scene.snow-flakes-visible .snow-6 {
+    transition-delay: .40s;
+}
+
+.snow-scene.snow-flakes-visible .snow-7 {
+    transition-delay: .48s;
+}
+
+.snow-scene.snow-flakes-visible .snow-8 {
+    transition-delay: .56s;
+}
+
+/* =========================================================
+   PASO 2 - DESAPARICIÓN DE LOS COPOS
+
+   JavaScript agrega esta clase después de 2 segundos.
+========================================================= */
+
+.snow-scene.snow-flakes-hidden .snow-icon {
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translate3d(0, -45px, 0)
+        scale(.70)
+        rotate(15deg);
+
+    transition-delay: 0s;
+}
+
+/* Conserva los colores establecidos para ambos grupos. */
+.snow-scene .snow-green {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(82%)
+        sepia(84%)
+        saturate(4500%)
+        hue-rotate(38deg)
+        brightness(120%)
+        contrast(115%)
+        drop-shadow(0 5px 8px rgba(0, 0, 0, .18));
+}
+
+.snow-scene .snow-blue {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(12%)
+        sepia(100%)
+        saturate(8000%)
+        hue-rotate(222deg)
+        brightness(120%)
+        contrast(135%)
+        drop-shadow(0 5px 8px rgba(0, 0, 0, .18));
+}
+
+/* =========================================================
+   TARJETAS SNOW TOURS - ESTADO INICIAL
+
+   Se usa !important solamente dentro de .snow-scene para
+   anular el antiguo controlador compartido y cualquier estilo
+   inline restaurado por el navegador.
+========================================================= */
+
+.snow-scene .snow-tour-item,
+.snow-scene .snow-tour-item.visible,
+.snow-scene .snow-tour-item:has(.snow-tour-card.visible) {
+    opacity: 0 !important;
+    visibility: hidden;
+
+    transform:
+        translate3d(0, 180px, 0)
+        scale(.75) !important;
+
+    transition:
+        opacity .65s ease,
+        visibility .65s ease,
+        transform 1.2s cubic-bezier(.22, 1, .36, 1) !important;
+
+    transition-delay: 0s !important;
+    animation: none !important;
+
+    will-change: opacity, transform;
+}
+
+/* =========================================================
+   PASO 3 - SUBIDA DE LAS TARJETAS
+
+   JavaScript agrega .snow-cards-visible 600 ms después de
+   comenzar la desaparición de los copos.
+========================================================= */
+
+.snow-scene.snow-cards-visible .snow-tour-item,
+.snow-scene.snow-cards-visible .snow-tour-item.visible,
+.snow-scene.snow-cards-visible
+.snow-tour-item:has(.snow-tour-card.visible) {
+    opacity: 1 !important;
+    visibility: visible;
+
+    transform:
+        translate3d(0, 0, 0)
+        scale(1) !important;
+}
+
+/* Subida escalonada de las seis tarjetas. */
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(1) {
+    transition-delay: 0s !important;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(2) {
+    transition-delay: .12s !important;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(3) {
+    transition-delay: .24s !important;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(4) {
+    transition-delay: .36s !important;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(5) {
+    transition-delay: .48s !important;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-item:nth-child(6) {
+    transition-delay: .60s !important;
+}
+
+/* Mantiene habilitados los enlaces cuando las tarjetas aparecen. */
+.snow-scene:not(.snow-cards-visible) .snow-tour-buttons {
+    pointer-events: none;
+}
+
+.snow-scene.snow-cards-visible .snow-tour-buttons {
+    pointer-events: auto;
+}
+
+/* =========================================================
+   RESPONSIVE - MOVIMIENTO INICIAL DE LAS TARJETAS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .snow-scene .snow-tour-item,
+    .snow-scene .snow-tour-item.visible,
+    .snow-scene .snow-tour-item:has(.snow-tour-card.visible) {
+        transform:
+            translate3d(0, 140px, 0)
+            scale(.78) !important;
+    }
+
+    .snow-scene.snow-cards-visible .snow-tour-item,
+    .snow-scene.snow-cards-visible .snow-tour-item.visible,
+    .snow-scene.snow-cards-visible
+    .snow-tour-item:has(.snow-tour-card.visible) {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1) !important;
+    }
+}
+
+/* =========================================================
+   ACCESIBILIDAD - MOVIMIENTO REDUCIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .snow-scene .snow-icon,
+    .snow-scene .snow-tour-item {
+        transition-duration: .01ms !important;
+    }
+}

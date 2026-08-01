@@ -1,0 +1,2265 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Epic Travel Bolivia: vuelos y tours por los destinos más sorprendentes de Bolivia.">
+    <title>Epic Travel Bolivia</title>
+
+    <link rel="icon"
+          href="assets/webprincipal/img/logo-epic1-32.png"
+          type="image/png"
+          sizes="32x32">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="intro-loading">
+
+<div class="epic-page">
+
+    <!-- =========================================================
+     NAVBAR - MENU PEGAJOSO
+     Manual pagina. 2: "menu pegajoso"
+     Se mantiene fijo mientras el usuario hace scroll.
+========================================================== -->
+    <header class="epic-navbar">
+        <div class="epic-nav-inner">
+            <a href="#bienvenida">
+                <img src="assets/webprincipal/img/logotipo.png" class="epic-logo-img" alt="Epic Travel" />
+            </a>
+
+            <nav class="epic-nav">
+                <a href="#bienvenida">Inicio</a>
+                <a href="#vuelos">Vuelos</a>
+                <a href="#snow">Snow Tours</a>
+                <a href="#uyuni">Uyuni</a>
+                <a href="#titicaca">Titicaca</a>
+                <a href="#valley">Valley Tours</a>
+                <a href="#contacto">Contáctanos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =====================================================
+         FLECHA GLOBAL DE DESPLAZAMIENTO
+         Permanece fija en la parte inferior durante todo el
+         recorrido de la página, tanto al bajar como al subir.
+    ====================================================== -->
+    <img src="assets/webprincipal/img/arrow.png"
+         class="epic-global-scroll-arrow"
+         alt="Continúa desplazándote"
+         aria-hidden="true" />
+
+    <!-- =========================================================
+     ESCENA 1 - PANTALLA DE INICIO
+     Manual pagina. 2:
+     1) Primero aparece el texto "Buscando orientar tu destino".
+     2) Luego el avión completa la circunferencia.
+     3) Después aparece el logo Epic Travel.
+========================================================== -->
+    <section id="inicio"
+             class="scene intro-scene"
+             role="status"
+             aria-live="polite"
+             aria-label="Cargando Epic Travel Bolivia">
+        <div class="scene-content">
+            <div class="intro-circle-wrap">
+                <img src="assets/webprincipal/img/circle.png" class="intro-circle" 
+                alt="Círculo de carga de Epic Travel" />
+
+                <img src="assets/webprincipal/img/orientar.png"
+                     class="intro-orientar"
+                     alt="Buscando orientar tu destino" />
+
+                <div class="intro-plane-orbit">
+                    <img src="assets/webprincipal/img/vuelo.png"
+                         class="intro-plane"
+                         alt="Avión de Epic Travel completando su trayectoria" />
+                </div>
+            </div>
+
+            
+        </div>
+<!-- FLECHA DE SCROLL -->
+        <p class="intro-loading-text">Preparando tu próxima aventura…</p>
+        
+    </section>
+
+<!-- =========================================================
+     ESCENA 2 - BIENVENIDA / VANESSA
+========================================================== -->
+
+<section id="bienvenida" class="welcome-scroll-scene">
+
+    <div class="welcome-sticky-frame">
+
+        <!-- FONDO -->
+        <img src="assets/webprincipal/img/fondo-uyuni.png"
+             class="welcome-bg-full"
+             alt="Fondo Bolivia Epic Travel" />
+
+        <!-- JEEP DEL SALAR -->
+        <img src="assets/webprincipal/img/"
+             class="welcome-salar-car"
+             alt="" />
+
+        <!-- SERPENTINAS -->
+        <img src="assets/webprincipal/img/serpentina.png"
+             class="welcome-serpentina"
+             alt="Serpentinas" />
+
+        <!-- PRIMERA APARICIÓN: LETRERO -->
+        <div class="welcome-board-crop">
+
+            <img src="assets/webprincipal/img/bienvenido-a-bolivia.png"
+                 class="welcome-board-img"
+                 alt="Bienvenidos a Bolivia" />
+
+        </div>
+
+        <!-- SEGUNDA APARICIÓN: VANESSA COMPLETA -->
+        <img src="assets/webprincipal/img/vanessa.png"
+             class="welcome-vanessa-full-reveal"
+             alt="Vanessa Epic Travel Bolivia" />
+
+        <!-- FLECHA DE SCROLL -->
+        <img src="assets/webprincipal/img/arrow.png"
+             class="welcome-sticky-arrow"
+             alt="Scroll" />
+
+    </div>
+
+</section>
+
+<!-- NUBES GLOBALES: TRANSICIÓN BIENVENIDA → VUELOS -->
+<div class="epic-cloud-transition" aria-hidden="true">
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt="" />
+</div>
+
+<!-- =========================================================
+     TRANSICIÓN BIENVENIDA → VUELOS
+     clouds.png y el letrero forman una sola composición.
+========================================================== -->
+<div class="epic-cloud-transition epic-cloud-transition--flights">
+
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- LETRERO VUELOS SOBRE LAS NUBES -->
+    <div class="epic-cloud-sign epic-cloud-sign--flights">
+
+        <div class="flights-sign">
+            <h2 id="flights-title">VUELOS</h2>
+            <span>Nacionales &amp; Internacionales</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     ESCENA 3 - VUELOS
+     1) Aparece la ilustración de la escena.
+     2) El avión se desplaza en diagonal con el scroll.
+     3) El letrero se mantiene sobre clouds.png.
+========================================================== -->
+<section id="vuelos"
+         class="scene flights-scene"
+         aria-labelledby="flights-title">
+
+    <!-- AVIÓN CONTROLADO POR SCROLL -->
+    <img src="assets/webprincipal/img/flight.png"
+         class="flight-img"
+         alt="Avión en movimiento" />
+
+    <!-- FLECHA DE SCROLL -->
+    <img src="assets/webprincipal/img/arrow.png"
+         class="flights-sticky-arrow"
+         alt="Continúa desplazándote" />
+
+</section>
+
+<!-- =========================================================
+     TRANSICIÓN VUELOS → SNOW TOURS
+     clouds.png y el letrero forman una sola composición.
+========================================================== -->
+<div class="epic-cloud-transition epic-cloud-transition--snow">
+
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- LETRERO SNOW TOURS SOBRE LAS NUBES -->
+    <div class="epic-cloud-sign epic-cloud-sign--snow">
+
+        <div class="snow-cloud-sign">
+            <h2 id="snow-title">Snow Tours</h2>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     ESCENA 4 - SNOW TOURS
+     1) Aparecen la montaña y el cóndor estático.
+     2) Todos los copos aparecen progresivamente.
+     3) Los copos permanecen visibles durante 2 segundos.
+     4) Los copos desaparecen.
+     5) Las tarjetas emergen desde la parte inferior.
+========================================================== -->
+<section id="snow"
+         class="scene snow-scene"
+         aria-labelledby="snow-title">
+
+    <!-- MONTAÑAS -->
+    <img src="assets/webprincipal/img/mountain.png"
+         class="mountain-img"
+         alt="Montañas de Snow Tours" />
+
+    <!-- CÓNDOR ESTÁTICO -->
+    <div class="condor-flight"
+         aria-hidden="true">
+
+        <img src="assets/webprincipal/img/condor.png"
+             class="condor-img"
+             alt="" />
+
+    </div>
+
+    <!-- =====================================================
+         COPOS DE NIEVE
+         Aparecen, permanecen visibles durante 2 segundos
+         y después desaparecen antes de subir las tarjetas.
+    ====================================================== -->
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-green snow-1"
+         style="top:16%; left:9%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-green snow-2"
+         style="top:28%; left:42%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-green snow-3"
+         style="top:34%; right:34%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-green snow-4"
+         style="top:22%; right:12%;"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- =====================================================
+         COPOS AZULES
+    ====================================================== -->
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-blue snow-5"
+         style="top:55%; left:20%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-blue snow-6"
+         style="top:48%; left:58%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-blue snow-7"
+         style="top:64%; right:5%;"
+         alt=""
+         aria-hidden="true" />
+
+    <img src="assets/webprincipal/img/snow.png"
+         class="snow-icon snow-blue snow-8"
+         style="top:65%; right:30%;"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- =====================================================
+         ESCENA 4.1 - TARJETAS SNOW TOURS
+    ====================================================== -->
+    <div class="snow-cards-wrapper">
+
+        <div class="snow-tour-buttons">
+
+            <!-- CARD 1: SAJAMA -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-1.html"
+                   class="snow-tour-card"
+                   aria-label="Ver tour al nevado Sajama">
+
+                    <img src="assets/webprincipal/img/snow1.png"
+                         alt="Tour al nevado Sajama" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Sajama
+                </div>
+
+            </div>
+
+            <!-- CARD 2: HUAYNA POTOSÍ -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-2.html"
+                   class="snow-tour-card snow-card-center"
+                   aria-label="Ver tour al Huayna Potosí">
+
+                    <img src="assets/webprincipal/img/snow2.png"
+                         alt="Tour al Huayna Potosí" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Huayna Potosí
+                </div>
+
+            </div>
+
+            <!-- CARD 3: VENTANANI -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-3.html"
+                   class="snow-tour-card"
+                   aria-label="Ver tour a Ventanani">
+
+                    <img src="assets/webprincipal/img/snow3.png"
+                         alt="Tour a Ventanani" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Ventanani
+                </div>
+
+            </div>
+
+            <!-- CARD 4: CHARQUINI -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-4.html"
+                   class="snow-tour-card"
+                   aria-label="Ver tour al nevado Charquini">
+
+                    <img src="assets/webprincipal/img/snow1.png"
+                         alt="Tour al nevado Charquini" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Charquini
+                </div>
+
+            </div>
+
+            <!-- CARD 5: SNOWBOARD -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-5.html"
+                   class="snow-tour-card"
+                   aria-label="Ver tour de snowboard">
+
+                    <img src="assets/webprincipal/img/snow2.png"
+                         alt="Tour de snowboard" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Snowboard
+                </div>
+
+            </div>
+
+            <!-- CARD 6: CONDORIRI -->
+            <div class="snow-tour-item">
+
+                <a href="snow-tour-6.html"
+                   class="snow-tour-card"
+                   aria-label="Ver tour al Condoriri">
+
+                    <img src="assets/webprincipal/img/snow3.png"
+                         alt="Tour al Condoriri" />
+
+                </a>
+
+                <div class="snow-tour-label">
+                    Condoriri
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FLECHA DE SCROLL -->
+    <img src="assets/webprincipal/img/arrow.png"
+         class="welcome-sticky-arrow"
+         alt="Continúa desplazándote" />
+
+</section>
+
+<!-- =========================================================
+     TRANSICIÓN SNOW TOURS → UYUNI
+     clouds.png y el letrero forman una sola composición.
+========================================================== -->
+<div class="epic-cloud-transition epic-cloud-transition--uyuni">
+
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- LETRERO UYUNI SOBRE LAS NUBES -->
+    <div class="epic-cloud-sign epic-cloud-sign--uyuni">
+
+        <div class="uyuni-cloud-sign">
+            <h2 id="uyuni-title">Uyuni</h2>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     ESCENA 5 - UYUNI
+     Manual pág. 3:
+     1) Primero aparece la ilustración de la escena.
+     2) El automóvil 4x4 se desplaza de izquierda a derecha.
+     3) Se muestran los paquetes o botones de Uyuni.
+     4) El letrero se mantiene sobre clouds.png.
+========================================================== -->
+<section id="uyuni"
+         class="scene uyuni-scene"
+         aria-labelledby="uyuni-title">
+
+    <!-- VEHÍCULO 4X4 CONTROLADO POR SCROLL -->
+    <div class="uyuni-car">
+
+        <img src="assets/webprincipal/img/4x4-uyuni.png"
+             class="uyuni-car-img"
+             alt="Vehículo 4x4 recorriendo el Salar de Uyuni" />
+
+    </div>
+
+    <!-- =====================================================
+         TARJETAS DE TOURS DE UYUNI
+         Aparecen progresivamente mediante el controlador
+         unificado de tarjetas asociado al scroll.
+    ====================================================== -->
+    <div class="uyuni-cards-wrapper">
+
+        <div class="uyuni-tour-buttons">
+
+            <!-- CARD 1 -->
+            <div class="uyuni-tour-item">
+
+                <a href="#contacto"
+                   class="uyuni-tour-card reveal-card"
+                   aria-label="Consultar el paquete Uyuni 5">
+
+                    <img src="assets/webprincipal/img/uyuni 5.png"
+                         alt="Paquete turístico Uyuni 5" />
+
+                </a>
+
+                <div class="uyuni-tour-label">
+                    Uyuni 5
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="uyuni-tour-item">
+
+                <a href="#contacto"
+                   class="uyuni-tour-card reveal-card"
+                   aria-label="Consultar tour de uno a dos días por Uyuni">
+
+                    <img src="assets/webprincipal/img/1-2 days tours.png"
+                         alt="Tour de uno a dos días por Uyuni" />
+
+                </a>
+
+                <div class="uyuni-tour-label">
+                    1 - 2 days tour
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="uyuni-tour-item">
+
+                <a href="#contacto"
+                   class="uyuni-tour-card reveal-card"
+                   aria-label="Consultar tour de tres días por Uyuni">
+
+                    <img src="assets/webprincipal/img/3 days tours.png"
+                         alt="Tour de tres días por Uyuni" />
+
+                </a>
+
+                <div class="uyuni-tour-label">
+                    3 days tour
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FLECHA DE SCROLL -->
+    <img src="assets/webprincipal/img/arrow.png"
+         class="welcome-sticky-arrow"
+         alt="Continúa desplazándote" />
+
+</section>
+<!-- NUBES GLOBALES: TRANSICIÓN SNOW TOURS → UYUNI -->
+<div class="epic-cloud-transition" aria-hidden="true">
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt="" />
+</div>
+
+
+
+
+<!-- =========================================================
+     ESCENA 6 - LAKE TITICACA
+     Manual pág. 3:
+     1) Primero aparece la ilustración del lago.
+     2) El letrero aparece centrado sobre clouds.png.
+     3) El barco se desplaza de derecha a izquierda.
+     4) Las tarjetas suben progresivamente con el scroll.
+========================================================== -->
+<!-- =========================================================
+     TRANSICIÓN UYUNI → LAKE TITICACA
+     clouds.png y el letrero forman una sola composición.
+========================================================== -->
+<div class="epic-cloud-transition epic-cloud-transition--titicaca">
+
+    <img src="assets/webprincipal/img/clouds.png"
+         class="epic-cloud-transition-img"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- LETRERO LAKE TITICACA SOBRE LAS NUBES -->
+    <div class="epic-cloud-sign epic-cloud-sign--titicaca">
+
+        <div class="titicaca-cloud-sign">
+
+            <h2 id="titicaca-title">
+                <span class="lake-small">Lake</span>
+                <span class="lake-big">Titicaca</span>
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section id="titicaca"
+         class="scene lake-scene"
+         aria-labelledby="titicaca-title">
+
+    <!-- FONDO DEL LAGO -->
+    <img src="assets/webprincipal/img/lake-titicaca.png"
+         class="lake-bg"
+         alt="Paisaje del lago Titicaca" />
+
+    <!-- BARCO CONTROLADO POR SCROLL -->
+    <img src="assets/webprincipal/img/boat-titicaca.png"
+         class="boat-img"
+         alt="Barco navegando por el lago Titicaca" />
+
+    <!-- =====================================================
+         TARJETAS DE LAKE TITICACA
+    ====================================================== -->
+    <div class="lake-cards-wrapper">
+
+        <div class="lake-tour-buttons">
+
+            <!-- CARD 1 -->
+            <div class="lake-tour-item">
+
+                <a href="#contacto"
+                   class="lake-tour-card reveal-card"
+                   aria-label="Consultar información sobre Uyuni 5">
+
+                    <img src="assets/webprincipal/img/lake1.png"
+                         alt="Destino turístico del lago Titicaca" />
+
+                </a>
+
+                <div class="lake-tour-label">
+                    Uyuni 5
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="lake-tour-item">
+
+                <a href="#contacto"
+                   class="lake-tour-card reveal-card"
+                   aria-label="Consultar tour de uno a dos días">
+
+                    <img src="assets/webprincipal/img/lake2.png"
+                         alt="Tour de uno a dos días por el lago Titicaca" />
+
+                </a>
+
+                <div class="lake-tour-label">
+                    1 - 2 days tours
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="lake-tour-item">
+
+                <a href="#contacto"
+                   class="lake-tour-card reveal-card"
+                   aria-label="Consultar tour de tres días">
+
+                    <img src="assets/webprincipal/img/lake3.png"
+                         alt="Tour de tres días por el lago Titicaca" />
+
+                </a>
+
+                <div class="lake-tour-label">
+                    3 days tours
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FLECHA DE SCROLL -->
+        <img src="assets/webprincipal/img/arrow.png"
+             class="welcome-sticky-arrow"
+             alt="Continúa desplazándote" />
+
+    </div>
+
+</section>
+
+ <!-- =========================================================
+     ESCENA 7 - VALLEY TOURS / TORO TORO
+
+     1) Aparece la ilustración completa del dinosaurio.
+     2) La imagen se mantiene centrada y ajustada a la escena.
+     3) La vegetación lateral se desliza.
+     4) El letrero Valley Tours aparece centrado.
+     5) Las tarjetas emergen progresivamente.
+
+     IMPORTANTE:
+     La clase .valley-toro-main se conserva porque también
+     es utilizada por el controlador JavaScript de la escena.
+========================================================== -->
+
+<section id="valley"
+         class="scene valley-scene"
+         aria-labelledby="valley-title">
+
+    <!-- =====================================================
+         IMAGEN PRINCIPAL DEL DINOSAURIO
+
+         El tamaño, posición y comportamiento responsive
+         se controlan desde .valley-toro-main en el CSS.
+    ====================================================== -->
+
+    <img src="assets/webprincipal/img/dinosaurio.png"
+         class="valley-toro-main"
+         alt="Dinosaurio en el paisaje de Toro Toro para Valley Tours" />
+
+    <!-- =====================================================
+         VEGETACIÓN IZQUIERDA
+    ====================================================== -->
+
+    <img src="assets/webprincipal/img/jungle-left.png"
+         class="valley-jungle-left"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- =====================================================
+         VEGETACIÓN DERECHA
+    ====================================================== -->
+
+    <img src="assets/webprincipal/img/jungle-right.png"
+         class="valley-jungle-right"
+         alt=""
+         aria-hidden="true" />
+
+    <!-- =====================================================
+         LETRERO VALLEY TOURS
+
+         Se conserva .scene-title porque JavaScript utiliza
+         esta clase para controlar su aparición.
+    ====================================================== -->
+
+    <div class="scene-content valley-content">
+
+        <h2 id="valley-title"
+            class="scene-title valley-main-sign">
+
+            <span class="valley-title-strong">
+                Valley
+            </span>
+
+            <span class="valley-title-light">
+                Tours
+            </span>
+
+        </h2>
+
+    </div>
+
+    <!-- =====================================================
+         TARJETAS VALLEY TOURS
+    ====================================================== -->
+
+    <div class="valley-cards-wrapper">
+
+        <div class="valley-tour-buttons">
+
+            <!-- =================================================
+                 TARJETA 1: MADIDI
+            ================================================== -->
+
+            <div class="valley-tour-item">
+
+                <a href="#contacto"
+                   class="valley-tour-card reveal-card"
+                   aria-label="Consultar tour a Madidi">
+
+                    <img src="assets/webprincipal/img/valley1.png"
+                         alt="Tour a Madidi" />
+
+                </a>
+
+                <div class="valley-tour-label">
+                    Madidi
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 TARJETA 2: TORO TORO
+            ================================================== -->
+
+            <div class="valley-tour-item">
+
+                <a href="#contacto"
+                   class="valley-tour-card reveal-card"
+                   aria-label="Consultar tour a Toro Toro">
+
+                    <img src="assets/webprincipal/img/valley2.png"
+                         alt="Tour a Toro Toro" />
+
+                </a>
+
+                <div class="valley-tour-label">
+                    Toro Toro
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 TARJETA 3: SANTA CRUZ
+            ================================================== -->
+
+            <div class="valley-tour-item">
+
+                <a href="#contacto"
+                   class="valley-tour-card reveal-card"
+                   aria-label="Consultar tour a Santa Cruz">
+
+                    <img src="assets/webprincipal/img/valley3.png"
+                         alt="Tour a Santa Cruz" />
+
+                </a>
+
+                <div class="valley-tour-label">
+                    Santa Cruz
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 TARJETA 4: CLASSIC TOURS
+            ================================================== -->
+
+            <div class="valley-tour-item">
+
+                <a href="#contacto"
+                   class="valley-tour-card reveal-card"
+                   aria-label="Consultar Classic Tours">
+
+                    <img src="assets/webprincipal/img/valley4.png"
+                         alt="Classic Tours" />
+
+                </a>
+
+                <div class="valley-tour-label">
+                    Classic Tours
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+             FLECHA PARA CONTINUAR EL SCROLL
+        ====================================================== -->
+
+        <img src="assets/webprincipal/img/arrow.png"
+             class="welcome-sticky-arrow"
+             alt="Continúa desplazándote" />
+
+    </div>
+
+</section>
+
+
+    <!-- =========================================================
+     ESCENA 8 - DEATH ROAD
+     Manual pág. 4:
+     1) El fondo de la anterior escena desaparece.
+     2) Sube/aparece la imagen de carretera.
+     3) Luego aparece el ciclista en descenso.
+     4) El ciclista se desplaza en diagonal.
+========================================================== -->
+    <section id="deathroad" class="scene death-scene">
+        <img src="assets/webprincipal/img/death-road.png" class="death-road-img" alt="Death Road" />
+        <img src="assets/webprincipal/img/downhill.png" class="downhill-img" alt="Downhill bike" />
+
+    <!-- FLECHA DE SCROLL -->
+        <img src="assets/webprincipal/img/arrow.png"
+             class="welcome-sticky-arrow"
+             alt="Scroll" />
+    </section>
+
+<!-- =========================================================
+     ESCENA 9 - CONTACTO / PAMPAS / DELFÍN
+========================================================== -->
+<!-- =========================================================
+     ESCENA 9 - CONTACTO / PAMPAS / DELFÍN
+     El letrero mantiene el mismo estilo visual de Valley Tours.
+========================================================== -->
+<section id="contacto"
+         class="scene contact-scene"
+         aria-labelledby="contact-title">
+
+    <!-- FONDO DEATH ROAD -->
+    <img src="assets/webprincipal/img/death-road.png"
+         class="contact-road-bg"
+         alt="Paisaje de Death Road" />
+
+    <!-- FONDO PAMPAS -->
+    <img src="assets/webprincipal/img/pampas.png"
+         class="contact-pampas-img"
+         alt="Paisaje de las Pampas de Bolivia" />
+
+    <!-- LETRERO CONTACT US -->
+    <div class="contact-title-wrapper">
+
+        <h2 id="contact-title"
+            class="contact-title contact-main-sign">
+
+            <span class="contact-title-strong">Contact</span>
+            <span class="contact-title-light">us</span>
+
+        </h2>
+
+    </div>
+
+    <img src="assets/webprincipal/img/pink-dolphin.png"
+         class="contact-dolphin-img"
+         alt="Pink Dolphin" />
+
+    <div class="contact-footer-panel">
+
+        <div class="contact-left-info">
+
+            <a href="mailto:epictravelbolivia@gmail.com"
+   class="contact-line contact-email-link">
+
+    <svg class="contact-email-icon"
+         viewBox="0 0 24 24"
+         aria-hidden="true">
+        <rect x="2.5"
+              y="4.5"
+              width="19"
+              height="15"
+              rx="2.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2" />
+
+        <path d="M4 7l8 6 8-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+    </svg>
+
+    <span>epictravelbolivia@gmail.com</span>
+</a>
+
+          <a href="https://www.google.com/maps/search/La+Paz+Calle+Linares+Galería+El+Pueblito+oficina+3"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="contact-line contact-location-link">
+
+    <svg class="contact-location-icon"
+         viewBox="0 0 24 24"
+         aria-hidden="true">
+
+        <path d="M12 2.5a7 7 0 0 0-7 7c0 5.2 7 12 7 12s7-6.8 7-12a7 7 0 0 0-7-7Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+
+        <circle cx="12"
+                cy="9.5"
+                r="2.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2" />
+    </svg>
+
+    <span>
+        La Paz: Calle Linares, entre calle Sagarnaga y Santa<br>
+        Cruz, Galería “El Pueblito”, oficina 3.
+    </span>
+</a>
+
+<a href="https://www.google.com/maps/search/Santa+Cruz+Barrio+Equipetrol+Calle+Tucumán+Este+Edificio+Malibu+Inside+oficina+6"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="contact-line contact-location-link">
+
+    <svg class="contact-location-icon"
+         viewBox="0 0 24 24"
+         aria-hidden="true">
+
+        <path d="M12 2.5a7 7 0 0 0-7 7c0 5.2 7 12 7 12s7-6.8 7-12a7 7 0 0 0-7-7Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+
+        <circle cx="12"
+                cy="9.5"
+                r="2.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2" />
+    </svg>
+
+    <span>
+        Santa Cruz: Barrio Equipetrol entre 2do y 3er Anillo,<br>
+        Calle Tucumán Este, Edificio Malibu Inside, oficina 6.
+    </span>
+</a>
+
+        </div>
+
+        <div class="contact-right-info">
+
+            <div class="contact-social-icons">
+
+                <a href="https://wa.me/59171904414" target="_blank" rel="noopener noreferrer" class="whatsapp-svg">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <path d="M16 3C8.8 3 3 8.6 3 15.6c0 2.4.7 4.7 2 6.7L3.5 29l6.9-1.8c1.8 1 3.8 1.5 5.9 1.5 7.2 0 13-5.6 13-12.6C29.3 8.6 23.4 3 16 3z"/>
+                        <path class="phone" d="M11.2 9.5c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.5 1.5-1.5 3.6s1.6 4.2 1.8 4.5c.2.3 3.1 5 7.7 6.8 3.8 1.5 4.6 1.2 5.4 1.1.8-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.9-.6l-2.7-1.3c-.4-.2-.8-.3-1.1.3-.3.5-1.2 1.4-1.5 1.7-.3.3-.6.3-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-3-2.8-3.5-.3-.5 0-.8.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9l-1.2-2.9z"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="instagram-svg">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <rect x="5" y="5" width="22" height="22" rx="6" ry="6"
+                              fill="none" stroke="white" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="5"
+                                fill="none" stroke="white" stroke-width="2"/>
+                        <circle cx="22.5" cy="9.5" r="1.5" fill="white"/>
+                    </svg>
+                </a>
+                <!-- LINKEDIN -->
+<a href="https://www.linkedin.com/"
+   target="_blank" rel="noopener noreferrer"
+   class="linkedin-svg">
+
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+
+        <!-- círculo exterior -->
+        <circle cx="16"
+                cy="16"
+                r="13"
+                fill="none"
+                stroke="white"
+                stroke-width="2"/>
+
+        <!-- punto de la i -->
+        <circle cx="11.2"
+                cy="12"
+                r="1.4"
+                fill="white"/>
+
+        <!-- i -->
+        <rect x="10"
+              y="14"
+              width="2.4"
+              height="8"
+              fill="white"/>
+
+        <!-- n -->
+        <path d="
+            M15 14
+            V22
+            H17.4
+            V17.8
+            C17.4 16.5 18.1 15.8 19.1 15.8
+            C20.2 15.8 20.8 16.5 20.8 17.9
+            V22
+            H23.2
+            V17.2
+            C23.2 14.9 21.9 13.7 19.9 13.7
+            C18.6 13.7 17.8 14.3 17.3 15
+            V14
+            Z"
+            fill="white"/>
+
+    </svg>
+
+</a>
+
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="facebook-svg">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <circle cx="16" cy="16" r="13"
+                                fill="none" stroke="white" stroke-width="2"/>
+                        <path d="M18.4 9 H21 V5.8 H18 C14.8 5.8 13 7.8 13 11.3 V14 H10 V17.2 H13 V26 H16.8 V17.2 H20.2 L20.8 14 H16.8 V11.8 C16.8 10.2 17.3 9 18.4 9Z"
+                              fill="white"/>
+                    </svg>
+                </a>
+
+            </div>
+
+            <div class="contact-brand">
+                Epic Travel Bolivia
+            </div>
+
+          <a href="https://wa.me/59171904414"
+   target="_blank" rel="noopener noreferrer"
+   class="contact-phone-link">
+
+    <svg class="phone-svg" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="9" y="3"
+              width="14"
+              height="26"
+              rx="3"
+              fill="none"
+              stroke="white"
+              stroke-width="2.2"/>
+
+        <line x1="13" y1="7"
+              x2="19" y2="7"
+              stroke="white"
+              stroke-width="1.6"
+              stroke-linecap="round"/>
+
+        <circle cx="16"
+                cy="25"
+                r="1.4"
+                fill="white"/>
+    </svg>
+
+    <span>+591 71904414</span>
+</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<script>
+    /*
+    ============================================================
+    CONTROLADORES JAVASCRIPT - WEB PRINCIPAL
+    ============================================================
+    1) IntersectionObserver general:
+       - Activa tarjetas .reveal-card cuando entran en pantalla.
+       - Usado en vuelos, snow, uyuni, titicaca, valley.
+
+    2) Escena 4.1 - Snow Cards:
+       - Las tarjetas suben desde abajo.
+       - Al salir de pantalla, vuelven a su estado inicial.
+
+    3) Escena 6.1 - Lake Titicaca Cards:
+       - Las tarjetas suben desde abajo.
+       - Al subir y volver a bajar, el efecto se repite.
+
+    4) updateWelcomeScene():
+       - Controla Escena 2 con scroll.
+    ============================================================
+    */
+
+    const revealCards = document.querySelectorAll('.reveal-card');
+    const revealImages = document.querySelectorAll('.reveal-image');
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add('visible');
+
+            } else {
+
+                entry.target.classList.remove('visible');
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.25
+    });
+
+    revealCards.forEach(card => observer.observe(card));
+    revealImages.forEach(image => observer.observe(image));
+
+
+const lakeScene = document.querySelector('.lake-scene');
+const lakeBoat = document.querySelector('.boat-img');
+const lakeCards = document.querySelectorAll('.lake-tour-item');
+
+function updateLakeScene() {
+    if (!lakeScene || !lakeBoat) {
+        return;
+    }
+
+    const rect = lakeScene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const progress = Math.min(
+        Math.max(
+            (windowHeight - rect.top) /
+            (windowHeight + rect.height),
+            0
+        ),
+        1
+    );
+
+    /* =========================
+       MOVIMIENTO DEL BARCO
+    ========================= */
+
+    const boatDistance =
+        window.innerWidth + 900;
+
+    const boatMoveX =
+        -progress * boatDistance;
+
+    let boatOpacity = 1;
+
+    if (progress < 0.10) {
+        boatOpacity = progress / 0.10;
+    } else if (progress > 0.90) {
+        boatOpacity = (1 - progress) / 0.10;
+    }
+
+    boatOpacity = Math.min(
+        Math.max(boatOpacity, 0),
+        1
+    );
+
+    lakeBoat.style.transform =
+        `translate3d(${boatMoveX}px, 0, 0)`;
+
+    lakeBoat.style.opacity =
+        boatOpacity;
+
+    /* =========================
+       MOVIMIENTO DE TARJETAS
+    ========================= */
+
+    lakeCards.forEach((card, index) => {
+        const cardStart =
+            0.30 + index * 0.05;
+
+        const cardProgress = Math.min(
+            Math.max(
+                (progress - cardStart) / 0.30,
+                0
+            ),
+            1
+        );
+
+        const smoothCardProgress =
+            cardProgress *
+            cardProgress *
+            (3 - 2 * cardProgress);
+
+        const moveY =
+            180 - smoothCardProgress * 180;
+
+        const scale =
+            0.75 + smoothCardProgress * 0.25;
+
+        card.style.opacity =
+            smoothCardProgress;
+
+        card.style.transform = `
+            translate3d(0, ${moveY}px, 0)
+            scale(${scale})
+        `;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    updateLakeScene,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    updateLakeScene
+);
+
+window.addEventListener(
+    'load',
+    updateLakeScene
+);
+
+ /* =========================
+      2 Escena 2 vannesa<<
+    ========================= */
+
+    const welcomeScene = document.querySelector('.welcome-scroll-scene');
+    const welcomeBg = document.querySelector('.welcome-bg-full');
+    const welcomeBoardCrop = document.querySelector('.welcome-board-crop');
+    const welcomeBoardImg = document.querySelector('.welcome-board-img');
+
+    const welcomeFullReveal = document.querySelector('.welcome-vanessa-full-reveal');
+    const welcomeSerpentina = document.querySelector('.welcome-serpentina');
+   const welcomeSalarCar =
+    document.querySelector('.welcome-salar-car');
+
+    function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    function updateWelcomeScene() {
+
+        if (!welcomeScene || !welcomeBg || !welcomeBoardCrop || !welcomeBoardImg
+            || !welcomeFullReveal || !welcomeSerpentina || !welcomeSalarCar) {
+            return;
+        }
+
+        const rect = welcomeScene.getBoundingClientRect();
+        const totalScroll = welcomeScene.offsetHeight - window.innerHeight;
+        const progress = clamp(-rect.top / totalScroll, 0, 1);
+
+   const boardZoomPhase = clamp(progress / 0.30, 0, 1);
+
+/* El letrero inicial comienza a desaparecer al 22% */
+const boardFadePhase = clamp((progress - 0.22) / 0.22, 0, 1);
+
+/* Vanessa completa comienza a aparecer al 28% */
+const fullPhase = clamp((progress - 0.28) / 0.45, 0, 1);
+
+/* El fondo aparece después de Vanessa */
+const bgPhase = clamp((progress - 0.38) / 0.40, 0, 1);
+
+/* Finalmente aparecen las serpentinas */
+const serpentinaPhase = clamp((progress - 0.55) / 0.35, 0, 1);
+
+        /* 1) Primero: solo el letrero llena toda la escena */
+        welcomeBoardCrop.style.opacity = `${1 - boardFadePhase}`;
+
+       welcomeBoardImg.style.transform = `
+    scale(${1.30 - boardZoomPhase * 0.30})
+    translateY(${-90 + boardZoomPhase * 90}px)
+`;
+
+        /* 2) Luego: aparece Vanessa completa */
+        welcomeFullReveal.style.opacity = `${fullPhase}`;
+
+        welcomeFullReveal.style.transform = `
+            scale(${0.70 + fullPhase * 0.20})
+            translateY(${265 - fullPhase * 110}px)
+        `;
+
+        welcomeFullReveal.style.filter = `
+            blur(${10 - fullPhase * 10}px)
+        `;
+
+        /* 3) Fondo completo */
+        welcomeBg.style.opacity = `${bgPhase}`;
+        welcomeBg.style.transform = `scale(${1.25 - bgPhase * 0.25})`;
+
+        /* 4) Serpentinas bajando */
+        welcomeSerpentina.style.opacity = `${serpentinaPhase * 0.95}`;
+
+        if (fullPhase > 0.72) {
+
+            welcomeSerpentina.classList.add('active');
+
+            if (welcomeSalarCar) {
+                welcomeSalarCar.classList.add('active');
+            }
+
+        } else {
+
+            welcomeSerpentina.classList.remove('active');
+
+            if (welcomeSalarCar) {
+                welcomeSalarCar.classList.remove('active');
+            }
+
+        }
+
+        welcomeSerpentina.style.setProperty(
+            '--serpentina-y',
+            `${serpentinaPhase * 540}px`
+        );
+    }
+
+    window.addEventListener('scroll', updateWelcomeScene, { passive: true });
+    window.addEventListener('resize', updateWelcomeScene);
+    window.addEventListener('load', updateWelcomeScene);
+
+/* ============================================================
+   ESCENA 3 - AVIÓN CONTROLADO POR SCROLL
+============================================================ */
+
+const flightsScene = document.querySelector('.flights-scene');
+const flightImage = document.querySelector('.flight-img');
+
+let flightAnimationFrame = null;
+
+function updateFlightsScene() {
+    if (!flightsScene || !flightImage) {
+        return;
+    }
+
+    const rect = flightsScene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    /*
+       Progreso de la escena:
+
+       0 = la escena comienza a entrar en pantalla.
+       1 = la escena termina de salir por arriba.
+    */
+    const rawProgress =
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height);
+
+    const progress = Math.min(
+        Math.max(rawProgress, 0),
+        1
+    );
+
+    /*
+       Suavizado de la trayectoria.
+       Evita que el movimiento comience o termine bruscamente.
+    */
+    const smoothProgress =
+        progress * progress * (3 - 2 * progress);
+
+    /*
+       Recorrido horizontal:
+
+       El avión comienza fuera del lado izquierdo.
+       Termina fuera del lado derecho.
+    */
+    const horizontalDistance =
+        window.innerWidth + 920;
+
+    const moveX =
+        smoothProgress * horizontalDistance;
+
+    /*
+       Recorrido vertical:
+
+       Comienza 120 px abajo.
+       Finaliza 260 px arriba.
+
+       Diferencia total: 380 px.
+    */
+    const moveY =
+        120 - smoothProgress * 380;
+
+    /*
+       Aparición y desaparición progresiva.
+    */
+    let opacity = 1;
+
+    if (progress < 0.18) {
+        opacity = progress / 0.18;
+    } else if (progress > 0.80) {
+        opacity = (1 - progress) / 0.20;
+    }
+
+    opacity = Math.min(
+        Math.max(opacity, 0),
+        1
+    );
+
+    flightImage.style.transform = `
+        translate3d(${moveX}px, ${moveY}px, 0)
+        rotate(-12deg)
+    `;
+
+    flightImage.style.opacity = opacity;
+}
+
+/*
+   requestAnimationFrame evita actualizar varias veces
+   durante el mismo fotograma.
+*/
+function requestFlightsUpdate() {
+    if (flightAnimationFrame !== null) {
+        return;
+    }
+
+    flightAnimationFrame = requestAnimationFrame(() => {
+        updateFlightsScene();
+        flightAnimationFrame = null;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    requestFlightsUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestFlightsUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestFlightsUpdate
+);
+
+function updateContactScene() {
+    const scene = document.querySelector(".contact-scene");
+    const pampas = document.querySelector(".contact-pampas-img");
+
+    if (!scene || !pampas) return;
+
+    const rect = scene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const progress = Math.min(
+        Math.max((windowHeight - rect.top) / (rect.height - windowHeight), 0),
+        1
+    );
+
+    const startY = 520;
+    const endY = 118;
+
+    const pampasY = startY - (progress * (startY - endY));
+
+    pampas.style.setProperty("--pampas-y", `${pampasY}px`);
+}
+
+window.addEventListener("scroll", updateContactScene);
+window.addEventListener("load", updateContactScene);
+
+
+/* ============================================================
+   ESCENA 5 - VEHÍCULO UYUNI CONTROLADO POR SCROLL
+============================================================ */
+
+const uyuniScene = document.querySelector('.uyuni-scene');
+const uyuniCar = document.querySelector('.uyuni-car');
+
+let uyuniAnimationFrame = null;
+
+/*
+   Limita cualquier valor entre 0 y 1.
+*/
+function clampUyuni(value, min = 0, max = 1) {
+    return Math.min(Math.max(value, min), max);
+}
+
+/*
+   Suaviza el inicio y el final del movimiento.
+*/
+function smoothUyuni(value) {
+    const progress = clampUyuni(value);
+
+    return progress * progress * (3 - 2 * progress);
+}
+
+function updateUyuniScene() {
+    if (!uyuniScene || !uyuniCar) {
+        return;
+    }
+
+    const rect = uyuniScene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    /*
+       Progreso de la escena:
+
+       0 = Uyuni comienza a entrar en la pantalla.
+       1 = Uyuni termina de salir por la parte superior.
+    */
+    const rawProgress =
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height);
+
+    const progress = clampUyuni(rawProgress);
+
+    /*
+       Suavizado del movimiento.
+    */
+    const movement = smoothUyuni(progress);
+
+    /*
+       Distancia horizontal:
+
+       El vehículo comienza fuera del lado izquierdo
+       y termina fuera del lado derecho.
+    */
+    const horizontalDistance =
+        window.innerWidth + 760;
+
+    const moveX =
+        movement * horizontalDistance;
+
+    /*
+       Pequeño movimiento vertical para simular
+       el desplazamiento sobre el salar.
+    */
+    const moveY =
+        Math.sin(movement * Math.PI) * 6;
+
+    /*
+       Ligera inclinación durante el recorrido.
+    */
+    const rotation =
+        Math.sin(movement * Math.PI) * 1.5;
+
+    /*
+       Aparición gradual al comenzar.
+       Desaparición gradual al terminar.
+    */
+    let opacity = 1;
+
+    if (progress < 0.10) {
+        opacity = progress / 0.10;
+    } else if (progress > 0.90) {
+        opacity = (1 - progress) / 0.10;
+    }
+
+    opacity = clampUyuni(opacity);
+
+    /*
+       Aplicación del movimiento.
+       El reflejo se mueve automáticamente porque
+       pertenece al mismo contenedor.
+    */
+    uyuniCar.style.transform = `
+        translate3d(${moveX}px, ${moveY}px, 0)
+        rotate(${rotation}deg)
+    `;
+
+    uyuniCar.style.opacity = opacity;
+}
+
+/*
+   Evita realizar múltiples actualizaciones
+   durante el mismo fotograma.
+*/
+function requestUyuniUpdate() {
+    if (uyuniAnimationFrame !== null) {
+        return;
+    }
+
+    uyuniAnimationFrame = requestAnimationFrame(() => {
+        updateUyuniScene();
+        uyuniAnimationFrame = null;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    requestUyuniUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestUyuniUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestUyuniUpdate
+);
+
+/* ============================================================
+   ESCENA 7 - VALLEY CONTROLADA POR SCROLL
+============================================================ */
+
+const valleyScene = document.querySelector('.valley-scene');
+const valleyToro = document.querySelector('.valley-toro-main');
+const valleyJungleLeft = document.querySelector('.valley-jungle-left');
+const valleyJungleRight = document.querySelector('.valley-jungle-right');
+const valleyTitle = document.querySelector('.valley-scene .scene-title');
+const valleyCards = document.querySelectorAll('.valley-tour-item');
+
+let valleyAnimationFrame = null;
+
+function clampValley(value, min = 0, max = 1) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function smoothValley(value) {
+    const progress = clampValley(value);
+
+    return progress * progress * (3 - 2 * progress);
+}
+
+function updateValleyScene() {
+    if (
+        !valleyScene ||
+        !valleyToro ||
+        !valleyJungleLeft ||
+        !valleyJungleRight
+    ) {
+        return;
+    }
+
+    const rect = valleyScene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    /*
+       Progreso general:
+
+       0 = escena entrando.
+       1 = escena terminando.
+    */
+    const progress = clampValley(
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height)
+    );
+
+    /* =========================
+       IMAGEN TORO TORO
+    ========================= */
+
+    const toroPhase = smoothValley(
+        (progress - 0.05) / 0.50
+    );
+
+    const toroScale =
+        1.08 - toroPhase * 0.07;
+
+    const toroMoveY =
+        35 - toroPhase * 35;
+
+    valleyToro.style.transform = `
+        translate3d(-50%, ${toroMoveY}px, 0)
+        scale(${toroScale})
+    `;
+
+    /* =========================
+       VEGETACIÓN LATERAL
+    ========================= */
+
+    const junglePhase = smoothValley(
+        (progress - 0.05) / 0.45
+    );
+
+    /*
+       Izquierda:
+       -140px → 40px
+    */
+    const jungleLeftX =
+        -140 + junglePhase * 180;
+
+    /*
+       Derecha:
+       140px → -40px
+    */
+    const jungleRightX =
+        140 - junglePhase * 180;
+
+    valleyJungleLeft.style.transform = `
+        translate3d(${jungleLeftX}px, 0, 0)
+    `;
+
+    valleyJungleRight.style.transform = `
+        translate3d(${jungleRightX}px, 0, 0)
+    `;
+
+    /* =========================
+       TÍTULO
+    ========================= */
+
+    if (valleyTitle) {
+        const titlePhase = smoothValley(
+            (progress - 0.10) / 0.25
+        );
+
+        const titleMoveY =
+            35 - titlePhase * 35;
+
+        valleyTitle.style.opacity =
+            titlePhase;
+
+        valleyTitle.style.transform = `
+            translate3d(0, ${titleMoveY}px, 0)
+        `;
+    }
+
+    /* =========================
+       TARJETAS
+    ========================= */
+
+    valleyCards.forEach((card, index) => {
+        /*
+           Inicio escalonado:
+
+           Tarjeta 1: 30%
+           Tarjeta 2: 35%
+           Tarjeta 3: 40%
+           Tarjeta 4: 45%
+        */
+        const cardStart =
+            0.30 + index * 0.05;
+
+        const cardPhase = smoothValley(
+            (progress - cardStart) / 0.28
+        );
+
+        const cardMoveY =
+            180 - cardPhase * 180;
+
+        const cardScale =
+            0.75 + cardPhase * 0.25;
+
+        card.style.opacity =
+            cardPhase;
+
+        card.style.transform = `
+            translate3d(0, ${cardMoveY}px, 0)
+            scale(${cardScale})
+        `;
+    });
+}
+
+function requestValleyUpdate() {
+    if (valleyAnimationFrame !== null) {
+        return;
+    }
+
+    valleyAnimationFrame = requestAnimationFrame(() => {
+        updateValleyScene();
+        valleyAnimationFrame = null;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    requestValleyUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestValleyUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestValleyUpdate
+);
+
+/* ============================================================
+   ESCENA 8 - CICLISTA CONTROLADO POR SCROLL
+============================================================ */
+
+const deathScene = document.querySelector('.death-scene');
+const downhillCyclist = document.querySelector('.downhill-img');
+
+let downhillAnimationFrame = null;
+
+function clampDownhill(value, min = 0, max = 1) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function smoothDownhill(value) {
+    const progress = clampDownhill(value);
+
+    return progress * progress * (3 - 2 * progress);
+}
+
+function updateDownhillScene() {
+    if (!deathScene || !downhillCyclist) {
+        return;
+    }
+
+    const rect = deathScene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    /*
+       Progreso de la escena:
+
+       0 = escena entrando.
+       1 = escena terminando.
+    */
+    const progress = clampDownhill(
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height)
+    );
+
+    /*
+       Suaviza la trayectoria sin separarla del scroll.
+    */
+    const movement = smoothDownhill(progress);
+
+    /*
+       Movimiento horizontal:
+
+       Empieza fuera del lado izquierdo
+       y avanza hacia el lado derecho.
+    */
+    const horizontalDistance =
+        window.innerWidth + 1050;
+
+    const moveX =
+        movement * horizontalDistance;
+
+    /*
+       Descenso vertical:
+
+       Empieza arriba.
+       Termina 650px más abajo.
+    */
+    const verticalDistance =
+        Math.max(650, window.innerHeight * 0.85);
+
+    const moveY =
+        movement * verticalDistance;
+
+    /*
+       Rotación progresiva para acompañar
+       la inclinación del descenso.
+    */
+    const rotation =
+        -10 + movement * 28;
+
+    /*
+       Aparición y desaparición.
+    */
+    let opacity = 1;
+
+    if (progress < 0.10) {
+        opacity = progress / 0.10;
+    } else if (progress > 0.92) {
+        opacity = (1 - progress) / 0.08;
+    }
+
+    opacity = clampDownhill(opacity);
+
+    downhillCyclist.style.transform = `
+        translate3d(${moveX}px, ${moveY}px, 0)
+        rotate(${rotation}deg)
+    `;
+
+    downhillCyclist.style.opacity =
+        opacity;
+}
+
+function requestDownhillUpdate() {
+    if (downhillAnimationFrame !== null) {
+        return;
+    }
+
+    downhillAnimationFrame = requestAnimationFrame(() => {
+        updateDownhillScene();
+        downhillAnimationFrame = null;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    requestDownhillUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestDownhillUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestDownhillUpdate
+);
+
+/* ============================================================
+   ESCENA 1 - PRELOADER DE LA PÁGINA
+   Mantiene visible la trayectoria completa del avión y retira
+   la escena únicamente cuando la página terminó de cargar.
+============================================================ */
+
+const introLoader = document.querySelector('.intro-scene');
+const introLoaderStart = performance.now();
+const introMinimumDuration = 5200;
+let introLoaderFinished = false;
+
+function finishIntroLoader() {
+    if (!introLoader || introLoaderFinished) {
+        document.body.classList.remove('intro-loading');
+        return;
+    }
+
+    introLoaderFinished = true;
+    introLoader.classList.add('is-finished');
+    document.body.classList.remove('intro-loading');
+
+    const removeIntroLoader = () => {
+        introLoader.hidden = true;
+        introLoader.setAttribute('aria-hidden', 'true');
+    };
+
+    introLoader.addEventListener(
+        'transitionend',
+        removeIntroLoader,
+        { once: true }
+    );
+
+    /* Respaldo por si el navegador no emite transitionend. */
+    window.setTimeout(removeIntroLoader, 1100);
+}
+
+function scheduleIntroLoaderExit() {
+    const elapsed = performance.now() - introLoaderStart;
+    const remaining = Math.max(0, introMinimumDuration - elapsed);
+
+    window.setTimeout(finishIntroLoader, remaining);
+}
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.setTimeout(finishIntroLoader, 500);
+} else if (document.readyState === 'complete') {
+    scheduleIntroLoaderExit();
+} else {
+    window.addEventListener('load', scheduleIntroLoaderExit, { once: true });
+}
+
+/* Límite de seguridad si un recurso externo tarda demasiado. */
+window.setTimeout(finishIntroLoader, 12000);
+
+/* ============================================================
+   ESCENA 4 - SECUENCIA SNOW TOURS
+
+   1) Aparecen todos los copos.
+   2) Permanecen visibles durante 2 segundos.
+   3) Los copos desaparecen.
+   4) Después suben las seis tarjetas.
+
+   Esta animación está aislada de las demás escenas.
+============================================================ */
+
+const snowScene = document.querySelector('.snow-scene');
+
+let snowSequenceStarted = false;
+let snowHideTimer = null;
+let snowCardsTimer = null;
+
+function resetSnowSequence() {
+    if (!snowScene) {
+        return;
+    }
+
+    window.clearTimeout(snowHideTimer);
+    window.clearTimeout(snowCardsTimer);
+
+    snowScene.classList.remove(
+        'snow-flakes-visible',
+        'snow-flakes-hidden',
+        'snow-cards-visible'
+    );
+
+    snowSequenceStarted = false;
+}
+
+function startSnowSequence() {
+    if (!snowScene || snowSequenceStarted) {
+        return;
+    }
+
+    snowSequenceStarted = true;
+
+    /* Paso 1: aparecen los copos. */
+    snowScene.classList.remove(
+        'snow-flakes-hidden',
+        'snow-cards-visible'
+    );
+
+    snowScene.classList.add('snow-flakes-visible');
+
+    /*
+       Paso 2 y 3:
+       permanecen visibles 2 segundos y luego desaparecen.
+    */
+    snowHideTimer = window.setTimeout(() => {
+        snowScene.classList.remove('snow-flakes-visible');
+        snowScene.classList.add('snow-flakes-hidden');
+    }, 2000);
+
+    /*
+       Paso 4:
+       espera 600 ms a que terminen de desaparecer
+       y después permite la subida de las tarjetas.
+    */
+    snowCardsTimer = window.setTimeout(() => {
+        snowScene.classList.add('snow-cards-visible');
+    }, 2600);
+}
+
+if (snowScene) {
+    const snowSequenceObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startSnowSequence();
+                } else {
+                    resetSnowSequence();
+                }
+            });
+        },
+        {
+            threshold: 0.35
+        }
+    );
+
+    snowSequenceObserver.observe(snowScene);
+}
+
+/* ============================================================
+   ANIMACIÓN UNIFICADA DE TARJETAS
+   Lake Titicaca y Valley Tours.
+
+   Comportamiento:
+   1) Las tarjetas comienzan 180px abajo.
+   2) Escalan progresivamente de 0.75 a 1.
+   3) Aumentan progresivamente su opacidad.
+   4) Aparecen de manera escalonada.
+   5) Al subir nuevamente, regresan a su posición inicial.
+============================================================ */
+
+const animatedCardScenes = [
+    {
+        sceneSelector: '.uyuni-scene',
+        cardSelector: '.uyuni-tour-item'
+    },
+    {
+        sceneSelector: '.lake-scene',
+        cardSelector: '.lake-tour-item'
+    },
+    {
+        sceneSelector: '.valley-scene',
+        cardSelector: '.valley-tour-item'
+    }
+];
+
+let cardsAnimationFrame = null;
+
+/*
+   Limita cualquier valor entre 0 y 1.
+*/
+function clampCardProgress(value, min = 0, max = 1) {
+    return Math.min(Math.max(value, min), max);
+}
+
+/*
+   Suaviza el inicio y el final de la animación.
+*/
+function smoothCardProgress(value) {
+    const progress = clampCardProgress(value);
+
+    return progress * progress * (3 - 2 * progress);
+}
+
+/*
+   Actualiza las tarjetas de una escena.
+*/
+function updateCardsInScene(scene, cards) {
+    if (!scene || cards.length === 0) {
+        return;
+    }
+
+    const rect = scene.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    /*
+       Fórmula utilizada originalmente por Titicaca:
+
+       0 = la escena comienza a entrar.
+       1 = la escena termina de salir.
+    */
+    const sceneProgress = clampCardProgress(
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height)
+    );
+
+    cards.forEach((card, index) => {
+
+        /*
+           Aparición escalonada:
+
+           Tarjeta 1: 30%
+           Tarjeta 2: 35%
+           Tarjeta 3: 40%
+           Tarjeta 4: 45%
+           Tarjeta 5: 50%
+           Tarjeta 6: 55%
+        */
+        const cardStart = 0.30 + index * 0.05;
+
+        /*
+           Todas las tarjetas tienen el mismo tiempo
+           proporcional de entrada.
+        */
+        const rawCardProgress =
+            (sceneProgress - cardStart) / 0.30;
+
+        const cardProgress = smoothCardProgress(
+            rawCardProgress
+        );
+
+        /*
+           Movimiento vertical:
+           180px → 0px
+        */
+        const moveY =
+            180 - cardProgress * 180;
+
+        /*
+           Escala:
+           0.75 → 1
+        */
+        const scale =
+            0.75 + cardProgress * 0.25;
+
+        /*
+           Opacidad:
+           0 → 1
+        */
+        card.style.opacity =
+            `${cardProgress}`;
+
+        card.style.transform = `
+            translate3d(0, ${moveY}px, 0)
+            scale(${scale})
+        `;
+    });
+}
+
+/*
+   Actualiza todas las escenas con tarjetas.
+*/
+function updateAllAnimatedCards() {
+    animatedCardScenes.forEach(configuration => {
+
+        const scene = document.querySelector(
+            configuration.sceneSelector
+        );
+
+        if (!scene) {
+            return;
+        }
+
+        const cards = scene.querySelectorAll(
+            configuration.cardSelector
+        );
+
+        updateCardsInScene(scene, cards);
+    });
+}
+
+/*
+   requestAnimationFrame evita ejecutar varias actualizaciones
+   dentro del mismo fotograma.
+*/
+function requestAnimatedCardsUpdate() {
+    if (cardsAnimationFrame !== null) {
+        return;
+    }
+
+    cardsAnimationFrame = requestAnimationFrame(() => {
+        updateAllAnimatedCards();
+        cardsAnimationFrame = null;
+    });
+}
+
+window.addEventListener(
+    'scroll',
+    requestAnimatedCardsUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestAnimatedCardsUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestAnimatedCardsUpdate
+);
+
+/*
+   Ejecuta una actualización inicial por si la página
+   se abre en una posición restaurada por el navegador.
+*/
+requestAnimatedCardsUpdate();
+
+
+
+</script>
+
+</body>
+</html>
