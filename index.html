@@ -152,7 +152,7 @@
     <!-- LETRERO VUELOS SOBRE LAS NUBES -->
     <div class="epic-cloud-sign epic-cloud-sign--flights">
 
-        <div class="flights-sign">
+        <div class="flights-sign epic-animated-sign">
             <h2 id="flights-title">VUELOS</h2>
             <span>Nacionales &amp; Internacionales</span>
         </div>
@@ -197,7 +197,7 @@
     <!-- LETRERO SNOW TOURS SOBRE LAS NUBES -->
     <div class="epic-cloud-sign epic-cloud-sign--snow">
 
-        <div class="snow-cloud-sign">
+        <div class="snow-cloud-sign epic-animated-sign">
             <h2 id="snow-title">Snow Tours</h2>
         </div>
 
@@ -430,7 +430,7 @@
     <!-- LETRERO UYUNI SOBRE LAS NUBES -->
     <div class="epic-cloud-sign epic-cloud-sign--uyuni">
 
-        <div class="uyuni-cloud-sign">
+        <div class="uyuni-cloud-sign epic-animated-sign">
             <h2 id="uyuni-title">Uyuni</h2>
         </div>
 
@@ -564,7 +564,7 @@
     <!-- LETRERO LAKE TITICACA SOBRE LAS NUBES -->
     <div class="epic-cloud-sign epic-cloud-sign--titicaca">
 
-        <div class="titicaca-cloud-sign">
+        <div class="titicaca-cloud-sign epic-animated-sign">
 
             <h2 id="titicaca-title">
                 <span class="lake-small">Lake</span>
@@ -884,7 +884,7 @@
     <div class="contact-title-wrapper">
 
         <h2 id="contact-title"
-            class="contact-title contact-main-sign">
+            class="contact-title contact-main-sign epic-animated-sign">
 
             <span class="contact-title-strong">Contact</span>
             <span class="contact-title-light">us</span>
@@ -893,9 +893,14 @@
 
     </div>
 
+ <!-- DELFÍN ROSADO / LÍNEA DEL AGUA -->
+<div class="contact-dolphin-water-mask">
+
     <img src="assets/webprincipal/img/pink-dolphin.png"
          class="contact-dolphin-img"
-         alt="Pink Dolphin" />
+         alt="Delfín rosado" />
+
+</div>
 
     <div class="contact-footer-panel">
 
@@ -996,7 +1001,8 @@
                 <a href="https://wa.me/59171904414" target="_blank" rel="noopener noreferrer" class="whatsapp-svg">
                     <svg viewBox="0 0 32 32" aria-hidden="true">
                         <path d="M16 3C8.8 3 3 8.6 3 15.6c0 2.4.7 4.7 2 6.7L3.5 29l6.9-1.8c1.8 1 3.8 1.5 5.9 1.5 7.2 0 13-5.6 13-12.6C29.3 8.6 23.4 3 16 3z"/>
-                        <path class="phone" d="M11.2 9.5c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.5 1.5-1.5 3.6s1.6 4.2 1.8 4.5c.2.3 3.1 5 7.7 6.8 3.8 1.5 4.6 1.2 5.4 1.1.8-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.9-.6l-2.7-1.3c-.4-.2-.8-.3-1.1.3-.3.5-1.2 1.4-1.5 1.7-.3.3-.6.3-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-3-2.8-3.5-.3-.5 0-.8.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9l-1.2-2.9z"/>
+                        <path class="phone" d="M11.2 9.5c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.5 1.5-1.5 3.6s1.6 4.2 1.8 4.5c.2.3 3.1 5 7.7 6.8 3.8 1.5 4.
+                        6 1.2 5.4 1.1.8-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.9-.6l-2.7-1.3c-.4-.2-.8-.3-1.1.3-.3.5-1.2 1.4-1.5 1.7-.3.3-.6.3-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-3-2.8-3.5-.3-.5 0-.8.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9l-1.2-2.9z"/>
                     </svg>
                 </a>
 
@@ -2078,185 +2084,297 @@ if (snowScene) {
     snowSequenceObserver.observe(snowScene);
 }
 
-/* ============================================================
-   ANIMACIÓN UNIFICADA DE TARJETAS
-   Lake Titicaca y Valley Tours.
 
-   Comportamiento:
-   1) Las tarjetas comienzan 180px abajo.
-   2) Escalan progresivamente de 0.75 a 1.
-   3) Aumentan progresivamente su opacidad.
-   4) Aparecen de manera escalonada.
-   5) Al subir nuevamente, regresan a su posición inicial.
+
+/* ============================================================
+   ANIMACIÓN UNIFICADA DE LETREROS
+
+   Basada en el movimiento de Valley Tours:
+   1) El letrero comienza abajo y oculto.
+   2) Sube progresivamente.
+   3) Recupera su tamaño normal.
+   4) Aumenta su opacidad.
+   5) La animación retrocede al subir por la página.
 ============================================================ */
 
-const animatedCardScenes = [
-    {
-        sceneSelector: '.uyuni-scene',
-        cardSelector: '.uyuni-tour-item'
-    },
-    {
-        sceneSelector: '.lake-scene',
-        cardSelector: '.lake-tour-item'
-    },
-    {
-        sceneSelector: '.valley-scene',
-        cardSelector: '.valley-tour-item'
-    }
-];
+const animatedSigns =
+    document.querySelectorAll('.epic-animated-sign');
 
-let cardsAnimationFrame = null;
+let signsAnimationFrame = null;
 
 /*
-   Limita cualquier valor entre 0 y 1.
+   Limita cualquier número entre 0 y 1.
 */
-function clampCardProgress(value, min = 0, max = 1) {
-    return Math.min(Math.max(value, min), max);
+function clampSignProgress(value, min = 0, max = 1) {
+    return Math.min(
+        Math.max(value, min),
+        max
+    );
 }
 
 /*
-   Suaviza el inicio y el final de la animación.
+   Aplica la misma suavidad utilizada por Valley Tours.
 */
-function smoothCardProgress(value) {
-    const progress = clampCardProgress(value);
+function smoothSignProgress(value) {
+    const progress = clampSignProgress(value);
 
     return progress * progress * (3 - 2 * progress);
 }
 
 /*
-   Actualiza las tarjetas de una escena.
+   Actualiza individualmente cada letrero.
 */
-function updateCardsInScene(scene, cards) {
-    if (!scene || cards.length === 0) {
+function updateAnimatedSign(sign) {
+    if (!sign) {
         return;
     }
-
-    const rect = scene.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
 
     /*
-       Fórmula utilizada originalmente por Titicaca:
-
-       0 = la escena comienza a entrar.
-       1 = la escena termina de salir.
+       Se usa como referencia el contenedor de transición.
+       Para Contact us se utiliza su escena completa.
     */
-    const sceneProgress = clampCardProgress(
-        (windowHeight - rect.top) /
-        (windowHeight + rect.height)
-    );
+    const animationContainer =
+        sign.closest('.epic-cloud-transition') ||
+        sign.closest('.contact-scene');
 
-    cards.forEach((card, index) => {
-
-        /*
-           Aparición escalonada:
-
-           Tarjeta 1: 30%
-           Tarjeta 2: 35%
-           Tarjeta 3: 40%
-           Tarjeta 4: 45%
-           Tarjeta 5: 50%
-           Tarjeta 6: 55%
-        */
-        const cardStart = 0.30 + index * 0.05;
-
-        /*
-           Todas las tarjetas tienen el mismo tiempo
-           proporcional de entrada.
-        */
-        const rawCardProgress =
-            (sceneProgress - cardStart) / 0.30;
-
-        const cardProgress = smoothCardProgress(
-            rawCardProgress
-        );
-
-        /*
-           Movimiento vertical:
-           180px → 0px
-        */
-        const moveY =
-            180 - cardProgress * 180;
-
-        /*
-           Escala:
-           0.75 → 1
-        */
-        const scale =
-            0.75 + cardProgress * 0.25;
-
-        /*
-           Opacidad:
-           0 → 1
-        */
-        card.style.opacity =
-            `${cardProgress}`;
-
-        card.style.transform = `
-            translate3d(0, ${moveY}px, 0)
-            scale(${scale})
-        `;
-    });
-}
-
-/*
-   Actualiza todas las escenas con tarjetas.
-*/
-function updateAllAnimatedCards() {
-    animatedCardScenes.forEach(configuration => {
-
-        const scene = document.querySelector(
-            configuration.sceneSelector
-        );
-
-        if (!scene) {
-            return;
-        }
-
-        const cards = scene.querySelectorAll(
-            configuration.cardSelector
-        );
-
-        updateCardsInScene(scene, cards);
-    });
-}
-
-/*
-   requestAnimationFrame evita ejecutar varias actualizaciones
-   dentro del mismo fotograma.
-*/
-function requestAnimatedCardsUpdate() {
-    if (cardsAnimationFrame !== null) {
+    if (!animationContainer) {
         return;
     }
 
-    cardsAnimationFrame = requestAnimationFrame(() => {
-        updateAllAnimatedCards();
-        cardsAnimationFrame = null;
-    });
+    const rect =
+        animationContainer.getBoundingClientRect();
+
+    const windowHeight =
+        window.innerHeight;
+
+    /*
+       0 = el contenedor todavía no ha entrado.
+       1 = el contenedor ya completó su recorrido.
+    */
+    const rawProgress =
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height);
+
+    /*
+       El letrero empieza después de que el contenedor
+       alcanza aproximadamente el 15% de su entrada.
+    */
+    const signPhase = smoothSignProgress(
+        (rawProgress - 0.15) / 0.25
+    );
+
+    /*
+       Movimiento vertical:
+       70px → 0px
+    */
+    const moveY =
+        70 - signPhase * 70;
+
+    /*
+       Escala:
+       0.90 → 1
+    */
+    const scale =
+        0.90 + signPhase * 0.10;
+
+    /*
+       Opacidad:
+       0 → 1
+    */
+    sign.style.opacity =
+        `${signPhase}`;
+
+    sign.style.transform = `
+        translate3d(0, ${moveY}px, 0)
+        scale(${scale})
+    `;
+}
+
+/*
+   Actualiza todos los letreros.
+*/
+function updateAllAnimatedSigns() {
+    if (
+        window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        ).matches
+    ) {
+        animatedSigns.forEach(sign => {
+            sign.style.opacity = '1';
+
+            sign.style.transform = `
+                translate3d(0, 0, 0)
+                scale(1)
+            `;
+        });
+
+        return;
+    }
+
+    animatedSigns.forEach(updateAnimatedSign);
+}
+
+/*
+   Evita múltiples actualizaciones dentro del mismo fotograma.
+*/
+function requestAnimatedSignsUpdate() {
+    if (signsAnimationFrame !== null) {
+        return;
+    }
+
+    signsAnimationFrame =
+        window.requestAnimationFrame(() => {
+
+            updateAllAnimatedSigns();
+
+            signsAnimationFrame = null;
+        });
 }
 
 window.addEventListener(
     'scroll',
-    requestAnimatedCardsUpdate,
+    requestAnimatedSignsUpdate,
     { passive: true }
 );
 
 window.addEventListener(
     'resize',
-    requestAnimatedCardsUpdate
+    requestAnimatedSignsUpdate
 );
 
 window.addEventListener(
     'load',
-    requestAnimatedCardsUpdate
+    requestAnimatedSignsUpdate
 );
 
 /*
-   Ejecuta una actualización inicial por si la página
-   se abre en una posición restaurada por el navegador.
+   Ejecuta una actualización inicial.
 */
-requestAnimatedCardsUpdate();
+requestAnimatedSignsUpdate();
 
+/* ============================================================
+   FLECHA GLOBAL
+   SE DESVANECE AL FINAL DEL RECORRIDO DE LA PÁGINA
+============================================================ */
+
+const globalScrollArrow =
+    document.querySelector('.epic-global-scroll-arrow');
+
+let globalArrowAnimationFrame = null;
+
+function updateGlobalScrollArrow() {
+    if (!globalScrollArrow) {
+        return;
+    }
+
+    /*
+       Distancia que todavía queda para llegar al final.
+    */
+    const remainingDistance =
+        document.documentElement.scrollHeight -
+        window.innerHeight -
+        window.scrollY;
+
+    /*
+       La desaparición comienza cuando quedan 120px
+       o menos para terminar la página.
+    */
+    const endThreshold = 120;
+
+    const reachedPageEnd =
+        remainingDistance <= endThreshold;
+
+    globalScrollArrow.classList.toggle(
+        'is-page-end',
+        reachedPageEnd
+    );
+}
+
+/*
+   Evita ejecutar múltiples actualizaciones en el
+   mismo fotograma.
+*/
+function requestGlobalArrowUpdate() {
+    if (globalArrowAnimationFrame !== null) {
+        return;
+    }
+
+    globalArrowAnimationFrame =
+        window.requestAnimationFrame(() => {
+
+            updateGlobalScrollArrow();
+
+            globalArrowAnimationFrame = null;
+        });
+}
+
+window.addEventListener(
+    'scroll',
+    requestGlobalArrowUpdate,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    requestGlobalArrowUpdate
+);
+
+window.addEventListener(
+    'load',
+    requestGlobalArrowUpdate
+);
+
+/*
+   Comprobación inicial.
+*/
+requestGlobalArrowUpdate();
+
+/* ============================================================
+   ORDEN UNIFICADO DE TARJETAS
+   UYUNI, LAKE TITICACA Y VALLEY TOURS
+============================================================ */
+
+const orderedCardScenes =
+    document.querySelectorAll(
+        '.uyuni-scene, .lake-scene, .valley-scene'
+    );
+
+if (orderedCardScenes.length > 0) {
+
+    const orderedCardsObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    /*
+                       Al entrar, las tarjetas aparecen
+                       respetando el orden establecido.
+                    */
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(
+                            'cards-order-visible'
+                        );
+                    } else {
+                        /*
+                           Al salir completamente, se reinicia
+                           la secuencia para que pueda repetirse.
+                        */
+                        entry.target.classList.remove(
+                            'cards-order-visible'
+                        );
+                    }
+                });
+            },
+            {
+                threshold: 0.28
+            }
+        );
+
+    orderedCardScenes.forEach(scene => {
+        orderedCardsObserver.observe(scene);
+    });
+}
 
 
 </script>
