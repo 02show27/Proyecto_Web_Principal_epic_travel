@@ -2623,8 +2623,8 @@ filter: brightness(0) invert(1);
 .snow-scene .condor-flight {
     position: absolute;
 
-    top: 24%;
-    left: -25px;
+    top: 60%;
+    left: 10px;
 
     z-index: 6;
 
@@ -2994,6 +2994,7 @@ filter: brightness(0) invert(1);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    
 }
 
 
@@ -3037,6 +3038,8 @@ filter: brightness(0) invert(1);
     transform:
         translate3d(0, 0, 0)
         scale(1) !important;
+
+        
 }
 
 
@@ -3123,6 +3126,11 @@ filter: brightness(0) invert(1);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+     border:
+        3px solid
+        rgba(1, 17, 15, 0.9);
+
+    border-radius: 18px;
 }
 
 
