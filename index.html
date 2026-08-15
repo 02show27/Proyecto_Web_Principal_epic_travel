@@ -25,7 +25,7 @@
     <header class="epic-navbar">
         <div class="epic-nav-inner">
             <a href="#bienvenida">
-                <img src="assets/webprincipal/img/logotipo.png" class="epic-logo-img" alt="Epic Travel" />
+                <img src="assets/webprincipal/img/epic-logo.png" class="epic-logo-img" alt="Epic Travel" />
             </a>
 
             <nav class="epic-nav">
@@ -663,6 +663,15 @@
 
 </section>
 
+<!-- =========================================================
+     COMPOSICIÓN CONTINUA — ESCENAS 7, 8 Y 9
+
+     Este contenedor une Valley Tours, Death Road y Contacto
+     sin modificar los identificadores utilizados por el menú
+     ni las clases utilizadas por JavaScript.
+========================================================== -->
+<div class="valley-contact-journey">
+
  <!-- =========================================================
      ESCENA 7 - VALLEY TOURS / TORO TORO
 
@@ -869,11 +878,6 @@
 <section id="contacto"
          class="scene contact-scene"
          aria-labelledby="contact-title">
-
-    <!-- FONDO DEATH ROAD -->
-    <img src="assets/webprincipal/img/death-road.png"
-         class="contact-road-bg"
-         alt="Paisaje de Death Road" />
 
     <!-- FONDO PAMPAS -->
     <img src="assets/webprincipal/img/pampas.png"
@@ -1110,6 +1114,7 @@
         </div>
 
     </div>
+
 
 </section>
 
@@ -1892,7 +1897,7 @@ function updateDownhillScene() {
        la inclinación del descenso.
     */
     const rotation =
-        -10 + movement * 28;
+        14 + movement * 16;
 
     /*
        Aparición y desaparición.
@@ -2379,5 +2384,9 @@ if (orderedCardScenes.length > 0) {
 
 </script>
 
+<footer>
+    <p> &copy;2026 Epic travel Todos los derechos reservados.
+    </p> 
+</footer>
 </body>
 </html>

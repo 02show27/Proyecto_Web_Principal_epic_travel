@@ -163,7 +163,7 @@ body {
     display: block;
 
     width: auto;
-    height: 48px;
+    height: 60px;
     max-width: 180px;
 
     object-fit: contain;
@@ -173,8 +173,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    
 
-    gap: 24px;
+    gap: 30px;
 }
 
 .epic-nav a {
@@ -183,8 +184,10 @@ body {
     color: white;
     text-decoration: none;
 
-    font-size: .92rem;
+    font-size: 20px;
     font-weight: 600;
+    font-family:fantasy;
+    font-family: cursive;
 
     opacity: .9;
     white-space: nowrap;
@@ -3998,7 +4001,7 @@ filter: brightness(0) invert(1);
     z-index: 1;
 
     background:
-        rgba(255, 255, 255, .88);
+        rgba(255, 255, 255, 0.685);
 
     box-shadow:
         0 2px 8px
@@ -4270,7 +4273,7 @@ filter: brightness(0) invert(1);
 .uyuni-cards-wrapper {
     position: absolute;
 
-    top: 48%;
+    top: 35%;
     left: 50%;
 
     z-index: 12;
@@ -4450,7 +4453,7 @@ filter: brightness(0) invert(1);
 
     border:
         3px solid
-        rgba(255, 255, 255, .90);
+        rgba(1, 17, 15, 0.9);
 
     border-radius: 18px;
 
@@ -5049,6 +5052,7 @@ filter: brightness(0) invert(1);
     .uyuni-cards-wrapper {
         top: 43%;
         left: 50%;
+        
 
         width: 94%;
 
@@ -5440,6 +5444,7 @@ filter: brightness(0) invert(1);
 .lake-tour-buttons {
     display: grid;
 
+
     grid-template-columns:
         repeat(3, auto);
 
@@ -5454,7 +5459,7 @@ filter: brightness(0) invert(1);
     column-gap: 28px;
     row-gap: 30px;
 
-    padding-bottom: 120px;
+    padding-bottom: 28%;
 }
 
 
@@ -5605,6 +5610,12 @@ filter: brightness(0) invert(1);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+
+     border:
+        3px solid
+        rgba(1, 17, 15, 0.9);
+
+    border-radius: 18px;
 }
 
 
@@ -6480,46 +6491,6 @@ filter: brightness(0) invert(1);
 }
 
 
-/* =========================================================
-   VEGETACIÓN IZQUIERDA
-
-   Debe permanecer DETRÁS del dinosaurio.
-========================================================= */
-
-.valley-scene .valley-jungle-left {
-    position: absolute;
-
-    left: -3%;
-    right: auto;
-
-    bottom: 0;
-
-    z-index: 2;
-
-    display: block;
-
-    width: 52%;
-    height: auto;
-
-    opacity: 1;
-
-    object-fit: contain;
-    object-position: left bottom;
-
-    /*
-       No establecer transform fijo.
-       JavaScript controla el movimiento.
-    */
-    will-change: transform;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-
-    pointer-events: none;
-
-    user-select: none;
-    -webkit-user-drag: none;
-}
 
 
 /* =========================================================
@@ -6915,6 +6886,12 @@ filter: brightness(0) invert(1);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+     border:
+        3px solid
+        rgba(1, 17, 15, 0.9);
+
+    border-radius: 18px;
+
 }
 
 
@@ -8060,6 +8037,111 @@ filter: brightness(0) invert(1);
             270 / 190;
     }
 }
+
+/* =========================================================
+   VALLEY TOURS
+   VISIBILIDAD SIN BRILLO BLANCO
+========================================================= */
+
+/* Capa ambiental más ligera */
+.valley-scene::before {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(2, 51, 50, .01) 0%,
+            rgba(2, 51, 50, .04) 45%,
+            rgba(2, 51, 50, .12) 100%
+        ) !important;
+}
+
+/* =========================================================
+   DINOSAURIO
+========================================================= */
+
+.valley-scene .valley-toro-main {
+    opacity: 1 !important;
+
+    filter:
+        brightness(1.25)
+        saturate(1.20)
+        contrast(1.12)
+
+        /* Separación sutil con el fondo */
+        drop-shadow(
+            0 8px 16px
+            rgba(1, 35, 34, .28)
+        )
+
+        /* Profundidad inferior */
+        drop-shadow(
+            0 18px 30px
+            rgba(0, 0, 0, .35)
+        ) !important;
+}
+
+/* =========================================================
+   VEGETACIÓN IZQUIERDA
+========================================================= */
+
+.valley-scene .valley-jungle-left {
+    opacity: 1 !important;
+
+    filter:
+        brightness(1.16)
+        saturate(1.24)
+        contrast(1.10)
+
+        drop-shadow(
+            8px 6px 18px
+            rgba(0, 0, 0, .32)
+        ) !important;
+}
+
+/* =========================================================
+   VEGETACIÓN DERECHA
+========================================================= */
+
+.valley-scene .valley-jungle-right {
+    opacity: 1 !important;
+
+    filter:
+        brightness(1.16)
+        saturate(1.24)
+        contrast(1.10)
+
+        drop-shadow(
+            -8px 6px 18px
+            rgba(0, 0, 0, .32)
+        ) !important;
+}
+
+/* =========================================================
+   IMÁGENES DE LAS TARJETAS
+========================================================= */
+
+.valley-tour-card img {
+    opacity: 1 !important;
+
+    filter:
+        brightness(1.13)
+        saturate(1.20)
+        contrast(1.08) !important;
+}
+
+/* Capa discreta para conservar la lectura visual */
+.valley-tour-card::after {
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, .16),
+            rgba(0, 0, 0, 0)
+        ) !important;
+}
+
+
+
+
+
 /* =========================================================
    ESCENA 8 — DEATH ROAD
    Desktop + Tablet + Mobile
@@ -8320,6 +8402,73 @@ filter: brightness(0) invert(1);
     }
 }
 
+/* =========================================================
+   DEATH ROAD
+   CICLISTA — AJUSTE MÁS ARRIBA
+========================================================= */
+
+/* Escritorio */
+.valley-contact-journey .downhill-img {
+    top: -50% !important;
+}
+
+/* Laptop y tablet */
+@media (max-width: 992px) {
+    .valley-contact-journey .downhill-img {
+        top: -40% !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .valley-contact-journey .downhill-img {
+        top: -35% !important;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    .valley-contact-journey .downhill-img {
+        top: -25% !important;
+    }
+}
+
+/* =========================================================
+   DEATH ROAD
+   MONTAÑA HACIA LA IZQUIERDA
+========================================================= */
+
+/* Escritorio */
+.valley-contact-journey .death-road-img {
+    left: 44% !important;
+    top: 10vh !important;
+
+    transform: translateX(-50%) !important;
+}
+
+/* Laptop y tablet */
+@media (max-width: 992px) {
+    .valley-contact-journey .death-road-img {
+        left: 45% !important;
+        top: 7vh !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .valley-contact-journey .death-road-img {
+        left: 46% !important;
+        top: 5vh !important;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    .valley-contact-journey .death-road-img {
+        left: 47% !important;
+        top: 4vh !important;
+    }
+}
 /*
        
 =========================================================
@@ -8765,10 +8914,11 @@ filter: brightness(0) invert(1);
     }
 
     .contact-dolphin-img {
-        width: 125px;
-        right: -190px;
-        bottom: 14%;
-    }
+    position: absolute;
+    right: -280px;
+    bottom: 2%;
+    width: 180px;
+}
 
     .contact-footer-panel {
         left: 50%;
@@ -9107,6 +9257,166 @@ filter: brightness(0) invert(1);
     }
 }
 
+/* =========================================================
+   DELFÍN ROSADO
+   Sale del agua, gira y vuelve a sumergirse
+========================================================= */
+
+.contact-scene .contact-dolphin-img {
+    position: absolute !important;
+
+    top: auto !important;
+    right: auto !important;
+    left: 50% !important;
+
+    /*
+       Posición base del delfín debajo de la superficie.
+    */
+    bottom: -25px !important;
+
+    z-index: 5;
+
+    display: block;
+
+    width: clamp(105px, 13vw, 180px) !important;
+    max-width: none !important;
+    height: auto !important;
+
+    opacity: 0;
+    visibility: visible;
+
+    /*
+       El giro se produce desde el centro del delfín.
+    */
+    transform-origin: 50% 50%;
+
+    animation:
+        dolphinJumpAndDive 7s
+        linear
+        infinite !important;
+
+    will-change: transform, opacity;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   TRAYECTORIA COMPLETA
+========================================================= */
+
+@keyframes dolphinJumpAndDive {
+
+    /* Sumergido: cabeza orientada hacia la superficie */
+    2% {
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+
+    /* Permanece oculto */
+    8% {
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+
+    /* La cabeza comienza a salir */
+    15% {
+        transform:
+            translateX(-50%)
+            translateY(40px)
+            rotate(165deg);
+
+        opacity: 1;
+    }
+
+    /* Sale frontalmente */
+    28% {
+        transform:
+            translateX(-50%)
+            translateY(-80px)
+            rotate(120deg);
+
+        opacity: 1;
+    }
+
+    /* Punto más alto */
+    40% {
+        transform:
+            translateX(-50%)
+            translateY(-125px)
+            rotate(60deg);
+
+        opacity: 1;
+    }
+
+    /* Comienza a orientarse hacia abajo */
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-85px)
+            rotate(30deg);
+
+        opacity: 1;
+    }
+
+    /* Se dirige hacia el agua */
+    60% {
+        transform:
+            translateX(-50%)
+            translateY(-10px)
+            rotate(-30deg);
+
+        opacity: 1;
+    }
+
+    /* Comienza la zambullida */
+    68% {
+        transform:
+            translateX(-50%)
+            translateY(75px)
+            rotate(-70deg);
+
+        opacity: 1;
+    }
+
+    /* Completamente sumergido */
+    75% {
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(-110deg);
+
+        opacity: 0;
+    }
+
+    /* Permanece oculto */
+    90% {
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(-160deg);
+
+        opacity: 0;
+    }
+
+    /* Termina el giro completo */
+    100% {
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(-180deg);
+
+        opacity: 0;
+    }
+}
+
 .contact-dolphin-water-mask {
     position: absolute;
 
@@ -9115,77 +9425,1083 @@ filter: brightness(0) invert(1);
 
     z-index: 25;
 
-    /*
-       Máscara deliberadamente grande para que
-       NO corte al delfín por arriba ni por los lados.
-    */
     width: clamp(240px, 30vw, 420px);
     height: clamp(200px, 25vw, 350px);
 
     transform: translateX(-50%);
 
-    /*
-       El borde inferior de este contenedor coincide
-       exactamente con el final de la escena.
-    */
     overflow: hidden;
 
     pointer-events: none;
 }
 
-.contact-scene .contact-dolphin-img {
-    position: absolute !important;
 
-    left: 50% !important;
+/* =========================================================
+   UNIÓN DEATH ROAD → PAMPAS
+   Evita que pampas.png se corte durante el descenso
+========================================================= */
+
+/*
+   Las secciones dejan de crear capas independientes.
+   Así, el ciclista puede descender sobre Pampas.
+*/
+.valley-contact-journey .death-scene,
+.valley-contact-journey .contact-scene {
+    z-index: auto !important;
+
+    transform: none !important;
+
+    overflow: visible !important;
+}
+
+/*
+   El contenedor general continúa recortando solamente
+   aquello que sale de los laterales de toda la composición.
+*/
+.valley-contact-journey {
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   PAMPAS
+   COBERTURA COMPLETA SIN PERDER POSICIÓN
+========================================================= */
+
+.valley-contact-journey .contact-pampas-img {
+    position: absolute;
 
     /*
-       Hunde parcialmente al delfín.
-       Puedes ajustar SOLO este número.
+       Se extiende hacia Death Road.
     */
-    bottom: -25px !important;
-    top: auto !important;
+    top: -42vh !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
 
-    width: clamp(105px, 13vw, 180px) !important;
-    height: auto !important;
+    z-index: 12;
+
+    display: block;
+
+    /*
+       Cubre exactamente todo el ancho.
+       Ya no utiliza 112% ni scale().
+    */
+    width: 100% !important;
+    height: calc(100% + 42vh) !important;
+
+    max-width: none !important;
+
+    /*
+       Cubre completamente el contenedor.
+    */
+    object-fit: cover;
+
+    /*
+       Mantiene centrada la composición.
+    */
+    object-position: center top;
+
+    /*
+       Solamente conserva el movimiento vertical.
+       No utiliza scale().
+    */
+    transform:
+        translate3d(
+            -50%,
+            calc(var(--pampas-y, 118px) - 118px),
+            0
+        ) !important;
+
+    transform-origin: center top;
 
     opacity: 1;
     visibility: visible;
 
-    transform-origin: center center;
+    pointer-events: none;
 
-    animation:
-        dolphinWaterRotation 5.5s
-        ease-in-out
-        infinite !important;
+    will-change: transform;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+    .valley-contact-journey .contact-pampas-img {
+        top: -36vh !important;
+
+        width: 100% !important;
+        height: calc(100% + 36vh) !important;
+
+        object-fit: cover;
+        object-position: center top;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 100px) - 100px),
+                0
+            ) !important;
+    }
+}
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+    .valley-contact-journey .contact-pampas-img {
+        top: -30vh !important;
+
+        width: 100% !important;
+        height: calc(100% + 30vh) !important;
+
+        object-fit: cover;
+        object-position: 42% top;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 82px) - 82px),
+                0
+            ) !important;
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+    .valley-contact-journey .contact-pampas-img {
+        top: -24vh !important;
+
+        width: 100% !important;
+        height: calc(100% + 24vh) !important;
+
+        object-fit: cover;
+        object-position: 38% top;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 70px) - 70px),
+                0
+            ) !important;
+    }
+}
+
+/* =========================================================
+   PAMPAS
+   DESPLAZAMIENTO HACIA LA DERECHA
+========================================================= */
+
+/* Escritorio */
+.valley-contact-journey .contact-pampas-img {
+    left: 60% !important;
+
+    width: 122% !important;
+
+    transform:
+        translate3d(
+            -50%,
+            calc(var(--pampas-y, 118px) - 118px),
+            0
+        ) !important;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .valley-contact-journey .contact-pampas-img {
+        left: 54% !important;
+
+        width: 108% !important;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 100px) - 100px),
+                0
+            ) !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .valley-contact-journey .contact-pampas-img {
+        left: 53% !important;
+
+        width: 106% !important;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 82px) - 82px),
+                0
+            ) !important;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    .valley-contact-journey .contact-pampas-img {
+        left: 52% !important;
+
+        width: 104% !important;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 70px) - 70px),
+                0
+            ) !important;
+    }
+}
+
+/* =========================================================
+   CONTACTO
+   BLOQUE DE REDES MÁS HACIA LA IZQUIERDA
+========================================================= */
+
+/* Escritorio */
+.valley-contact-journey .contact-right-info {
+    position: relative;
+
+    left: -180px !important;
+}
+
+/* Evita un desplazamiento doble de los iconos */
+.valley-contact-journey
+.contact-right-info
+.contact-social-icons {
+    left: auto !important;
+
+    transform: none !important;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .valley-contact-journey .contact-right-info {
+        left: -55px !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .valley-contact-journey .contact-right-info {
+        left: -15px !important;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    .valley-contact-journey .contact-right-info {
+        left: 0 !important;
+    }
+}
+
+/* =========================================================
+   VALLEY TOURS — JUNGLE-RIGHT MÁS ABAJO Y A LA IZQUIERDA
+========================================================= */
+
+.valley-scene .valley-jungle-right {
+    right: -3% !important;
+    bottom: -45% !important;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-scene .valley-jungle-right {
+        right: -5% !important;
+        bottom: -8% !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .valley-scene .valley-jungle-right {
+        right: -2% !important;
+        bottom: -6% !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-scene .valley-jungle-right {
+        right: 0 !important;
+        bottom: -4% !important;
+    }
+}
+
+
+/* =========================================================
+   VALLEY TOURS — REDUCIR TAMAÑO DEL DINOSAURIO
+========================================================= */
+
+/* ESCRITORIO */
+.valley-scene .valley-toro-main {
+    width: 60% !important;
+    height: auto !important;
+    max-width: none !important;
+
+    transform-origin: center bottom;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-scene .valley-toro-main {
+        width: 82vw !important;
+        height: auto !important;
+        max-height: 72% !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .valley-scene .valley-toro-main {
+        width: 80vw !important;
+        height: auto !important;
+        max-height: 62% !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-scene .valley-toro-main {
+        width: 82vw !important;
+        height: auto !important;
+        max-height: 58% !important;
+    }
+}
+
+/* =========================================================
+   VALLEY TOURS — JUNGLE-LEFT ENCIMA DEL DINOSAURIO
+========================================================= */
+
+
+.valley-scene .valley-toro-main {
+    z-index: 3 !important;
+}
+
+.valley-scene .valley-jungle-left {
+    position: absolute;
+
+    left: -4% !important;
+    right: auto !important;
+    bottom: -10% !important;
+    z-index: 4 !important;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-scene .valley-jungle-left {
+        left: 3% !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .valley-scene .valley-jungle-left {
+        left: 2% !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-scene .valley-jungle-left {
+        left: 1% !important;
+    }
+}
+/* =========================================================
+   FUSIÓN FINAL — ESCENAS 7, 8 Y 9
+   VALLEY TOURS + DEATH ROAD + CONTACTO
+
+   Este bloque debe permanecer AL FINAL del archivo CSS.
+   Conserva los controladores JavaScript existentes y elimina
+   visualmente los cortes entre las tres secciones.
+========================================================= */
+
+/* =========================================================
+   CONTACT US — SUBIR EL LETRERO
+========================================================= */
+
+/* ESCRITORIO */
+.valley-contact-journey .contact-title-wrapper {
+    top: 10% !important;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-contact-journey .contact-title-wrapper {
+        top: 34% !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .valley-contact-journey .contact-title-wrapper {
+        top: 33% !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-contact-journey .contact-title-wrapper {
+        top: 31% !important;
+    }
+}
+
+:root {
+    --journey-green-top: #075d59;
+    --journey-green-middle: #044b48;
+    --journey-green-bottom: #023b39;
+    --journey-footer: #064d4a;
+    --journey-line: #16ef5b;
+}
+
+/* =========================================================
+   CONTACTO — ELIMINAR LÍNEA VERDE
+========================================================= */
+
+.valley-contact-journey .contact-footer-panel {
+    border-top: none !important;
+}
+/* =========================================================
+   CONTACTO — SUBIR INFORMACIÓN E ICONOS SOCIALES
+========================================================= */
+
+/* ESCRITORIO */
+.valley-contact-journey .contact-left-info,
+.valley-contact-journey .contact-right-info {
+    position: relative;
+    top: -300px !important;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+    .valley-contact-journey .contact-left-info,
+    .valley-contact-journey .contact-right-info {
+        top: -22px !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+    .valley-contact-journey .contact-left-info,
+    .valley-contact-journey .contact-right-info {
+        top: -16px !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+    .valley-contact-journey .contact-left-info,
+    .valley-contact-journey .contact-right-info {
+        top: -10px !important;
+    }
+}
+
+
+/* =========================================================
+   CONTENEDOR COMPARTIDO
+========================================================= */
+
+.valley-contact-journey {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--journey-green-top) 0%,
+            var(--journey-green-top) 31%,
+            var(--journey-green-middle) 61%,
+            var(--journey-green-bottom) 100%
+        );
+}
+
+.valley-contact-journey .scene {
+    width: 100%;
+    margin: 0;
+    padding-right: 0;
+    padding-left: 0;
+
+    border: 0;
+
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Evita líneas de un píxel entre las secciones. */
+.valley-contact-journey .valley-scene,
+.valley-contact-journey .death-scene,
+.valley-contact-journey .contact-scene {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* =========================================================
+   ZONA 1 — VALLEY TOURS
+========================================================= */
+
+.valley-contact-journey .valley-scene {
+    position: relative;
+    z-index: 10;
+
+    min-height: 125vh;
+    overflow: visible;
+}
+
+/* La capa ambiental termina transparente para enlazar Death Road. */
+.valley-contact-journey .valley-scene::before {
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(2, 51, 50, .01) 0%,
+            rgba(2, 51, 50, .03) 55%,
+            rgba(2, 51, 50, 0) 100%
+        ) !important;
+}
+
+.valley-contact-journey .valley-cards-wrapper {
+    z-index: 16;
+}
+
+.valley-contact-journey .valley-content {
+    z-index: 32;
+}
+
+/* =========================================================
+   ZONA 2 — CICLISTA / DEATH ROAD
+   Esta sección deja de comportarse como una pantalla aislada.
+========================================================= */
+
+.valley-contact-journey .death-scene {
+    position: relative;
+    z-index: 20;
+
+    min-height: 92vh;
+
+    margin-top: -18vh;
+
+    overflow: visible;
+}
+
+/* El paisaje comienza dentro del final de Valley y continúa
+   por debajo del ciclista. */
+.valley-contact-journey .death-road-img {
+    position: absolute;
+
+    top: -20vh;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 112%;
+    height: 135vh;
+    max-width: none;
+
+    object-fit: cover;
+    object-position: center 42%;
+
+    opacity: 1;
+
+    transform: translateX(-50%);
+
+    filter:
+        brightness(1.08)
+        saturate(1.12)
+        contrast(1.05);
 
     pointer-events: none;
 }
 
-@keyframes dolphinWaterRotation {
+/* El movimiento continúa siendo aplicado por JavaScript. */
+.valley-contact-journey .downhill-img {
+    position: absolute;
 
-    0% {
-        transform: translateX(-50%) rotate(0deg);
+    top: 6%;
+    left: -650px;
+
+    z-index: 28;
+
+    width: min(520px, 44vw);
+    max-width: none;
+    height: auto;
+
+    object-fit: contain;
+
+    filter:
+        brightness(1.08)
+        saturate(1.10)
+        drop-shadow(0 18px 24px rgba(0, 0, 0, .35));
+
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+/* La flecha local se oculta porque ya existe una flecha global. */
+.valley-contact-journey .death-scene .welcome-sticky-arrow,
+.valley-contact-journey .valley-cards-wrapper > .welcome-sticky-arrow {
+    display: none !important;
+}
+
+/* =========================================================
+   ZONA 3 — CONTACTO
+========================================================= */
+
+.valley-contact-journey .contact-scene {
+    position: relative;
+    z-index: 30;
+
+    display: block;
+
+    min-height: 165vh;
+
+    margin-top: -27vh;
+    padding: 0;
+
+    overflow: hidden;
+
+    scroll-margin-top: var(--navbar-height, 69px);
+}
+
+/* La copia de contact-road-bg fue eliminada del HTML. */
+.valley-contact-journey .contact-road-bg {
+    display: none !important;
+}
+
+/* Pampas forma el paisaje continuo y contiene a la viajera. */
+.valley-contact-journey .contact-pampas-img {
+    position: absolute;
+
+    top: -16vh;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+
+    z-index: 4;
+
+    display: block;
+
+    width: 112%;
+    height: calc(100% + 16vh);
+    max-width: none;
+
+    object-fit: cover;
+    object-position: center top;
+
+    opacity: 1;
+
+    transform:
+        translate3d(
+            -50%,
+            calc(var(--pampas-y, 118px) - 118px),
+            0
+        );
+
+    filter:
+        brightness(1.06)
+        saturate(1.10)
+        contrast(1.04);
+
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* CONTACT US se ubica debajo de la viajera, como en el prototipo. */
+.valley-contact-journey .contact-title-wrapper {
+    position: absolute;
+
+    top: 42%;
+    left: 50%;
+
+    z-index: 60;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 0 24px;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+.valley-contact-journey .contact-main-sign {
+    z-index: 61;
+
+    min-width: 390px;
+    min-height: 88px;
+
+    padding: 10px 32px;
+
+    border: 4px solid #ffffff;
+    border-radius: 999px;
+
+    background: rgba(2, 51, 50, .88);
+
+    box-shadow:
+        0 10px 26px rgba(0, 0, 0, .34);
+}
+
+/* =========================================================
+   FOOTER INTEGRADO
+========================================================= */
+
+.valley-contact-journey .contact-footer-panel {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 70;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 160px;
+
+    gap: 32px;
+    margin: 0;
+    padding: 22px clamp(24px, 5vw, 76px);
+
+    color: #ffffff;
+    background: rgba(4, 77, 74, .96);
+
+    border-top: 4px solid var(--journey-line);
+
+    pointer-events: auto;
+}
+
+.valley-contact-journey .contact-left-info {
+    width: min(62%, 760px);
+}
+
+.valley-contact-journey .contact-right-info {
+    width: auto;
+    min-width: 220px;
+}
+
+/* =========================================================
+   DELFÍN SOBRE LA LÍNEA DEL FOOTER
+========================================================= */
+
+.valley-contact-journey .contact-dolphin-water-mask {
+    position: absolute;
+
+    left: 50%;
+    bottom: 160px;
+
+    z-index: 75;
+
+    width: clamp(240px, 30vw, 420px);
+    height: clamp(220px, 27vw, 370px);
+
+    transform: translateX(-50%);
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.valley-contact-journey .contact-dolphin-img {
+    z-index: 76 !important;
+}
+
+/* =========================================================
+   LAPTOP PEQUEÑA
+========================================================= */
+
+@media (max-width: 1200px) {
+    .valley-contact-journey .death-scene {
+        min-height: 88vh;
+        margin-top: -16vh;
     }
 
-    25% {
-        transform: translateX(-50%) rotate(-90deg);
+    .valley-contact-journey .death-road-img {
+        width: 120%;
+        height: 132vh;
     }
 
-    50% {
-        transform: translateX(-50%) rotate(-180deg);
+    .valley-contact-journey .contact-scene {
+        min-height: 160vh;
+        margin-top: -24vh;
     }
 
-    75% {
-        transform: translateX(-50%) rotate(-270deg);
-    }
-
-    100% {
-        transform: translateX(-50%) rotate(-360deg);
+    .valley-contact-journey .contact-pampas-img {
+        width: 118%;
     }
 }
 
-.contact-scene {
-    background-color: #023332;
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+    .valley-contact-journey .valley-scene {
+        min-height: 125vh;
+    }
+
+    .valley-contact-journey .death-scene {
+        min-height: 82vh;
+        margin-top: -14vh;
+    }
+
+    .valley-contact-journey .death-road-img {
+        top: -16vh;
+        left: 50%;
+
+        width: 128%;
+        height: 120vh;
+
+        transform: translateX(-50%);
+        object-position: center center;
+    }
+
+    .valley-contact-journey .downhill-img {
+        top: 8%;
+        left: -430px;
+
+        width: min(360px, 50vw);
+    }
+
+    .valley-contact-journey .contact-scene {
+        min-height: 150vh;
+        margin-top: -20vh;
+    }
+
+    .valley-contact-journey .contact-pampas-img {
+        top: -12vh;
+
+        width: 125%;
+        height: calc(100% + 12vh);
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 100px) - 100px),
+                0
+            );
+    }
+
+    .valley-contact-journey .contact-title-wrapper {
+        top: 40%;
+    }
+
+    .valley-contact-journey .contact-footer-panel {
+        min-height: 150px;
+        padding: 20px 34px;
+    }
+
+    .valley-contact-journey .contact-dolphin-water-mask {
+        bottom: 150px;
+    }
+}
+
+/* =========================================================
+   CELULAR / TABLET VERTICAL
+========================================================= */
+
+@media (max-width: 768px) {
+    .valley-contact-journey .valley-scene {
+        min-height: 130vh;
+    }
+
+    .valley-contact-journey .death-scene {
+        min-height: 72vh;
+        margin-top: -10vh;
+    }
+
+    .valley-contact-journey .death-road-img {
+        top: -10vh;
+
+        width: 145%;
+        height: 100vh;
+
+        object-position: center center;
+    }
+
+    .valley-contact-journey .downhill-img {
+        top: 12%;
+        left: -270px;
+
+        width: clamp(190px, 55vw, 280px);
+    }
+
+    .valley-contact-journey .contact-scene {
+        min-height: 150vh;
+        margin-top: -14vh;
+    }
+
+    .valley-contact-journey .contact-pampas-img {
+        top: -8vh;
+
+        width: 138%;
+        height: calc(100% + 8vh);
+
+        object-position: 42% top;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 82px) - 82px),
+                0
+            );
+    }
+
+    .valley-contact-journey .contact-title-wrapper {
+        top: 39%;
+        padding: 0 16px;
+    }
+
+    .valley-contact-journey .contact-main-sign {
+        min-width: 275px;
+        min-height: 68px;
+
+        padding: 8px 22px;
+        border-width: 3px;
+    }
+
+    .valley-contact-journey .contact-footer-panel {
+        position: absolute;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        min-height: 255px;
+
+        gap: 18px;
+        padding: 24px 22px;
+    }
+
+    .valley-contact-journey .contact-left-info,
+    .valley-contact-journey .contact-right-info {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .valley-contact-journey .contact-right-info {
+        align-items: flex-start;
+    }
+
+    .valley-contact-journey .contact-dolphin-water-mask {
+        bottom: 255px;
+
+        width: clamp(220px, 48vw, 330px);
+        height: clamp(210px, 45vw, 310px);
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+    .valley-contact-journey .valley-scene {
+        min-height: 135vh;
+    }
+
+    .valley-contact-journey .death-scene {
+        min-height: 65vh;
+        margin-top: -7vh;
+    }
+
+    .valley-contact-journey .death-road-img {
+        top: -7vh;
+
+        width: 160%;
+        height: 90vh;
+    }
+
+    .valley-contact-journey .downhill-img {
+        top: 14%;
+        left: -210px;
+
+        width: clamp(155px, 52vw, 205px);
+    }
+
+    .valley-contact-journey .contact-scene {
+        min-height: 155vh;
+        margin-top: -10vh;
+    }
+
+    .valley-contact-journey .contact-pampas-img {
+        top: -5vh;
+
+        width: 155%;
+        height: calc(100% + 5vh);
+
+        object-position: 38% top;
+
+        transform:
+            translate3d(
+                -50%,
+                calc(var(--pampas-y, 70px) - 70px),
+                0
+            );
+    }
+
+    .valley-contact-journey .contact-title-wrapper {
+        top: 37%;
+        padding: 0 12px;
+    }
+
+    .valley-contact-journey .contact-main-sign {
+        min-width: 225px;
+        min-height: 60px;
+
+        gap: 7px;
+        padding: 7px 16px;
+
+        border-width: 2px;
+    }
+
+    .valley-contact-journey .contact-footer-panel {
+        min-height: 285px;
+
+        padding: 22px 16px;
+    }
+
+    .valley-contact-journey .contact-line {
+        font-size: clamp(.72rem, 3vw, .88rem);
+    }
+
+    .valley-contact-journey .contact-dolphin-water-mask {
+        bottom: 285px;
+
+        width: clamp(205px, 58vw, 285px);
+        height: clamp(200px, 54vw, 275px);
+    }
+}
+
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .valley-contact-journey .downhill-img,
+    .valley-contact-journey .contact-pampas-img {
+        will-change: auto;
+    }
 }
 
 /*
@@ -9573,4 +10889,15 @@ body {
         drop-shadow(0 0 0 rgba(0, 0, 0, 0));
 
     pointer-events: none;
+}
+
+footer{
+    padding: 40px 20px;
+    color: #d8f7f7;
+    text-align: center;
+    font-size: 20px;
+
+}
+footer p{
+    color: white;
 }
