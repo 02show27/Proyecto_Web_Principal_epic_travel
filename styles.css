@@ -184,10 +184,15 @@ body {
     color: white;
     text-decoration: none;
 
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    font-family:fantasy;
-    font-family: cursive;
+    /* Carga de la fuente Prompt Italic */
+    @font-face {
+    font-family: 'Prompt-Light';
+    src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+    font-weight: normal;
+    font-style: Italic;
+    }
 
     opacity: .9;
     white-space: nowrap;
@@ -798,6 +803,13 @@ body {
         font-weight: 600;
 
         white-space: nowrap;
+        @font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
+
     }
 }
 
@@ -936,6 +948,13 @@ body {
         white-space: nowrap;
 
         opacity: .92;
+        @font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
+
     }
 
     .epic-nav a:hover,
@@ -1092,6 +1111,17 @@ body {
 filter: brightness(0) invert(1);
 }
 
+.p
+.intro-loading-text{
+
+@font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
+
+}
 @media (max-width: 992px) {
     .intro-circle-wrap {
         width: min(330px, 76vw);
@@ -6680,14 +6710,14 @@ filter: brightness(0) invert(1);
 
 .valley-cards-wrapper {
     position: absolute;
-
+    
     inset: 0;
 
     z-index: 12;
 
     display: flex;
 
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 
     width: 100%;
@@ -6726,8 +6756,8 @@ filter: brightness(0) invert(1);
 
     margin:
         0 auto;
-
-    padding-bottom: 80px;
+    transform: translateY(-35px);
+    padding-bottom: 0px;
 
     column-gap: 32px;
     row-gap: 42px;
@@ -6742,7 +6772,7 @@ filter: brightness(0) invert(1);
 .valley-tour-item {
 
     width: 100%;
-
+    
     display: flex;
 
     flex-direction: column;
@@ -6795,6 +6825,8 @@ filter: brightness(0) invert(1);
 .valley-scene.cards-order-visible
 .valley-tour-item {
 
+
+    
     opacity: 1 !important;
 
     visibility: visible;
@@ -6866,7 +6898,6 @@ filter: brightness(0) invert(1);
 
 .valley-tour-card {
     position: relative;
-
     display: block;
 
     width: 270px !important;
@@ -9266,8 +9297,7 @@ filter: brightness(0) invert(1);
 }
 
 /* =========================================================
-   DELFÍN ROSADO
-   Sale del agua, gira y vuelve a sumergirse
+   DELFÍN ROSADO - Giro en su propio eje
 ========================================================= */
 
 .contact-scene .contact-dolphin-img {
@@ -9276,10 +9306,6 @@ filter: brightness(0) invert(1);
     top: auto !important;
     right: auto !important;
     left: 50% !important;
-
-    /*
-       Posición base del delfín debajo de la superficie.
-    */
     bottom: -25px !important;
 
     z-index: 5;
@@ -9293,13 +9319,11 @@ filter: brightness(0) invert(1);
     opacity: 0;
     visibility: visible;
 
-    /*
-       El giro se produce desde el centro del delfín.
-    */
+    /* Centro exacto como punto de rotación */
     transform-origin: 50% 50%;
 
     animation:
-        dolphinJumpAndDive 7s
+        dolphinRotateSelf 7s
         linear
         infinite !important;
 
@@ -9309,138 +9333,34 @@ filter: brightness(0) invert(1);
 }
 
 /* =========================================================
-   TRAYECTORIA COMPLETA
+   ROTACIÓN SOBRE SU PROPIO EJE
 ========================================================= */
 
-@keyframes dolphinJumpAndDive {
+@keyframes dolphinRotateSelf {
 
-    /* Sumergido: cabeza orientada hacia la superficie */
-    2% {
-        transform:
-            translateX(-50%)
-            translateY(170px)
-            rotate(180deg);
-
+    /* Oculto e inicia rotación */
+    0% {
         opacity: 0;
+        transform: translateX(-50%) translateY(0) rotate(0deg);
     }
 
-    /* Permanece oculto */
-    8% {
-        transform:
-            translateX(-50%)
-            translateY(170px)
-            rotate(180deg);
-
-        opacity: 0;
-    }
-
-    /* La cabeza comienza a salir */
-    15% {
-        transform:
-            translateX(-50%)
-            translateY(40px)
-            rotate(165deg);
-
+    /* Aparece progresivamente */
+    5% {
         opacity: 1;
+        transform: translateX(-50%) translateY(0) rotate(0deg);
     }
 
-    /* Sale frontalmente */
-    28% {
-        transform:
-            translateX(-50%)
-            translateY(-80px)
-            rotate(120deg);
-
-        opacity: 1;
-    }
-
-    /* Punto más alto */
-    40% {
-        transform:
-            translateX(-50%)
-            translateY(-125px)
-            rotate(60deg);
-
-        opacity: 1;
-    }
-
-    /* Comienza a orientarse hacia abajo */
-    50% {
-        transform:
-            translateX(-50%)
-            translateY(-85px)
-            rotate(30deg);
-
-        opacity: 1;
-    }
-
-    /* Se dirige hacia el agua */
-    60% {
-        transform:
-            translateX(-50%)
-            translateY(-10px)
-            rotate(-30deg);
-
-        opacity: 1;
-    }
-
-    /* Comienza la zambullida */
-    68% {
-        transform:
-            translateX(-50%)
-            translateY(75px)
-            rotate(-70deg);
-
-        opacity: 1;
-    }
-
-    /* Completamente sumergido */
-    75% {
-        transform:
-            translateX(-50%)
-            translateY(170px)
-            rotate(-110deg);
-
-        opacity: 0;
-    }
-
-    /* Permanece oculto */
+    /* Giro completo continuo (sentido antihorario igual que el avión) */
     90% {
-        transform:
-            translateX(-50%)
-            translateY(170px)
-            rotate(-160deg);
-
-        opacity: 0;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) rotate(-360deg);
     }
 
-    /* Termina el giro completo */
+    /* Se desvanece al completar la vuelta */
     100% {
-        transform:
-            translateX(-50%)
-            translateY(170px)
-            rotate(-180deg);
-
         opacity: 0;
+        transform: translateX(-50%) translateY(0) rotate(-360deg);
     }
-}
-
-.contact-dolphin-water-mask {
-    position: absolute;
-
-    left: 50%;
-    bottom: 0;
-
-    z-index: 25;
-
-    width: clamp(240px, 30vw, 420px);
-    height: clamp(200px, 25vw, 350px);
-
-    transform: translateX(-50%);
-
-    overflow: hidden;
-
-    pointer-events: none;
 }
 
 
@@ -10904,8 +10824,34 @@ footer{
     color: #d8f7f7;
     text-align: center;
     font-size: 20px;
+    @font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
 
 }
+
 footer p{
     color: white;
+    @font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
+
+}
+
+.contactos_epic{
+    font-size: 20px;
+    @font-face {
+  font-family: 'Prompt-Italic';
+  src: url('./assets/webprincipal/fonts/PROMPT-THINITALIC.TTF') format('truetype');
+  font-weight: normal;
+  font-style: Italic;
+}
+
+
 }

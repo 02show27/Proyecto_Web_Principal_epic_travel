@@ -933,7 +933,7 @@
               stroke-linejoin="round" />
     </svg>
 
-    <span>epictravelbolivia@gmail.com</span>
+    <span class="contactos_epic">epictravelbolivia@gmail.com</span>
 </a>
 
           <a href="https://www.google.com/maps/search/La+Paz+Calle+Linares+Galería+El+Pueblito+oficina+3"
@@ -960,7 +960,7 @@
                 stroke-width="2" />
     </svg>
 
-    <span>
+    <span class="contactos_epic">
         La Paz: Calle Linares, entre calle Sagarnaga y Santa<br>
         Cruz, Galería “El Pueblito”, oficina 3.
     </span>
@@ -990,7 +990,7 @@
                 stroke-width="2" />
     </svg>
 
-    <span>
+    <span class="contactos_epic">
         Santa Cruz: Barrio Equipetrol entre 2do y 3er Anillo,<br>
         Calle Tucumán Este, Edificio Malibu Inside, oficina 6.
     </span>
@@ -1079,8 +1079,8 @@
 
             </div>
 
-            <div class="contact-brand">
-                Epic Travel Bolivia
+            <div class="contactos_epic">
+                <span class="contactos_epic"> Epic Travel Bolivia</span>
             </div>
 
           <a href="https://wa.me/59171904414"
@@ -1108,7 +1108,7 @@
                 fill="white"/>
     </svg>
 
-    <span>+591 71904414</span>
+    <span class="contactos_epic">+591 71904414</span>
 </a>
 
         </div>
@@ -1273,102 +1273,110 @@ window.addEventListener(
 );
 
  /* =========================
-      2 Escena 2 vannesa<<
-    ========================= */
+   2 Escena 2 vannesa (Smooth/Slow Scroll)
+========================= */
 
-    const welcomeScene = document.querySelector('.welcome-scroll-scene');
-    const welcomeBg = document.querySelector('.welcome-bg-full');
-    const welcomeBoardCrop = document.querySelector('.welcome-board-crop');
-    const welcomeBoardImg = document.querySelector('.welcome-board-img');
+const welcomeScene = document.querySelector('.welcome-scroll-scene');
+const welcomeBg = document.querySelector('.welcome-bg-full');
+const welcomeBoardCrop = document.querySelector('.welcome-board-crop');
+const welcomeBoardImg = document.querySelector('.welcome-board-img');
 
-    const welcomeFullReveal = document.querySelector('.welcome-vanessa-full-reveal');
-    const welcomeSerpentina = document.querySelector('.welcome-serpentina');
-   const welcomeSalarCar =
-    document.querySelector('.welcome-salar-car');
+const welcomeFullReveal = document.querySelector('.welcome-vanessa-full-reveal');
+const welcomeSerpentina = document.querySelector('.welcome-serpentina');
+const welcomeSalarCar = document.querySelector('.welcome-salar-car');
 
-    function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+// Variables para el suavizado (Lerp)
+let currentProgress = 0;
+let targetProgress = 0;
+let isAnimating = false;
+
+function renderWelcomeScene(progress) {
+    const boardZoomPhase = clamp(progress / 0.30, 0, 1);
+    const boardFadePhase = clamp((progress - 0.22) / 0.22, 0, 1);
+    const fullPhase = clamp((progress - 0.28) / 0.45, 0, 1);
+    const bgPhase = clamp((progress - 0.38) / 0.40, 0, 1);
+    const serpentinaPhase = clamp((progress - 0.55) / 0.35, 0, 1);
+
+    /* 1) Letrero */
+    welcomeBoardCrop.style.opacity = `${1 - boardFadePhase}`;
+    welcomeBoardImg.style.transform = `
+        scale(${1.30 - boardZoomPhase * 0.30})
+        translateY(${-90 + boardZoomPhase * 90}px)
+    `;
+
+    /* 2) Vanessa */
+    welcomeFullReveal.style.opacity = `${fullPhase}`;
+    welcomeFullReveal.style.transform = `
+        scale(${0.70 + fullPhase * 0.20})
+        translateY(${265 - fullPhase * 110}px)
+    `;
+    welcomeFullReveal.style.filter = `
+        blur(${10 - fullPhase * 10}px)
+    `;
+
+    /* 3) Fondo */
+    welcomeBg.style.opacity = `${bgPhase}`;
+    welcomeBg.style.transform = `scale(${1.25 - bgPhase * 0.25})`;
+
+    /* 4) Serpentinas */
+    welcomeSerpentina.style.opacity = `${serpentinaPhase * 0.95}`;
+
+    if (fullPhase > 0.72) {
+        welcomeSerpentina.classList.add('active');
+        if (welcomeSalarCar) welcomeSalarCar.classList.add('active');
+    } else {
+        welcomeSerpentina.classList.remove('active');
+        if (welcomeSalarCar) welcomeSalarCar.classList.remove('active');
     }
 
-    function updateWelcomeScene() {
+    welcomeSerpentina.style.setProperty(
+        '--serpentina-y',
+        `${serpentinaPhase * 540}px`
+    );
+}
 
-        if (!welcomeScene || !welcomeBg || !welcomeBoardCrop || !welcomeBoardImg
-            || !welcomeFullReveal || !welcomeSerpentina || !welcomeSalarCar) {
-            return;
-        }
+// Bucle de animación suave
+function animate() {
+    // 0.05 define la lentitud/suavidad de respuesta (valores más bajos = más lento)
+    const ease = 0.05; 
+    
+    currentProgress += (targetProgress - currentProgress) * ease;
 
-        const rect = welcomeScene.getBoundingClientRect();
-        const totalScroll = welcomeScene.offsetHeight - window.innerHeight;
-        const progress = clamp(-rect.top / totalScroll, 0, 1);
+    renderWelcomeScene(currentProgress);
 
-   const boardZoomPhase = clamp(progress / 0.30, 0, 1);
+    // Detiene el bucle cuando la diferencia sea insignificante
+    if (Math.abs(targetProgress - currentProgress) > 0.0001) {
+        requestAnimationFrame(animate);
+    } else {
+        isAnimating = false;
+    }
+}
 
-/* El letrero inicial comienza a desaparecer al 22% */
-const boardFadePhase = clamp((progress - 0.22) / 0.22, 0, 1);
-
-/* Vanessa completa comienza a aparecer al 28% */
-const fullPhase = clamp((progress - 0.28) / 0.45, 0, 1);
-
-/* El fondo aparece después de Vanessa */
-const bgPhase = clamp((progress - 0.38) / 0.40, 0, 1);
-
-/* Finalmente aparecen las serpentinas */
-const serpentinaPhase = clamp((progress - 0.55) / 0.35, 0, 1);
-
-        /* 1) Primero: solo el letrero llena toda la escena */
-        welcomeBoardCrop.style.opacity = `${1 - boardFadePhase}`;
-
-       welcomeBoardImg.style.transform = `
-    scale(${1.30 - boardZoomPhase * 0.30})
-    translateY(${-90 + boardZoomPhase * 90}px)
-`;
-
-        /* 2) Luego: aparece Vanessa completa */
-        welcomeFullReveal.style.opacity = `${fullPhase}`;
-
-        welcomeFullReveal.style.transform = `
-            scale(${0.70 + fullPhase * 0.20})
-            translateY(${265 - fullPhase * 110}px)
-        `;
-
-        welcomeFullReveal.style.filter = `
-            blur(${10 - fullPhase * 10}px)
-        `;
-
-        /* 3) Fondo completo */
-        welcomeBg.style.opacity = `${bgPhase}`;
-        welcomeBg.style.transform = `scale(${1.25 - bgPhase * 0.25})`;
-
-        /* 4) Serpentinas bajando */
-        welcomeSerpentina.style.opacity = `${serpentinaPhase * 0.95}`;
-
-        if (fullPhase > 0.72) {
-
-            welcomeSerpentina.classList.add('active');
-
-            if (welcomeSalarCar) {
-                welcomeSalarCar.classList.add('active');
-            }
-
-        } else {
-
-            welcomeSerpentina.classList.remove('active');
-
-            if (welcomeSalarCar) {
-                welcomeSalarCar.classList.remove('active');
-            }
-
-        }
-
-        welcomeSerpentina.style.setProperty(
-            '--serpentina-y',
-            `${serpentinaPhase * 540}px`
-        );
+function updateWelcomeScene() {
+    if (!welcomeScene || !welcomeBg || !welcomeBoardCrop || !welcomeBoardImg
+        || !welcomeFullReveal || !welcomeSerpentina || !welcomeSalarCar) {
+        return;
     }
 
-    window.addEventListener('scroll', updateWelcomeScene, { passive: true });
-    window.addEventListener('resize', updateWelcomeScene);
-    window.addEventListener('load', updateWelcomeScene);
+    const rect = welcomeScene.getBoundingClientRect();
+    const totalScroll = welcomeScene.offsetHeight - window.innerHeight;
+    
+    // Asignamos el objetivo al scroll real
+    targetProgress = clamp(-rect.top / totalScroll, 0, 1);
+
+    if (!isAnimating) {
+        isAnimating = true;
+        requestAnimationFrame(animate);
+    }
+}
+
+window.addEventListener('scroll', updateWelcomeScene, { passive: true });
+window.addEventListener('resize', updateWelcomeScene);
+window.addEventListener('load', updateWelcomeScene);
 
 /* ============================================================
    ESCENA 3 - AVIÓN CONTROLADO POR SCROLL
